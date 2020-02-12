@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_153040) do
+ActiveRecord::Schema.define(version: 2020_02_12_161300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,8 +250,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_153040) do
     t.string "labor_currency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "longitude"
-    t.string "latitude"
     t.string "opening_hours_monday"
     t.string "opening_hours_tuesday"
     t.string "opening_hours_wednesday"
@@ -263,6 +261,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_153040) do
     t.string "manager_lastname"
     t.integer "opening_year"
     t.integer "experience_year"
+    t.string "logo_url"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "parts", force: :cascade do |t|
