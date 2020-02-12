@@ -1,0 +1,8 @@
+- company_name: AXA
+  firstname: John
+  lastname: DOE
+  address: Dakar, Sénégal
+  email: john.doe@gmail.com
+  phone_number: 771452514
+  ninea: 123456DES
+  customer_type: business
