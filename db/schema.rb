@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_142934) do
+ActiveRecord::Schema.define(version: 2020_02_12_143426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -282,13 +282,10 @@ ActiveRecord::Schema.define(version: 2020_02_12_142934) do
   create_table "repairoptions", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "propose_in_option"
-    t.decimal "labor"
+    t.boolean "optional"
     t.bigint "repairoption_category_id", null: false
-    t.bigint "partner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_repairoptions_on_partner_id"
     t.index ["repairoption_category_id"], name: "index_repairoptions_on_repairoption_category_id"
   end
 
@@ -413,7 +410,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_142934) do
   add_foreign_key "partner_repairoptions", "repairoptions"
   add_foreign_key "partner_users", "partners"
   add_foreign_key "payments", "invoices"
-  add_foreign_key "repairoptions", "partners"
   add_foreign_key "repairoptions", "repairoption_categories"
   add_foreign_key "user_accounts", "users"
   add_foreign_key "user_sessions", "customer_user_accounts", column: "user_account_id"
