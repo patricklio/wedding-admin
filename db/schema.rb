@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_142736) do
+ActiveRecord::Schema.define(version: 2020_02_12_142934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -292,6 +292,13 @@ ActiveRecord::Schema.define(version: 2020_02_12_142736) do
     t.index ["repairoption_category_id"], name: "index_repairoptions_on_repairoption_category_id"
   end
 
+  create_table "user_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_accounts_on_user_id"
+  end
+
   create_table "user_sessions", force: :cascade do |t|
     t.string "ip_address"
     t.datetime "start_time"
@@ -408,6 +415,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_142736) do
   add_foreign_key "payments", "invoices"
   add_foreign_key "repairoptions", "partners"
   add_foreign_key "repairoptions", "repairoption_categories"
+  add_foreign_key "user_accounts", "users"
   add_foreign_key "user_sessions", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "vehicle_categories", "partners"
   add_foreign_key "vehicles", "customers"
