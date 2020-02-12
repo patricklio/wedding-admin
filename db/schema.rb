@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_142329) do
+ActiveRecord::Schema.define(version: 2020_02_12_142736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,23 @@ ActiveRecord::Schema.define(version: 2020_02_12_142329) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customer_user_accounts", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.bigint "customer_id", null: false
+    t.bigint "info_request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["customer_id"], name: "index_customer_user_accounts_on_customer_id"
+    t.index ["email"], name: "index_customer_user_accounts_on_email", unique: true
+    t.index ["info_request_id"], name: "index_customer_user_accounts_on_info_request_id"
+    t.index ["reset_password_token"], name: "index_customer_user_accounts_on_reset_password_token", unique: true
   end
 
   create_table "customers", force: :cascade do |t|
@@ -275,23 +292,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_142329) do
     t.index ["repairoption_category_id"], name: "index_repairoptions_on_repairoption_category_id"
   end
 
-  create_table "user_accounts", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.bigint "customer_id", null: false
-    t.bigint "info_request_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["customer_id"], name: "index_user_accounts_on_customer_id"
-    t.index ["email"], name: "index_user_accounts_on_email", unique: true
-    t.index ["info_request_id"], name: "index_user_accounts_on_info_request_id"
-    t.index ["reset_password_token"], name: "index_user_accounts_on_reset_password_token", unique: true
-  end
-
   create_table "user_sessions", force: :cascade do |t|
     t.string "ip_address"
     t.datetime "start_time"
@@ -385,7 +385,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_142329) do
   add_foreign_key "category_attributes", "fuel_types"
   add_foreign_key "category_attributes", "models"
   add_foreign_key "category_attributes", "vehicle_categories"
-  add_foreign_key "customer_notifications", "user_accounts"
+  add_foreign_key "customer_notifications", "customer_user_accounts", column: "user_account_id"
+  add_foreign_key "customer_user_accounts", "customers"
+  add_foreign_key "customer_user_accounts", "info_requests"
   add_foreign_key "customers", "customer_types"
   add_foreign_key "intervention_report_lines", "intervention_reports"
   add_foreign_key "intervention_report_lines", "jobparts"
@@ -406,9 +408,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_142329) do
   add_foreign_key "payments", "invoices"
   add_foreign_key "repairoptions", "partners"
   add_foreign_key "repairoptions", "repairoption_categories"
-  add_foreign_key "user_accounts", "customers"
-  add_foreign_key "user_accounts", "info_requests"
-  add_foreign_key "user_sessions", "user_accounts"
+  add_foreign_key "user_sessions", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "vehicle_categories", "partners"
   add_foreign_key "vehicles", "customers"
   add_foreign_key "vehicles", "fuel_types"
@@ -416,7 +416,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_142329) do
   add_foreign_key "vehicles", "vehicle_types"
   add_foreign_key "workorder_items", "repairoptions"
   add_foreign_key "workorder_items", "workorders"
+  add_foreign_key "workorders", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "workorders", "invoices"
-  add_foreign_key "workorders", "user_accounts"
   add_foreign_key "workorders", "vehicles"
 end
