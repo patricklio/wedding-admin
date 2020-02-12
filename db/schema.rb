@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_144459) do
+ActiveRecord::Schema.define(version: 2020_02_12_145005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,16 @@ ActiveRecord::Schema.define(version: 2020_02_12_144459) do
     t.text "logo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mechanics", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "phone_number"
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_mechanics_on_partner_id"
   end
 
   create_table "models", force: :cascade do |t|
@@ -420,6 +430,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_144459) do
   add_foreign_key "joboperations", "repairoptions"
   add_foreign_key "jobparts", "joboperations"
   add_foreign_key "jobparts", "parts"
+  add_foreign_key "mechanics", "partners"
   add_foreign_key "models", "makes"
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
