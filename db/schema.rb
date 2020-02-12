@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_145521) do
+ActiveRecord::Schema.define(version: 2020_02_12_145914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_02_12_145521) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_account_id"
+    t.index ["user_account_id"], name: "index_info_requests_on_user_account_id"
   end
 
   create_table "intervention_report_lines", force: :cascade do |t|
@@ -434,6 +436,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_145521) do
   add_foreign_key "customer_user_accounts", "customers"
   add_foreign_key "customer_user_accounts", "info_requests"
   add_foreign_key "customers", "customer_types"
+  add_foreign_key "info_requests", "user_accounts"
   add_foreign_key "intervention_report_lines", "intervention_reports"
   add_foreign_key "intervention_report_lines", "jobparts"
   add_foreign_key "intervention_reports", "appointments"
