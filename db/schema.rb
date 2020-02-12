@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_150559) do
+ActiveRecord::Schema.define(version: 2020_02_12_151103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -399,9 +399,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_150559) do
   create_table "workorder_items", force: :cascade do |t|
     t.bigint "workorder_id", null: false
     t.bigint "repairoption_id", null: false
-    t.money "reduction_amount", scale: 2
+    t.money "discount_amount", scale: 2
     t.integer "quantity"
-    t.decimal "tax_rate"
+    t.decimal "tax_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["repairoption_id"], name: "index_workorder_items_on_repairoption_id"
