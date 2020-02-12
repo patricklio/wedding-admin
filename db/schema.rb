@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_145914) do
+ActiveRecord::Schema.define(version: 2020_02_12_150230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,18 +35,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_145914) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["workorder_id"], name: "index_appointments_on_workorder_id"
-  end
-
-  create_table "category_attributes", force: :cascade do |t|
-    t.bigint "model_id", null: false
-    t.bigint "fuel_type_id", null: false
-    t.bigint "vehicle_category_id", null: false
-    t.integer "vehicle_year"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["fuel_type_id"], name: "index_category_attributes_on_fuel_type_id"
-    t.index ["model_id"], name: "index_category_attributes_on_model_id"
-    t.index ["vehicle_category_id"], name: "index_category_attributes_on_vehicle_category_id"
   end
 
   create_table "customer_notifications", force: :cascade do |t|
@@ -368,6 +356,18 @@ ActiveRecord::Schema.define(version: 2020_02_12_145914) do
     t.index ["partner_id"], name: "index_vehicle_categories_on_partner_id"
   end
 
+  create_table "vehicle_category_items", force: :cascade do |t|
+    t.bigint "model_id", null: false
+    t.bigint "fuel_type_id", null: false
+    t.bigint "vehicle_category_id", null: false
+    t.integer "vehicle_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fuel_type_id"], name: "index_vehicle_category_items_on_fuel_type_id"
+    t.index ["model_id"], name: "index_vehicle_category_items_on_model_id"
+    t.index ["vehicle_category_id"], name: "index_vehicle_category_items_on_vehicle_category_id"
+  end
+
   create_table "vehicle_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -429,9 +429,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_145914) do
   add_foreign_key "appointment_mechanics", "appointments"
   add_foreign_key "appointment_mechanics", "partner_user_accounts", column: "partner_user_id"
   add_foreign_key "appointments", "workorders"
-  add_foreign_key "category_attributes", "fuel_types"
-  add_foreign_key "category_attributes", "models"
-  add_foreign_key "category_attributes", "vehicle_categories"
   add_foreign_key "customer_notifications", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "customer_user_accounts", "customers"
   add_foreign_key "customer_user_accounts", "info_requests"
@@ -463,6 +460,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_145914) do
   add_foreign_key "user_accounts", "users"
   add_foreign_key "user_sessions", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "vehicle_categories", "partners"
+  add_foreign_key "vehicle_category_items", "fuel_types"
+  add_foreign_key "vehicle_category_items", "models"
+  add_foreign_key "vehicle_category_items", "vehicle_categories"
   add_foreign_key "vehicles", "customers"
   add_foreign_key "vehicles", "fuel_types"
   add_foreign_key "vehicles", "models"
