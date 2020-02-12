@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_145005) do
+ActiveRecord::Schema.define(version: 2020_02_12_145337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_145005) do
     t.index ["repairoption_id"], name: "index_partner_repairoptions_on_repairoption_id"
   end
 
-  create_table "partner_users", force: :cascade do |t|
+  create_table "partner_user_accounts", force: :cascade do |t|
     t.string "username"
     t.string "password"
     t.string "email", default: "", null: false
@@ -244,9 +244,11 @@ ActiveRecord::Schema.define(version: 2020_02_12_145005) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.index ["email"], name: "index_partner_users_on_email", unique: true
-    t.index ["partner_id"], name: "index_partner_users_on_partner_id"
-    t.index ["reset_password_token"], name: "index_partner_users_on_reset_password_token", unique: true
+    t.bigint "mechanic_id"
+    t.index ["email"], name: "index_partner_user_accounts_on_email", unique: true
+    t.index ["mechanic_id"], name: "index_partner_user_accounts_on_mechanic_id"
+    t.index ["partner_id"], name: "index_partner_user_accounts_on_partner_id"
+    t.index ["reset_password_token"], name: "index_partner_user_accounts_on_reset_password_token", unique: true
   end
 
   create_table "partners", force: :cascade do |t|
@@ -413,7 +415,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_145005) do
   end
 
   add_foreign_key "appointment_mechanics", "appointments"
-  add_foreign_key "appointment_mechanics", "partner_users"
+  add_foreign_key "appointment_mechanics", "partner_user_accounts", column: "partner_user_id"
   add_foreign_key "appointments", "workorders"
   add_foreign_key "category_attributes", "fuel_types"
   add_foreign_key "category_attributes", "models"
@@ -425,7 +427,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_145005) do
   add_foreign_key "intervention_report_lines", "intervention_reports"
   add_foreign_key "intervention_report_lines", "jobparts"
   add_foreign_key "intervention_reports", "appointments"
-  add_foreign_key "intervention_reports", "partner_users"
+  add_foreign_key "intervention_reports", "partner_user_accounts", column: "partner_user_id"
   add_foreign_key "joboperations", "operations"
   add_foreign_key "joboperations", "repairoptions"
   add_foreign_key "jobparts", "joboperations"
@@ -434,10 +436,11 @@ ActiveRecord::Schema.define(version: 2020_02_12_145005) do
   add_foreign_key "models", "makes"
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
-  add_foreign_key "partner_notifications", "partner_users"
+  add_foreign_key "partner_notifications", "partner_user_accounts", column: "partner_user_id"
   add_foreign_key "partner_repairoptions", "partners"
   add_foreign_key "partner_repairoptions", "repairoptions"
-  add_foreign_key "partner_users", "partners"
+  add_foreign_key "partner_user_accounts", "mechanics"
+  add_foreign_key "partner_user_accounts", "partners"
   add_foreign_key "payments", "invoices"
   add_foreign_key "repairoption_discounts", "partners"
   add_foreign_key "repairoption_discounts", "repairoptions"
