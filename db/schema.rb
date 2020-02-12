@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_151103) do
+ActiveRecord::Schema.define(version: 2020_02_12_152210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointment_mechanics", force: :cascade do |t|
     t.bigint "appointment_id", null: false
-    t.bigint "partner_user_id", null: false
     t.boolean "lead_mechanic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "mechanic_id", null: false
     t.index ["appointment_id"], name: "index_appointment_mechanics_on_appointment_id"
-    t.index ["partner_user_id"], name: "index_appointment_mechanics_on_partner_user_id"
+    t.index ["mechanic_id"], name: "index_appointment_mechanics_on_mechanic_id"
   end
 
   create_table "appointments", force: :cascade do |t|
@@ -430,7 +430,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_151103) do
   end
 
   add_foreign_key "appointment_mechanics", "appointments"
-  add_foreign_key "appointment_mechanics", "partner_user_accounts", column: "partner_user_id"
+  add_foreign_key "appointment_mechanics", "mechanics"
   add_foreign_key "appointments", "workorders"
   add_foreign_key "customer_notifications", "customer_user_accounts", column: "user_account_id"
   add_foreign_key "customer_user_accounts", "customers"
