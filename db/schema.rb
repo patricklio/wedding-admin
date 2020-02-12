@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_152905) do
+ActiveRecord::Schema.define(version: 2020_02_12_153040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,16 +217,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_152905) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["joboperation_id"], name: "index_partner_operation_labor_on_joboperation_id"
     t.index ["partner_id"], name: "index_partner_operation_labor_on_partner_id"
-  end
-
-  create_table "partner_repairoptions", force: :cascade do |t|
-    t.bigint "partner_id", null: false
-    t.bigint "repairoption_id", null: false
-    t.decimal "labor"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_partner_repairoptions_on_partner_id"
-    t.index ["repairoption_id"], name: "index_partner_repairoptions_on_repairoption_id"
   end
 
   create_table "partner_user_accounts", force: :cascade do |t|
@@ -452,8 +442,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_152905) do
   add_foreign_key "partner_notifications", "partner_user_accounts", column: "partner_user_id"
   add_foreign_key "partner_operation_labor", "joboperations"
   add_foreign_key "partner_operation_labor", "partners"
-  add_foreign_key "partner_repairoptions", "partners"
-  add_foreign_key "partner_repairoptions", "repairoptions"
   add_foreign_key "partner_user_accounts", "mechanics"
   add_foreign_key "partner_user_accounts", "partners"
   add_foreign_key "payments", "invoices"
