@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_152210) do
+ActiveRecord::Schema.define(version: 2020_02_12_152416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_152210) do
 
   create_table "intervention_reports", force: :cascade do |t|
     t.bigint "appointment_id", null: false
-    t.bigint "partner_user_id", null: false
+    t.bigint "partner_user_account_id", null: false
     t.decimal "vehicle_mileage"
     t.date "intervention_date"
     t.text "comments"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_152210) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["appointment_id"], name: "index_intervention_reports_on_appointment_id"
-    t.index ["partner_user_id"], name: "index_intervention_reports_on_partner_user_id"
+    t.index ["partner_user_account_id"], name: "index_intervention_reports_on_partner_user_account_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -440,7 +440,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_152210) do
   add_foreign_key "intervention_report_lines", "intervention_reports"
   add_foreign_key "intervention_report_lines", "jobparts"
   add_foreign_key "intervention_reports", "appointments"
-  add_foreign_key "intervention_reports", "partner_user_accounts", column: "partner_user_id"
+  add_foreign_key "intervention_reports", "partner_user_accounts"
   add_foreign_key "joboperations", "operations"
   add_foreign_key "joboperations", "repairoptions"
   add_foreign_key "jobparts", "joboperations"
