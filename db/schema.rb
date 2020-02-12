@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_143633) do
+ActiveRecord::Schema.define(version: 2020_02_12_144139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,9 +150,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_143633) do
 
   create_table "joboperations", force: :cascade do |t|
     t.bigint "operation_id", null: false
-    t.bigint "repairoption_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "repairoption_id", null: false
     t.index ["operation_id"], name: "index_joboperations_on_operation_id"
     t.index ["repairoption_id"], name: "index_joboperations_on_repairoption_id"
   end
@@ -160,13 +160,11 @@ ActiveRecord::Schema.define(version: 2020_02_12_143633) do
   create_table "jobparts", force: :cascade do |t|
     t.bigint "part_id", null: false
     t.bigint "joboperation_id"
-    t.bigint "repairoption_id"
     t.integer "part_qty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["joboperation_id"], name: "index_jobparts_on_joboperation_id"
     t.index ["part_id"], name: "index_jobparts_on_part_id"
-    t.index ["repairoption_id"], name: "index_jobparts_on_repairoption_id"
   end
 
   create_table "makes", force: :cascade do |t|
@@ -400,7 +398,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_143633) do
   add_foreign_key "joboperations", "repairoptions"
   add_foreign_key "jobparts", "joboperations"
   add_foreign_key "jobparts", "parts"
-  add_foreign_key "jobparts", "repairoptions"
   add_foreign_key "models", "makes"
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
