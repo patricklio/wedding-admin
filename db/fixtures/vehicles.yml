@@ -1,0 +1,25 @@
+- vin: 1HGBH41JXMN109186
+  license_plate: DK5342BF
+  doors_number: 5
+  seats_number: 5
+  mileage: 82653
+  engine: V6
+  power: 12
+  year: 2015
+  model: Yaris
+  customer: AXA
+  fuel_type: essence
+  vehicle_type: Car
+
+- vin: 1HGBH41JXMN109783
+  license_plate: DK5142DE
+  doors_number: 5
+  seats_number: 7
+  mileage: 120000
+  engine: V8
+  power: 16
+  fuel_type: diesel
+  model: Land Cruiser
+  customer: AXA
+  year: 2018
+  vehicle_type: SUV
