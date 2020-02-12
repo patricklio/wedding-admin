@@ -1,0 +1,9 @@
+- part: HUILE À MOTEUR
+  part_price: 10000
+  category: CATEGORIE A
+- part: FILTRE À HUILE
+  part_price: 15000
+  category: CATEGORIE A
+- part: PLAQUETTES DE FREINS AVANT
+  part_price: 25000
+  category: CATEGORIE B

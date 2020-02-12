@@ -1,0 +1,27 @@
+- email: elena@mobility-sn.com
+  firstname: Elena
+  lastname: Dia
+  phone_number: 763767253
+  password: password
+  role: sales
+
+- email: nina@mobility-sn.com
+  firstname: Nina
+  lastname: TCHALLA
+  phone_number: 763767253
+  password: password
+  role: admin
+
+- email: abdallah@mobility-sn.com
+  firstname: Abdallah
+  lastname: Diop
+  phone_number: 763767253
+  password: password
+  role: admin
+
+- email: patrick@mobility-sn.com
+  firstname: Patrick
+  lastname: Dooko
+  phone_number: 763767253
+  password: password
+  role: admin
