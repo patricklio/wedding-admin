@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_150230) do
+ActiveRecord::Schema.define(version: 2020_02_12_150559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -417,12 +417,15 @@ ActiveRecord::Schema.define(version: 2020_02_12_150230) do
     t.string "currency"
     t.bigint "vehicle_id", null: false
     t.bigint "invoice_id"
-    t.bigint "user_account_id", null: false
+    t.bigint "customer_user_account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "total_part_price"
+    t.decimal "total_labor_amount"
+    t.decimal "total_part_amount"
+    t.decimal "total_tax_amount"
+    t.index ["customer_user_account_id"], name: "index_workorders_on_customer_user_account_id"
     t.index ["invoice_id"], name: "index_workorders_on_invoice_id"
-    t.index ["user_account_id"], name: "index_workorders_on_user_account_id"
     t.index ["vehicle_id"], name: "index_workorders_on_vehicle_id"
   end
 
@@ -469,7 +472,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_150230) do
   add_foreign_key "vehicles", "vehicle_types"
   add_foreign_key "workorder_items", "repairoptions"
   add_foreign_key "workorder_items", "workorders"
-  add_foreign_key "workorders", "customer_user_accounts", column: "user_account_id"
+  add_foreign_key "workorders", "customer_user_accounts"
   add_foreign_key "workorders", "invoices"
   add_foreign_key "workorders", "vehicles"
 end
