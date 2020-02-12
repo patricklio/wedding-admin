@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discount: 
+  repairoption: one
+  partner: one
+
+two:
+  discount: 
+  repairoption: two
+  partner: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_144139) do
+ActiveRecord::Schema.define(version: 2020_02_12_144309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -276,6 +276,16 @@ ActiveRecord::Schema.define(version: 2020_02_12_144139) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "repairoption_discounts", force: :cascade do |t|
+    t.decimal "discount"
+    t.bigint "repairoption_id", null: false
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_repairoption_discounts_on_partner_id"
+    t.index ["repairoption_id"], name: "index_repairoption_discounts_on_repairoption_id"
+  end
+
   create_table "repairoptions", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -406,6 +416,8 @@ ActiveRecord::Schema.define(version: 2020_02_12_144139) do
   add_foreign_key "partner_repairoptions", "repairoptions"
   add_foreign_key "partner_users", "partners"
   add_foreign_key "payments", "invoices"
+  add_foreign_key "repairoption_discounts", "partners"
+  add_foreign_key "repairoption_discounts", "repairoptions"
   add_foreign_key "repairoptions", "repairoption_categories"
   add_foreign_key "user_accounts", "users"
   add_foreign_key "user_sessions", "customer_user_accounts", column: "user_account_id"
