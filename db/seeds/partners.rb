@@ -3,7 +3,10 @@ puts "Creating partners ..."
 seed_file = Rails.root.join('db', 'fixtures', 'partners.yml')
 partners = YAML::load_file(seed_file)
 
-Partner.create!(partners) do |c|
+partners.each do |c|
+  partner = Partner.new(c)
+  partner.save
+
   print '.'
 end
 
