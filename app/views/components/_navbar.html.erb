@@ -1,42 +1,39 @@
-<div class="main-content" style="min-height: 959px;">
-    <div class="row header">
-      <!-- Profile Info and Notifications -->
-      <div class="col-md-6 col-sm-8 clearfix">
-        <ul class="user-info pull-left pull-none-xsm">
-          <!-- Profile Info -->
-          <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-            <%= link_to root_path do %>
-              <%= image_tag("thumb@2x.png", class: "img-circle", alt: "") %> Bonjour Admin
-            <% end %>
+<div class="row header">
+    <!-- Profile Info and Notifications -->
+    <div class="col-md-6 col-sm-8 clearfix">
+      <ul class="user-info pull-left pull-none-xsm">
+        <!-- Profile Info -->
+        <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+          <%= link_to root_path do %>
+            <%= image_tag("thumb@2x.png", class: "img-circle", alt: "") %> Bonjour Admin
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <!-- Raw Links -->
+    <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+      <div class="pull-right">
+        <ul class="nav quick-section ">
+          <li class="quicklinks">
+            <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
+              <i class="material-icons">tune</i>
+            </a>
+            <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+              <li>
+                <a href="#"> Mon profile</a>
+              </li>
+              <li>
+                <a href="#">Calendrier</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to root_path, class: "header__menu__button"  do %>
+                  <i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Se déconnecter
+                <% end %>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
-      <!-- Raw Links -->
-      <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-        <div class="pull-right">
-          <ul class="nav quick-section ">
-            <li class="quicklinks">
-              <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
-                <i class="material-icons">tune</i>
-              </a>
-              <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                <li>
-                  <a href="#"> Mon profile</a>
-                </li>
-                <li>
-                  <a href="#">Calendrier</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to root_path, class: "header__menu__button"  do %>
-                    <i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Se déconnecter
-                  <% end %>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+    </div>
   </div>
-</div>
-<hr>
