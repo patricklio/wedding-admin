@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ // Graphical variables
+@import "config/fonts";
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+
+// Your CSS partials
+@import "pages/index"
