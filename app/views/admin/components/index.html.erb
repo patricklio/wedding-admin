@@ -36,22 +36,7 @@
   <!-- Layout for datatable-->
   <div class="row">
     <div class="col-md-12">
-      <div class="dataTables_wrapper"><div class="dataTables_filter">
-        <form action="https://mobility.webpos.solutions/admin/product.html" id="filters" class="form-horizontal form-groups-bordered" method="post" accept-charset="utf-8">
-          <input type="hidden" name="action" value="filter">
-          <div class="col-sm-2">
-            <select name="category_id" class="form-control">
-              <option value="0" selected="selected"> Tous les categories</option>
-              <option value="1">- FILTRES</option>
-            </select>
-          </div>
-          <div class="col-sm-2 tools">
-            <a href="javascript:;" class="reload"></a>
-          </div>
-        </form>
-      </div>
-
-      <table class="table table-bordered datatable">
+      <table class="table table-bordered datatable" id="component_id">
         <thead>
           <tr>
             <th>ID</th>
@@ -82,8 +67,12 @@
         </tbody>
       </table>
     </div>
-    </div>
   </div>
+  <!--
+    <div class="col-sm-2 tools">
+              <a href="javascript:;" class="reload"></a>
+            </div>
+  -->
 
   <!-- Layout for footer -->
   <footer class="main">
