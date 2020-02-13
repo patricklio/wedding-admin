@@ -4,12 +4,11 @@
   list-style: none;
   background-color: #f5f5f5;
   border-radius: 3px;
-
-  .bc-3, .breadcrumb-3 {
-    padding-left: 0;
-    padding-right: 0;
-    background-color: transparent;
-  }
+}
+.breadcrumb.bc-3, .breadcrumb.breadcrumb-3 {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
 }
 .breadcrumb > li {
   display: inline-block;
