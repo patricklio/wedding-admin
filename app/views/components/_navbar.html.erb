@@ -4,10 +4,9 @@
     <ul class="user-info pull-left pull-none-xsm">
       <!-- Profile Info -->
       <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-        <a href="https://demo.webpos.solutions/admin/user/edit/31.html">
-          <img src="assets/admin/images/thumb@2x.png" alt="" class="img-circle" width="44">
-          Bonjour Admin
-        </a>
+        <%= link_to root_path do %>
+          <%= image_tag("thumb@2x.png", class: "img-circle", alt: "") %> Bonjour Admin
+        <% end %>
       </li>
     </ul>
   </div>
@@ -21,3 +20,4 @@
     </ul>
   </div>
 </div>
+<hr/>
