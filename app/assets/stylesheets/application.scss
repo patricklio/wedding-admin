@@ -18,7 +18,7 @@
 @import "config/fonts";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+@import "config/bootstrap_custom.scss"; // never forget the semicolon at the end
 
 // Your CSS partials
 @import "pages/index"
