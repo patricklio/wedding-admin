@@ -32,14 +32,6 @@ a {
   width: 44px;
 }
 
-.clearfix::after{
-  clear: both;
-}
-.clearfix::after, .clearfix::before{
-  content: " ";
-  display: table;
-}
-
 .header .nav {
   display: block;
 }
