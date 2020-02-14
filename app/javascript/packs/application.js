@@ -22,6 +22,6 @@ window.$ = window.jquery = jquery;
 import 'bootstrap'
 
 import './plugins/bootstrap_custom.js'
-import { initMobility } from '../components/layout'
+import { initSideBarToggle } from '../components/sidebar'
 
-initMobility();
+initSideBarToggle();

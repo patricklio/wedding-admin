@@ -13,6 +13,6 @@
  *= require_self
  */
 
-@import "config/bootstrap_custom.scss"; // never forget the semicolon at the end
+@import "config/bootstrap_custom"; // never forget the semicolon at the end
 @import 'components/index';
 @import "config/icons";
