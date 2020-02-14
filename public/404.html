@@ -1,67 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <meta charset="utf-8">
+  <title>La page recherchee n'existe pas (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+    body {
+      direction: ltr;
+      background-color: #1b1e24;
+      color: #6f7b8a;
+      font-family: roboto;
+      font-size: 13px;
+      padding: 0!important;
+      margin: 0!important;
+      line-height: 1.5;
+      font-style: normal;
+      font-weight: 400;
+      height: 100%;
+      -webkit-font-smoothing: antialiased;
+      @media (max-width: 1024px) and (min-width: 768px){
+        padding-top: 0;
+      }
+      @media (max-width: 979px){
+        margin: 0!important;
+      }
+    }
+    .error-body {
+      background-color: #e5e9ec!important;
+      font-family: roboto;
+      height: 100%;
+    }
+
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+      height: 100%;
+
+      @media (min-width: 768px) {
+       width: 750px;
+      }
+    }
+    .error-content {
+      min-height: 100%;
+      height: auto;
+      margin: 0 auto;
+      padding: 0 0 60px;
+      height: 624px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .row {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+    .error-container {
+    font-family: roboto;
+    }
+    .error-main {
     text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    margin-top: 18%;
+    }
+    .error-container .error-number {
+    color: #22262e;
+    font-size: 120px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 130px;
+    }
+    .error-container .error-description {
+    color: #22262e;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 300;
+    }
+    .error-container .error-description-mini {
+    color: #22262e;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 300;
+    }
+    img{
+      background-color: transparent;
+    }
+    .btn {
+    display: inline-block;
+    padding: 9px 12px;
+    padding-top: 7px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #5e5e5e;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #d1dade;
+    border-radius: 3px;
+    background-image: none!important;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+    transition: all .12s linear 0s!important;
+    font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    .btn-primary {
+      text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 125, 235, 0.8);
+    }
+    .btn-primary:hover{
+      background-color: rgba(0, 125, 235);
+    }
+    .btn-cons {
+    margin-right: 5px;
+    min-width: 120px;
+    margin-bottom: 8px;
+    }
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body class="error-body">
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+  <div class="error-content container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-offset-1 col-xs-10">
+          <div class="error-container">
+            <div class="error-main">
+              <div class="img-container">
+                <img src="images/lost.jpg" alt="Lost">
+              </div>
+              <div class="error-description"> Oups! Une petite panne! </div>
+              <div class="error-description-mini">
+                <span>Une erreur est survenue.</span> <br>
+                <span>Mais pas de souci, nous vous aidons à retrouver votre chemin.</span>
+              </div>
+              <br>
+              <a class="btn btn-primary btn-cons" href="/">Retrouvez le chemin</a>
+            </div>
+          </div>
+        </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>
