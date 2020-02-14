@@ -1,0 +1,2 @@
+class PartPrice < ApplicationRecord
+end

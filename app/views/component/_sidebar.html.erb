@@ -1,0 +1,34 @@
+<div class="sidebar-menu" style="min-height: 1709px;">
+
+  <header class="logo-env">
+
+    <!-- logo -->
+    <div class="logo">
+      <a href="#" target="blank">
+        <%= image_tag 'logo.png', width: '120', alt: '' %>
+      </a>
+    </div>
+
+    <div class="sidebar-collapse">
+      <a href="#" class="sidebar-collapse-icon with-animation">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+
+    <div class='sidebar-mobile-menu visible-xs'>
+    </div>
+  </header>
+
+  <ul id="main-menu">
+    <li class="active root-level">
+      <%= link_to '' do%>
+        <i class="material-icons">dashboard</i><span>Tableau de bord</span>
+      <% end %>
+    </li>
+    <li class="root-level">
+      <%= link_to '' do%>
+        <i class="material-icons">supervisor_account</i><span>Partenaires</span>
+      <% end %>
+    </li>
+  </ul>
+</div>
