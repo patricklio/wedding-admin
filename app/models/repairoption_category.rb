@@ -1,2 +1,0 @@
-class RepairoptionCategory < ApplicationRecord
-end
