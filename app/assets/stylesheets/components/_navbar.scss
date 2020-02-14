@@ -90,9 +90,6 @@ a {
 .header .nav > li.dropdown.user .dropdown-toggle {
   padding: 8px 4px 7px 9px;
 }
-.dropdown-toggle::after{
-  display: none;
-}
 .header .nav > li.dropdown.user .dropdown-toggle:hover {
   text-decoration: none;
 }
