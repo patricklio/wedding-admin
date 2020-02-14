@@ -1,0 +1,38 @@
+body {
+  font-family: $body-font;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #949494;
+  background-color: #ffffff;
+}
+
+.page-container {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-left: 280px;
+  width: 100%;
+
+  &:before, &:after{
+    content: " ";
+    display: table;
+  }
+
+  .main-content{
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 20px;
+    z-index: 2;
+    background: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+h2.list-title {
+  margin-top: 0px;
+}
+
