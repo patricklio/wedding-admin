@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000ss
+  timeout: 5000
   username: <%= ENV['MOBILITY_DATABASE_USERNAME'] %>
   password: <%= ENV['MOBILITY_DATABASE_PASSWORD'] %>
 
