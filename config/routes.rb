@@ -5,3 +5,4 @@ Rails.application.routes.draw do
     get "components", to: "components#index"
   end
 end
+

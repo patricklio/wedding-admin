@@ -11,14 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  */
- // Graphical variables
+
+// Graphical variables
 @import "config/fonts";
 @import "config/colors";
 @import "config/icons";
-
 // External libraries
 @import "config/bootstrap_custom"; // never forget the semicolon at the end
-
 // Your CSS partials
 @import "pages/index";
 @import "components/index";
