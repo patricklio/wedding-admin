@@ -1,0 +1,2 @@
+class RepairoptionCategory < ApplicationRecord
+end

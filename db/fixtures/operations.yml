@@ -1,0 +1,46 @@
+- name: Vidange de l’huile moteur
+  description: Vidange de l’huile moteur
+- name: Changement du filtre à huile
+  description: Changement du filtre à huile
+- name: Contrôle du véhicule
+  description: Contrôle du véhicule
+- name: Mise à niveau des fluides
+  description: Mise à niveau des fluides
+- name: Remise à zéro du témoin d’entretien
+  description: Remise à zéro du témoin d’entretien
+- name: Dépose et pose des plaquettes de frein avant
+  description: Dépose et pose des plaquettes de frein avant
+- name: Contrôle des disques de frein avant
+  description: Contrôle des disques de frein avant
+- name: Contrôle du niveau du liquide de frein
+  description: Contrôle du niveau du liquide de frein
+- name: Pose et dépose du kit d’embrayage
+  description: Pose et dépose du kit d’embrayage
+- name: Pose et dépose de la butée d’embrayage
+  description: Pose et dépose de la butée d’embrayage
+- name: Vidange de la boîte de vitesses
+  description: Vidange de la boîte de vitesses
+- name: Purge du liquide de frein
+  description: Purge du liquide de frein
+- name: Changement du filtre à air
+  description: Changement du filtre à air
+- name: Changement du filtre à carburant
+  description: Changement du filtre à carburant
+- name: Dépose de l'injecteur usagé
+  description: Dépose de l'injecteur usagé
+- name: Remplacement par un injecteur neuf
+  description: Remplacement par un injecteur neuf
+- name: Contrôle et essai
+  description: Contrôle et essai
+- name: Recharge de la climatisation en gaz réfrigérant
+  description: Recharge de la climatisation en gaz réfrigérant
+- name: Contrôle du système de climatisation
+  description: Contrôle du système de climatisation
+- name: Nettoyage du circuit de climatisation
+  description: Nettoyage du circuit de climatisation
+- name: Dépose et pose du filtre d’habitacle
+  description: Dépose et pose du filtre d’habitacle
+- name: Démontage des balais d’essuie-glace avant usagés
+  description: Démontage des balais d’essuie-glace avant usagés
+- name: Remplacement par des balais neufs
+  description: Remplacement par des balais neufs
