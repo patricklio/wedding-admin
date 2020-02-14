@@ -28,6 +28,7 @@ gem 'activerecord-import'
 gem 'bootstrap', '~> 4.4.1'
 gem 'simple_form'
 gem 'jquery-rails'
+gem 'material_icons'
 gem "select2-rails"
 gem 'rails-i18n', '~> 6.0.0'
 
