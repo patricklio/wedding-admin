@@ -31,11 +31,6 @@ gem 'jquery-rails'
 gem 'material_icons'
 gem "select2-rails"
 gem 'rails-i18n', '~> 6.0.0'
-<<<<<<< HEAD
-gem 'geocoder'
-gem 'material_icons'
-=======
->>>>>>> dev-sprint2
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
