@@ -1,8 +1,0 @@
-- model: Yaris
-  fuel_type: essence
-  vehicle_year: 2015
-  category: CATEGORIE A
-- model: Land Cruiser
-  fuel_type: diesel
-  vehicle_year: 2018
-  category: CATEGORIE B

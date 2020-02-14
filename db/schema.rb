@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_161300) do
+ActiveRecord::Schema.define(version: 2020_02_14_104410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,9 +140,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_161300) do
 
   create_table "joboperations", force: :cascade do |t|
     t.bigint "operation_id", null: false
+    t.bigint "repairoption_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "repairoption_id", null: false
     t.index ["operation_id"], name: "index_joboperations_on_operation_id"
     t.index ["repairoption_id"], name: "index_joboperations_on_repairoption_id"
   end
@@ -411,7 +411,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_161300) do
     t.bigint "customer_user_account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "total_part_price"
     t.decimal "total_labor_amount"
     t.decimal "total_part_amount"
     t.decimal "total_tax_amount"
