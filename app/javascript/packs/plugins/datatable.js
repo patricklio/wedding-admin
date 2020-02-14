@@ -135,7 +135,8 @@ const initComponentDataTable = () => {
      * Initialse DataTables, with no sorting on the 'details' column
      */
     tableElement.dataTable({
-      "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
+      "sDom": "t<'row'<'col-md-12'p i>>",
+      // "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
       "aaSorting": [],
       "oLanguage": {
         "sLengthMenu": "_MENU_ ",
