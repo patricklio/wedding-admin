@@ -60,30 +60,6 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-.header .nav > li.dropdown .dropdown-toggle .badge {
-  position: absolute;
-  font-size: 10px !important;
-  font-weight: 700;
-  top: 0px;
-  right: 2px;
-  text-align: center;
-  background-color: #f35958;
-  padding: 4px 6px;
-  -webkit-border-radius: 12px !important;
-  -moz-border-radius: 12px !important;
-  border-radius: 12px !important;
-  text-shadow: none !important;
-  color: #ffffff;
-}
-.header .nav > li.dropdown .dropdown-toggle .badge.bubble-only {
-  background-color: #f35958;
-  height: 10px;
-  width: 9px;
-  top: 7px;
-  right: 5px;
-  display: block;
-  padding: 0;
-}
 .header .nav > li.dropdown .active {
   background-color: #0d0f12;
 }
@@ -163,13 +139,6 @@ a {
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-
-/* line 3850, app/assets/stylesheets/config/_bootstrap-variables.scss */
-.header  .dropdown-menu.pull-right {
-  right: 0;
-  left: auto;
-}
-
 /* line 3855, app/assets/stylesheets/config/_bootstrap-variables.scss */
 .header .dropdown-menu .divider {
   height: 1px;
