@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -10,6 +11,8 @@
     url(/assets/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+=======
+>>>>>>> dev-sprint2
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -37,7 +40,11 @@
 }
 
 /* Rules for sizing the icon. */
+<<<<<<< HEAD
 .material-icons.md-18 { font-size: 18px; }
+=======
+.material-icons.md-18 { font-size: 14px; }
+>>>>>>> dev-sprint2
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
@@ -51,6 +58,7 @@
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 .material-icons.md-soft { color: rgba(255, 255, 255, 0.5); }
+<<<<<<< HEAD
 
 // @font-face {
 //   font-family: 'icomoon';
@@ -181,3 +189,5 @@ you can use the generic selector below, but it's slower:
 .icon-custom-alert:before {
   content: "\e017";
 }
+=======
+>>>>>>> dev-sprint2
