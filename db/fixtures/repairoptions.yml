@@ -1,0 +1,43 @@
+- name: Vidange + Filtre à Huile
+  description: Vidange + Filtre à Huile
+  propose_in_option: 1
+  category: REVISION ET VIDANGE
+  labor: 2
+  joboperations:
+    - operation: Vidange de l’huile moteur
+      labor: 1
+      jobparts:
+        - part: HUILE À MOTEUR
+          qty: 1
+    - operation: Changement du filtre à huile
+      labor: 1
+      jobparts:
+        - part: FILTRE À HUILE
+          qty: 1
+    - operation: Contrôle du véhicule
+      labor: 0
+      jobparts:
+    - operation: Mise à niveau des fluides
+      labor: 0
+      jobparts:
+    - operation: Remise à zéro du témoin d’entretien
+      labor: 0
+      jobparts:
+
+- name: Plaquettes Avant (changement)
+  description: Changement des Plaquettes Avant
+  propose_in_option: 1
+  category: FREINAGE
+  labor: 2
+  joboperations:
+    - operation: Dépose et pose des plaquettes de frein avant
+      labor: 2
+      jobparts:
+        - part: PLAQUETTES DE FREINS AVANT
+          qty: 2
+    - operation: Contrôle des disques de frein avant
+      labor: 0
+      jobparts:
+    - operation: Contrôle du niveau du liquide de frein
+      labor: 0
+      jobparts:
