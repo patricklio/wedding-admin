@@ -1,4 +1,4 @@
 class Partner < ApplicationRecord
   geocoded_by :address
-  before_save :geocode, if: ->(partner){ partner.address.present? }
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 end

@@ -1,4 +1,4 @@
 class PartnerOperationLabor < ApplicationRecord
-  belongs_to :partber
+  belongs_to :partner
   belongs_to :joboperation
 end

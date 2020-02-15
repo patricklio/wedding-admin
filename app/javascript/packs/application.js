@@ -4,9 +4,12 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+    // require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
+import jquery from 'jquery';
+window.$ = window.jquery = jquery;
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -19,3 +22,6 @@ require("channels")
 import 'bootstrap'
 
 import './plugins/bootstrap_custom.js'
+import { initSideBarToggle } from '../components/sidebar'
+
+initSideBarToggle();
