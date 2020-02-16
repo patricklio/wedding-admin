@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :user_accounts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to:"admin/components#index"
   namespace :admin do
     get "components", to: "components#index"
+
+    devise_for :user_accounts, skip: [:registrations], controllers: { sessions: 'user_accounts/sessions' },
+    path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock' }
   end
 end
 

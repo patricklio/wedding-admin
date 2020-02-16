@@ -1,0 +1,70 @@
+<%# simple_form_for(resource, as: resource_name, url: user_account_session_path) do |f| %>
+  <!--<div class="form-inputs">
+    <%# f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+    <%# f.input :password,
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+    <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  </div>-->
+
+  <!--<div class="form-actions">
+    <%# f.button :submit, "Log in" %>
+  </div>-->
+<%# end %>
+
+<%# render "devise/shared/links" %>
+<div class="login-container">
+  <div class="login-header login-caret">
+    <div class="login-content">
+            <%= link_to '' do %>
+                <%= image_tag 'logo.png', width: '120', alt: '' %>
+            <% end %>
+      <p class="description">Veuillez vous identifier pour accéder à l'interface d'administration</p>
+    </div>
+
+  </div>
+
+  <div class="login-form">
+
+    <div class="login-content">
+
+      <div class="form-login-error"></div>
+      <%= simple_form_for(resource, as: resource_name, url: admin_user_account_session_path) do |f| %>
+        <div class='form-group'>
+          <div class='input-group'>
+            <div class='input-group-addon'>
+              <i class="material-icons">person</i>
+            </div>
+            <%= f.input_field :email, required: true, label: false, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class='input-group'>
+            <div class='input-group-addon'>
+              <i class="material-icons">lock_open</i>
+            </div>
+            <%= f.input_field :password, required: true, label: false, class: 'form-control' %>
+          </div>
+          <%#  f.input :password,
+                        required: true,
+                        wrapper_html: { class: 'input-group', autocomplete: "current-password" },
+                        input_html: { class: 'form-control'} %>
+            <%# f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+
+        <div class="form-group">
+          <%= button_tag(type: 'submit', class: "btn btn-primary btn-block btn-login") do %>
+            <i class="material-icons">input</i> Se connecter
+          <% end %>
+        </div>
+        <% end %>
+        <div class='login-bottom-links'>
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
