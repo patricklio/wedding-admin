@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    before_action :authenticate_admin_user_account!
+
     private
 
     # logout redirect path
