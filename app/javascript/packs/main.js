@@ -257,12 +257,12 @@ let public_vars = public_vars || {};
 
 
   // Enable/Disable Resizable Event
-  // var wid = 0;
+  var wid = 0;
 
-  // $(window).resize(function () {
-  //   clearTimeout(wid);
-  //   wid = setTimeout(trigger_resizable, 200);
-  // });
+  $(window).resize(function () {
+    clearTimeout(wid);
+    wid = setTimeout(trigger_resizable, 200);
+  });
 
 
 })(jQuery, window);
@@ -888,7 +888,6 @@ function toggle_sidebar_menu(with_animation) {
 
 
 
-
 // Resizable setup
 
 jQuery.extend(public_vars, {
@@ -962,10 +961,6 @@ function resizable(breakpoint) {
   }
 
 
-  // Trigger Event
-  jQuery(window).trigger('neon.resize');
-
-
   // Fit main content height
   fit_main_content_height();
 }
@@ -983,4 +978,11 @@ function isxs() {
 // Is md or xl
 function ismdxl() {
   return is('tabletscreen') || is('largescreen');
+}
+// Trigger Resizable Function
+function trigger_resizable() {
+  if (public_vars.lastBreakpoint != get_current_breakpoint()) {
+    public_vars.lastBreakpoint = get_current_breakpoint();
+    resizable(public_vars.lastBreakpoint);
+  }
 }
