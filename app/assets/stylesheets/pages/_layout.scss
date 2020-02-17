@@ -69,3 +69,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   content: " ";
   display: table;
 }
+
+.col-sm-offset-3 {
+  margin-left: 25%;
+}
+.col-sm-6 {
+  width: 50%;
+}
