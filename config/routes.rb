@@ -4,21 +4,22 @@ Rails.application.routes.draw do
   namespace :admin do
     get "components", to: "components#index"
 
-    resources :users, only: [:edit, :update]
-
     devise_for :user_accounts,
                skip: [:registrations],
                controllers: {
-                   sessions: 'user_accounts/sessions',
-                   passwords: 'user_accounts/passwords'
+                   sessions: 'admin/user_accounts/sessions',
+                   passwords: 'admin/user_accounts/passwords'
                },
-               path_names: {
-                   sign_in: 'login',
-                   sign_out: 'logout',
-                   password: 'secret',
-                   confirmation: 'verification',
-                   unlock: 'unblock'
-               }
+              path_names: {
+                  sign_in: 'login',
+                  sign_out: 'logout',
+                  password: 'secret',
+                  confirmation: 'verification',
+                  unlock: 'unblock'
+              }
+
+    resources :users, only: [:edit, :update]
+    patch "update_password", to: "users#update_password", as: "update_user_password"
   end
 end
 
