@@ -23,10 +23,8 @@ window.$ = window.jquery = jquery;
 import 'bootstrap'
 
 import './plugins/bootstrap_custom.js'
+import './main.js'
 import { initComponentDataTable } from "./plugins/datatable.js";
 
 // Plugins
 initComponentDataTable();
-import { initSideBarToggle } from '../components/sidebar'
-
-initSideBarToggle();
