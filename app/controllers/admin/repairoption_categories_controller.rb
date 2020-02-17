@@ -31,6 +31,22 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   end
 
   def edit
+    set_repairoption_category
+  end
+
+  def update
+    set_repairoption_category
+
+    if @category.update(repairoption_category_params)
+      flash[:success] = "Les données ont bien été modifiées."
+      if params[:commit] == "Modifier et continuer"
+        redirect_to edit_admin_repairoption_category_path(@category)
+      else
+        redirect_to admin_repairoption_categories_path
+      end
+    else
+      render :edit
+    end
   end
 
   private

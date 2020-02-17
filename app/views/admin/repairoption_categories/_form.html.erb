@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin,@repairoption_category], authenticity_token: true, wrapper: :custom_form_horizontal,
+<%= simple_form_for [:admin, category], method: methode, authenticity_token: true, wrapper: :custom_form_horizontal,
     class: "form-horizontal form-groups-bordered" do |f| %>
   <div class="row">
     <div class="col-md-12">
@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">
-              <%= link_to 'Ajouter', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+              <%= link_to 'Modifier', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
             </h4>
           </div>
           <div class="collapse show" id="collapse-fr">
@@ -19,9 +19,14 @@
               <hr>
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
-                  <%= f.button :submit, 'Enregistrer', class: 'btn btn-success' %> &nbsp;&nbsp;
-                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
-                  <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
+                  <%if methode === 'patch' %>
+                      <%= f.button :submit, "Modifier #{ category.name }", class: 'btn btn-success' %> &nbsp;&nbsp;
+                      <%= f.button :submit, 'Modifier et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
+                    <% else %>
+                      <%= f.button :submit, "Ajouter", class: 'btn btn-success' %> &nbsp;&nbsp;
+                      <%= f.button :submit, 'Ajouter et continuer', class: 'btn btn-success set-lang', lang: 'fr' %>
+                    <% end %>
+                      <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
                  </div>
               </div>
             </div>

@@ -1,0 +1,69 @@
+<div class="login-container">
+  <div class="login-header login-caret">
+    <div class="login-content">
+            <%= link_to '' do %>
+                <%= image_tag 'logo.png', width: '120', alt: '' %>
+            <% end %>
+      <p class="description">Veuillez renseigner votre nouveau mot de passe</p>
+    </div>
+
+  </div>
+
+  <div class="login-form">
+
+    <div class="login-content">
+
+      <div class="form-login-error">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
+      <%= simple_form_for(resource, as: resource_name, url: admin_user_account_password_path(resource), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :reset_password_token, as: :hidden %>
+        <%= f.full_error :reset_password_token %>
+
+        <div class='form-group'>
+          <div class='input-group'>
+            <div class='input-group-addon'>
+              <i class="material-icons">lock_open</i>
+            </div>
+            <%= f.input_field :password,
+              hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+              label: "Nouveau Mot de passe",
+              autofocus: true,
+              required: true,
+              class: 'form-control'
+            %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class='input-group'>
+            <div class='input-group-addon'>
+              <i class="material-icons">lock_open</i>
+            </div>
+            <%= f.input_field :password_confirmation,
+              required: true,
+              label: "Confirmer mot de passe",
+              class: 'form-control'
+            %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= button_tag(type: 'submit', class: "btn btn-primary btn-block btn-login") do %>
+            <i class="material-icons">input</i> Changer Mot de passe
+          <% end %>
+        </div>
+        <% end %>
+        <div class='login-bottom-links'>
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
