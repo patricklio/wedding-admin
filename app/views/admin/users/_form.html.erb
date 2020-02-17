@@ -1,0 +1,68 @@
+
+<%= simple_form_for @user, url: admin_users_path, class: "form-horizontal form-groups-bordered" do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= link_to 'Ajouter', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <div class="form-group row">
+                <%= label_tag(:firstname, "Nom", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :firstname, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:lastname, "Prénom", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :lastname, label: false, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:email, "Email", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :email, required: true, label: false, class: 'form-control'%>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:phone_number, "Numéro de Téléphone", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :phone_number, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:role, "Role", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :role, collection: User::ROLES, class: 'form-control'%>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <%= label_tag(:pasword, "Mot de passe", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input_field :password, required: true, class: 'form-control'%>
+                </div>
+              </div>
+            </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= button_tag 'Enregistrer', type: 'submit', class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= button_tag 'Retour', type: 'reset', class: 'btn btn-default' %> &nbsp;&nbsp;
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
