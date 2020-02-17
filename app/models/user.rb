@@ -1,13 +1,43 @@
 class User < ApplicationRecord
 
   #User validation
-  validates :firstname, presence: true, length: { minimum: 2 }
-  validates :lastname, presence: true, length: { minimum: 2 }
-  validates :email, presence: true, uniqueness: true
-  validates :phone_number, presence: true, length: { minimum: 9 }
-
+  validates :firstname,
+            presence: {
+                message: "Le prénom  est obligatoire"
+            },
+            length: {
+                minimum: 2,
+                message: "le prenom est trop court"
+            }
+  validates :lastname,
+            presence: {
+                message: "Le nom  est obligatoire"
+            },
+            length: {
+                minimum: 2,
+                message: "le nom est trop court"
+            }
+  validates :email,
+            presence: {
+                message: "L'email est obligatoire"
+            },
+            uniqueness: {
+                case_sensitive: false,
+                message: ->(object, data) do
+                  "L'adresse email  #{data[:value]} existe déja!"
+                end
+            }
+  validates :phone_number,
+            presence: {
+                message: "Le prénom de la catégorie est obligatoire"
+            },
+            uniqueness: {
+                message: ->(object, data) do
+                  "Le numéro   #{data[:value]} existe déja!"
+                end
+            }
 
   def name
-    " #{ firstname } #{ lastname } "
+    "#{ firstname } #{ lastname }"
   end
 end

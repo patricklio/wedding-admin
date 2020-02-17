@@ -1,9 +1,5 @@
-<%= simple_form_for(@user_profile, url: my_url, method: :patch, remote: true, html: { class: "form-horizontal form-groups-bordered" }) do |f| %>
-  <% if @user_profile.errors.full_messages.any? %>
-    <% @user_profile.errors.full_messages.each do |error_message| %>
-      <%= error_message if @user.errors.full_messages.first == error_message %> <br />
-    <% end %>
-  <% end %>
+<%= simple_form_for(@user_profile, url: my_url, method: :patch, rapper: :custom_form_horizontal,
+                    class: "form-horizontal form-groups-bordered") do |f| %>
   <div class="row">
     <div class="col-md-12">
       <div class="card-group joined" id="accordion-test">
@@ -15,39 +11,16 @@
           </div>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
-              <div class="form-group row">
-                <%= label_tag(:firstname, "votre nom", class: 'control-label col-sm-3 pull-left') %>
-                <div class="col-sm-6">
-                  <%= f.text_field :firstname, class: "form-control",  label: false, value: @user_profile.firstname %>
-                </div>
-              </div>
-              <div class="form-group row">
-                <%= label_tag(:lastname, "votre prénom", class: 'control-label col-sm-3 pull-left') %>
-                <div class="col-sm-6">
-                  <%#= text_field_tag(:lastname, "", class: 'form-control') %>
-                  <%= f.text_field :lastname, class: "form-control", label: false, value: @user_profile.lastname %>
-                </div>
-              </div>
-              <div class="form-group row">
-                <%= label_tag(:email, "votre email", class: 'control-label col-sm-3 pull-left') %>
-                <div class="col-sm-6">
-                  <%#= text_field_tag(:email, "", class: 'form-control') %>
-                  <%= f.text_field :email,  class: "form-control",  label: false, value: @user_profile.email %>
-                </div>
-              </div>
-              <div class="form-group row">
-                <%= label_tag(:phone_number, "votre telephone", class: 'control-label col-sm-3 pull-left') %>
-                <div class="col-sm-6">
-                  <%#= text_field_tag(:phone, "", class: 'form-control') %>
-                  <%= f.text_field :phone_number, class: "form-control",  label: false, value: @user_profile.phone_number %>
-                </div>
-
-              </div>
+              <%= f.input :firstname, label: "Prénom"%>
+              <%= f.input :lastname, label: "Nom"%>
+              <%= f.input :email, label: "Email"%>
+              <%= f.input :phone_number, label: "Téléphone"%>
               <hr>
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
-                  <%= button_tag 'Enregistrer', type: 'submit', class: 'btn btn-success' %> &nbsp;&nbsp;
-                  <%= button_tag 'Retour', type: 'reset', class: 'btn btn-default' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer', class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
+                  <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
                 </div>
               </div>
             </div>

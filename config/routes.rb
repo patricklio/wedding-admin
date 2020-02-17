@@ -4,10 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "components", to: "components#index"
 
-    as :user_accounts do
-      get 'user_accounts/edit', to:'users#edit', as: :edit_user_profile
-      put 'user_accounts', to:'users#update', as: :update_user_profile
-    end
+    resources :users, only: [:edit, :update]
 
     devise_for :user_accounts,
                skip: [:registrations],

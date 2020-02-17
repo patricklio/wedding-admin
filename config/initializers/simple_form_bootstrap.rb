@@ -156,6 +156,27 @@ SimpleForm.setup do |config|
     end
   end
 
+  # custom default_wrapper
+  config.wrappers :custom_form_horizontal, tag: 'div',class: 'form-group inline', error_class: 'form-group-invalid',
+                  valid_class: 'form-group-valid' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.wrapper tag: 'div', class: 'form-group row' do |ba|
+      ba.use :label, class: 'col-form-label col-sm-3 pull-left'
+      ba.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-6' do |bb|
+        bb.use :input, class: 'form-control', error_class: 'is-invalid'
+        bb.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
+        # bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
+        bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+      end
+    end
+  end
+
   # horizontal input for boolean
   config.wrappers :horizontal_boolean, tag: 'div', class: 'form-group row', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5

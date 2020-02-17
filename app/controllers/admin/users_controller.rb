@@ -1,25 +1,20 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin_user_account!
+  before_action :set_user_profile, only: [:edit, :update]
   def edit
-    @user_profile = current_admin_user_account.user
-    @user_account = current_admin_user_account
   end
 
   def update
-    @user_account = current_admin_user_account
-    @user_profile = current_admin_user_account.user
 
-    @user = User.find(@user_profile.id)
-
-    respond_to do |f|
-      if @user.update(admin_user_params)
-        f.html { redirect_to admin_edit_user_profile_url, notice: "Votre profil a été modifiés avec succès." }
-        f.json { render json: @user, status: :ok }
-        flash[:notice]="Votre profil a été modifiés avec succès."
+    if @user_profile.update(admin_user_params)
+      flash[:success] = "Les données ont bien été modifiées."
+      if params[:commit] == "Enregistrer"
+        redirect_to root_path
       else
-        f.html { render :edit, alert: "Une erreur s'est produite, veuillez reprendre!" }
-        f.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+        redirect_to edit_admin_user_url(@user_profiles)
       end
+    else
+      render :edit
     end
   end
 
@@ -27,5 +22,10 @@ class Admin::UsersController < ApplicationController
   private
   def admin_user_params
     params.require(:user).permit(:firstname, :lastname, :email, :phone_number)
+  end
+
+  def set_user_profile
+    @user_profile = User.find(current_user.id)
+    @user_account = current_admin_user_account
   end
 end
