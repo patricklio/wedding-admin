@@ -1,4 +1,4 @@
-<%= render 'component/sidebar'%>
+<%= render 'shared/sidebar'%>
 <div class="main-content" style="min-height: 1812px;">
   <%= render 'shared/navbar' %>
   <hr>
@@ -35,45 +35,8 @@
   <br>
 
   <!-- Layout for datatable-->
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-bordered datatable" id="component_id">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <a href="#" class="table-link">1</a>
-            </td>
-            <td>
-              <a href="#" class="table-link">Vidange</a>
-            </td>
-            <td>Vidange de véhicule</td>
-            <td>
-              <a href="#" class="btn btn-success btn-icon icon-left">Modifier<i class="material-icons">edit</i></a>
-              &nbsp;&nbsp;&nbsp;
-              <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete" modal-element="Vidange" modal-url="#">
-                Supprimer<i class="material-icons">cancel</i>
-              </a>
-              &nbsp;&nbsp;&nbsp;
-              <a href="#" class="btn btn-default btn-icon icon-left">Désactiver<i class="material-icons">minimize</i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <!--
-    <div class="col-sm-2 tools">
-              <a href="javascript:;" class="reload"></a>
-            </div>
-  -->
+  <%= render 'datatable' %>
+
     <br>
     <%= render 'admin/components/card_info_dashbord' %>
     <br>
