@@ -1,89 +1,87 @@
-<div class='page-container'>
-  <%= render 'component/sidebar'%>
-  <div class="main-content" style="min-height: 1812px;">
-    <%= render 'shared/navbar' %>
-    <hr>
-    <!-- Layout for breadcrumb-->
-    <ol class="breadcrumb bc-3">
-      <li>
-        <%= link_to root_path do %>
-          <i class="material-icons md-18">home</i>Accueil
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "Tableau de bord", root_path %>
-      </li>
-    </ol>
+<%= render 'component/sidebar'%>
+<div class="main-content" style="min-height: 1812px;">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- Layout for breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Tableau de bord", root_path %>
+    </li>
+  </ol>
 
-    <!-- Layout for page title with some actions-->
-    <div class="row">
-      <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">Catégories de véhicules (2)</h2>
+  <!-- Layout for page title with some actions-->
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">Catégories de véhicules (2)</h2>
 
-      <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
-        <%= link_to "" do %>
-          <button type="button" class="btn btn-green btn-icon icon-left pull-right">
-            Ajouter<i class="material-icons">add</i>
-          </button>
-        <% end %>
-        <%= link_to "" do %>
-          <button type="button" class="btn btn-info btn-icon icon-left pull-right" style="margin-right: 10px">
-            Exporter<i class="material-icons">cloud_download</i>
-          </button>
-        <% end %>
-      </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
+      <%= link_to "" do %>
+        <button type="button" class="btn btn-green btn-icon icon-left pull-right">
+          Ajouter<i class="material-icons">add</i>
+        </button>
+      <% end %>
+      <%= link_to "" do %>
+        <button type="button" class="btn btn-info btn-icon icon-left pull-right" style="margin-right: 10px">
+          Exporter<i class="material-icons">cloud_download</i>
+        </button>
+      <% end %>
     </div>
-
-    <br>
-
-    <!-- Layout for datatable-->
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-bordered datatable" id="component_id">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nom</th>
-              <th>Description</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="#" class="table-link">1</a>
-              </td>
-              <td>
-                <a href="#" class="table-link">Vidange</a>
-              </td>
-              <td>Vidange de véhicule</td>
-              <td>
-                <a href="#" class="btn btn-success btn-icon icon-left">Modifier<i class="material-icons">edit</i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete" modal-element="Vidange" modal-url="#">
-                  Supprimer<i class="material-icons">cancel</i>
-                </a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="#" class="btn btn-default btn-icon icon-left">Désactiver<i class="material-icons">minimize</i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <!--
-      <div class="col-sm-2 tools">
-                <a href="javascript:;" class="reload"></a>
-              </div>
-    -->
-      <br>
-      <%= render 'admin/components/card_info_dashbord' %>
-      <br>
-      <H3>SIMPLE TABLE </H3>
-      <%= render'admin/components/table_dashbord' %>
-
-      <!-- Layout for footer -->
-      <footer class="main">
-        © 2020 Kulucar Admin
-      </footer>
   </div>
+
+  <br>
+
+  <!-- Layout for datatable-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered datatable" id="component_id">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="#" class="table-link">1</a>
+            </td>
+            <td>
+              <a href="#" class="table-link">Vidange</a>
+            </td>
+            <td>Vidange de véhicule</td>
+            <td>
+              <a href="#" class="btn btn-success btn-icon icon-left">Modifier<i class="material-icons">edit</i></a>
+              &nbsp;&nbsp;&nbsp;
+              <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete" modal-element="Vidange" modal-url="#">
+                Supprimer<i class="material-icons">cancel</i>
+              </a>
+              &nbsp;&nbsp;&nbsp;
+              <a href="#" class="btn btn-default btn-icon icon-left">Désactiver<i class="material-icons">minimize</i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--
+    <div class="col-sm-2 tools">
+              <a href="javascript:;" class="reload"></a>
+            </div>
+  -->
+    <br>
+    <%= render 'admin/components/card_info_dashbord' %>
+    <br>
+    <H3>SIMPLE TABLE </H3>
+    <%= render'admin/components/table_dashbord' %>
+
+    <!-- Layout for footer -->
+    <footer class="main">
+      © 2020 Kulucar Admin
+    </footer>
 </div>
