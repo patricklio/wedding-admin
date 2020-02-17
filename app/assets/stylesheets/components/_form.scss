@@ -17,3 +17,33 @@
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.form-inline input {
+  margin-bottom: 0!important;
+}
+
+.uneditable-input, textarea, input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color] {
+  font-family: $montserrat-font;
+  -webkit-appearance: none!important;
+  color: #282323;
+  outline: 0;
+  height: 16px;
+  padding: 6px 11px!important;
+  line-height: 15px;
+  font-size: 13px;
+  font-weight: 400;
+  vertical-align: top;
+  background-color: #fff;
+  min-height: 37px;
+  -webkit-box-shadow: none!important;
+  -moz-box-shadow: none!important;
+  box-shadow: none!important;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #e5e9ec;
+  transition: background .2s linear 0s,box-shadow .2s linear 0s;
+}
