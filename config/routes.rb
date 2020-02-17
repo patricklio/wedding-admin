@@ -4,8 +4,18 @@ Rails.application.routes.draw do
   namespace :admin do
     get "components", to: "components#index"
 
-    devise_for :user_accounts, skip: [:registrations], controllers: { sessions: 'user_accounts/sessions' },
-    path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock' }
+    devise_for :user_accounts,
+               skip: [:registrations],
+               controllers: {
+                   sessions: 'user_accounts/sessions'
+               },
+               path_names: {
+                   sign_in: 'login',
+                   sign_out: 'logout',
+                   password: 'secret',
+                   confirmation: 'verification',
+                   unlock: 'unblock'
+               }
   end
 end
 
