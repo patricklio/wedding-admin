@@ -2,9 +2,9 @@
 
 class UserAccounts::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource/password
   # def create
@@ -17,9 +17,9 @@ class UserAccounts::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # protected
 
