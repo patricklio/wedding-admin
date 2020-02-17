@@ -3,7 +3,11 @@
   <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%
+=begin%>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<%
+=end%>
 
     <title>Kulucar Admin</title>
     <%= csrf_meta_tags %>
@@ -18,22 +22,20 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="page-body login-page login-form-fall skin-white loaded login-form-fall-init">
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-    <% if current_admin_user_account %>
+  <% if current_admin_user_account %>
+    <body class="page-body">
       <div class='page-container'>
         <%= yield %>
       </div>
-    <% else %>
+      
+       <%= render  "shared/delete_modal" %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </body>
+  <% else %>
+    <body class="page-body login-page">
       <%= yield %>
-    <% end %>
-  </body>
+    </body>
+  <% end %>
 </html>

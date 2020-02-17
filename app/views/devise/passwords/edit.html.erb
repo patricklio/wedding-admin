@@ -13,7 +13,14 @@
 
     <div class="login-content">
 
-      <div class="form-login-error"></div>
+      <div class="form-login-error">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
       <%= simple_form_for(resource, as: resource_name, url: admin_user_account_password_path(resource), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
 

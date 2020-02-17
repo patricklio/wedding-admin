@@ -40,4 +40,10 @@ class User < ApplicationRecord
   def name
     "#{ firstname } #{ lastname }"
   end
+    ROLES = %w(admin sale).freeze
+
+    has_one :user_account, dependent: :destroy
+
+    validates :email, presence: true, uniqueness: true
+
 end

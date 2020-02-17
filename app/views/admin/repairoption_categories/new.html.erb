@@ -1,0 +1,41 @@
+<%= render 'shared/sidebar'%>
+
+<div class="main-content">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Catégories de repairoption", admin_repairoption_categories_path %>
+    </li>
+    <li>
+      <strong>Ajouter</strong>
+    </li>
+  </ol>
+
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Catégories de repairoptions
+    </h2>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render  "form", category: @repairoption_category, methode: 'post' %>
+    </div>
+  </div>
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
+</div>
