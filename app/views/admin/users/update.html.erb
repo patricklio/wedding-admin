@@ -1,0 +1,17 @@
+<div class="page-container">
+  <%= render 'component/sidebar'%>
+  <div class="main-content" style="min-height: 1812px;">
+    <%= render 'shared/navbar' %>
+    <hr>
+    <ol class="breadcrumb bc-3">
+      <li>
+        <%= link_to root_path do %>
+          <i class="material-icons md-18">home</i>Mon profil
+        <% end %>
+      </li>
+    </ol>
+    <hr>
+    <br>
+    <%= render'shared/user_profile_form', my_url:  admin_update_user_profile_path %>
+  </div>
+</div>
