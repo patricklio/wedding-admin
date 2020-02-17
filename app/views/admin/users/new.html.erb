@@ -1,0 +1,25 @@
+<%= render 'component/sidebar'%>
+<div class="main-content" style="min-height: 1812px;">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- Layout for breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Tableau de Bord
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Utilisateurs", root_path %>
+    </li>
+  </ol>
+
+  <!-- Layout for page title with some actions-->
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">Création Utilisateur</h2>
+
+    <div class="col-md-10 col-sm-10 col-xs-10 clearfix">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

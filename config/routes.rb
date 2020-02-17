@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to:"admin/components#index"
   namespace :admin do
     get "components", to: "components#index"
+
+    resource :user
   end
 end
 
