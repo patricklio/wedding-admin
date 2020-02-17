@@ -18,11 +18,12 @@ class Admin::RepairoptionCategoriesController < ApplicationController
     @repairoption_category = RepairoptionCategory.new(repairoption_category_params)
 
     if @repairoption_category.save
-      flash[:success] = "Les données ont bien été enregistrées."
-      if params[:commit] == "Ajouter"
-        redirect_to admin_repairoption_categories_path
+      success_message = "Les données ont bien été enregistrées."
+
+      if params[:commit] == "Enregistrer"
+        redirect_to admin_repairoption_categories_path, flash: { success: success_message }
       else
-        redirect_to admin_repairoption_category_path(@repairoption_category)
+        redirect_to edit_admin_repairoption_category_path(@repairoption_category), flash: { success: success_message }
       end
     else
       render :new
