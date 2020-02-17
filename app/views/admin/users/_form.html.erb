@@ -1,5 +1,5 @@
 
-<%= simple_form_for @user, url: admin_user_path, class: "form-horizontal form-groups-bordered" do |f| %>
+<%= simple_form_for @user, url: admin_users_path, class: "form-horizontal form-groups-bordered" do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 

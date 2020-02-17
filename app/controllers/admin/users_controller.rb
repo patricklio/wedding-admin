@@ -11,6 +11,13 @@ class Admin::UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+  end
+
   # POST /admin/users
   def create
     @user = User.new(admin_user_params)

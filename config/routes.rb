@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get "components", to: "components#index" # TO DELETE AFTER
 
     resources :repairoption_categories, only: [:index, :destroy]
-    resource :user
+    resources :users
   end
 end
 

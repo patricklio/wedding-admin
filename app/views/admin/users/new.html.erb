@@ -1,4 +1,4 @@
-<%= render 'component/sidebar'%>
+<%= render 'shared/sidebar'%>
 <div class="main-content" style="min-height: 1812px;">
   <%= render 'shared/navbar' %>
   <hr>
@@ -10,7 +10,7 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Utilisateurs", root_path %>
+      <%= link_to "Utilisateurs", admin_users_path %>
     </li>
   </ol>
 
