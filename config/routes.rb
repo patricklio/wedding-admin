@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "components", to: "components#index" # TO DELETE AFTER
 
-    resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit]
+    resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
   end
 end
 
