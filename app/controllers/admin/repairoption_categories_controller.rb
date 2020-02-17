@@ -19,7 +19,7 @@ class Admin::RepairoptionCategoriesController < ApplicationController
 
     if @repairoption_category.save
       flash[:success] = "Les données ont bien été enregistrées."
-      if params[:commit] == "Enregistrer"
+      if params[:commit] == "Ajouter"
         redirect_to admin_repairoption_categories_path
       else
         redirect_to admin_repairoption_category_path(@repairoption_category)
@@ -38,10 +38,10 @@ class Admin::RepairoptionCategoriesController < ApplicationController
 
     if @category.update(repairoption_category_params)
       flash[:success] = "Les données ont bien été modifiées."
-      if params[:commit] == "Enregistrer"
-        redirect_to admin_repairoption_categories_path
-      else
+      if params[:commit] == "Modifier et continuer"
         redirect_to edit_admin_repairoption_category_path(@category)
+      else
+        redirect_to admin_repairoption_categories_path
       end
     else
       render :edit
