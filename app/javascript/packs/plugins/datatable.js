@@ -130,12 +130,15 @@ const initComponentDataTable = () => {
     };
 
     var tableElement = $('#component_id');
+    var repairoptionCategoriesElement = $('#repairoption_categories_id');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
+    const defaultDom = "ft<'row'<'col-md-12'p i>>";
+
     tableElement.dataTable({
-      "sDom": "t<'row'<'col-md-12'p i>>",
+      "sDom": defaultDom,
       // "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
       "aaSorting": [],
       "oLanguage": {
@@ -144,7 +147,16 @@ const initComponentDataTable = () => {
       },
     });
 
-    // $('#component_id_wrapper .dataTables_filter input').addClass("input-medium ");
+    repairoptionCategoriesElement.dataTable({
+      "sDom": defaultDom,
+      "aaSorting": [[0, 'asc']],
+      "oLanguage": {
+        "sLengthMenu": "_MENU_ ",
+        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+      },
+    });
+    $('#repairoption_categories_id_wrapper .dataTables_filter input').addClass("input-medium ");
+
   });
 }
 
