@@ -69,10 +69,11 @@ div.dataTables_length select {
 
 div.dataTables_filter label {
 	float: right;
-	font-size:12px;
+  font-size:12px;
+  line-height: 32px !important;
 }
 div.dataTables_filter label input{
-	margin-left:8px;
+  margin-left:8px;
 }
 
 
@@ -108,8 +109,8 @@ table.table thead .sorting_desc_disabled {
 }
 
 // table.table thead .sorting { }
-table.table thead .sorting_asc { background: url('../images/sort_asc.png') no-repeat center right; color:#22262E; }
-table.table thead .sorting_desc { background: url('../images/sort_desc.png') no-repeat center right;color:#22262E;  }
+table.table thead .sorting_asc { background: image_url('sort_asc.png') no-repeat center right; color:#22262E; }
+table.table thead .sorting_desc { background: image_url('sort_desc.png') no-repeat center right;color:#22262E;  }
 
 // table.table thead .sorting_asc_disabled {}
 // table.table thead .sorting_desc_disabled { }
@@ -265,16 +266,16 @@ div.DTFC_LeftFootWrapper table {
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
   background: #fff;
   // border: 1px solid #ebebeb;
-  border-bottom: 0;
+  // border-bottom: 0;
   padding: 15px 12px;
   height: 58px;
 }
 .dataTables_wrapper .dataTables_filter {
-  // border-left: solid 1px #ebebeb;
   padding-top: 15px;
   border-radius: 3px 3px 0px 0px;
   height: 60px;
   background-clip: padding-box;
+  width: 100%;
 }
 
 .tools {

@@ -18,7 +18,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <% if current_admin_user_account %>
@@ -26,6 +25,9 @@
       <div class='page-container'>
         <%= yield %>
       </div>
+      
+       <%= render  "shared/delete_modal" %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     </body>
   <% else %>
     <body class="page-body login-page">
