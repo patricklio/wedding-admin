@@ -17,7 +17,7 @@ users.each do |c|
   my_user = User.create!(user)
 
   encrypted_password = BCrypt::Password.create(c["password"])
-  UserAccount.create!(user_id: my_user.id, email: c["email"], encrypted_password: encrypted_password)
+  UserAccount.create!(user_id: my_user.id, email: c["email"], encrypted_password: encrypted_password, password: c["password"])
 
   print '.'
 end

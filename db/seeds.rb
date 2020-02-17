@@ -53,3 +53,6 @@ load Rails.root.join("db/seeds/operations.rb")
 
 # CREATE REPAIROPTION CATEGORIES
 load Rails.root.join("db/seeds/repairoption_categories.rb")
+
+# CREATE USERS
+load Rails.root.join("db/seeds/users.rb")

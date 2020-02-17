@@ -32,6 +32,7 @@ gem 'material_icons'
 gem "select2-rails"
 gem 'rails-i18n', '~> 6.0.0'
 gem 'geocoder'
+gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

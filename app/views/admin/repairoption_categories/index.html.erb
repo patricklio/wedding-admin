@@ -17,11 +17,11 @@
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Catégories de repairoptions <%= `(#{@categories.length})` unless @categories.empty? %>
+      Catégories de repairoptions <%= "(#{@categories.length})" unless @categories.empty? %>
     </h2>
 
     <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
-      <%= link_to "" do %>
+      <%= link_to new_admin_repairoption_category_path do %>
         <button type="button" class="btn btn-green btn-icon icon-left pull-right">
           Ajouter<i class="material-icons">add</i>
         </button>
@@ -30,6 +30,8 @@
   </div>
 
   <br>
+
+  <%= render 'shared/flashes' %>
 
   <div class="row">
     <div class="col-md-12">
@@ -44,7 +46,7 @@
         </thead>
         <tbody>
           <% @categories.each_with_index do |category,id|
-            show_link = admin_repairoption_category_path(category)
+            show_link = edit_admin_repairoption_category_path(category)
           %>
             <tr>
               <td>

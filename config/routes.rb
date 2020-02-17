@@ -5,8 +5,17 @@ Rails.application.routes.draw do
   namespace :admin do
     get "components", to: "components#index" # TO DELETE AFTER
 
-    resources :repairoption_categories, only: [:index, :destroy]
     resources :users
+    resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
+
+    devise_for :user_accounts, skip: [:registrations],
+                controllers: { sessions: 'admin/user_accounts/sessions',
+                              passwords: 'admin/user_accounts/passwords' },
+                path_names: { sign_in: 'login',
+                              sign_out: 'logout',
+                              password: 'secret',
+                              confirmation: 'verification',
+                              unlock: 'unblock' }
   end
 end
 
