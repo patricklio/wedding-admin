@@ -1,0 +1,109 @@
+<%= simple_form_for(@user_profile, url: my_url, method: :patch, remote: true, html: { class: "form-horizontal form-groups-bordered" }) do |f| %>
+  <% if @user_profile.errors.full_messages.any? %>
+    <% @user_profile.errors.full_messages.each do |error_message| %>
+      <%= error_message if @user.errors.full_messages.first == error_message %> <br />
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <H3>
+              <%= link_to 'Informations Générales', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+            </H3>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <div class="form-group row">
+                <%= label_tag(:firstname, "votre nom", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.text_field :firstname, class: "form-control",  label: false, value: @user_profile.firstname %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:lastname, "votre prénom", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%#= text_field_tag(:lastname, "", class: 'form-control') %>
+                  <%= f.text_field :lastname, class: "form-control", label: false, value: @user_profile.lastname %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:email, "votre email", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%#= text_field_tag(:email, "", class: 'form-control') %>
+                  <%= f.text_field :email,  class: "form-control",  label: false, value: @user_profile.email %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:phone_number, "votre telephone", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%#= text_field_tag(:phone, "", class: 'form-control') %>
+                  <%= f.text_field :phone_number, class: "form-control",  label: false, value: @user_profile.phone_number %>
+                </div>
+
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= button_tag 'Enregistrer', type: 'submit', class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= button_tag 'Retour', type: 'reset', class: 'btn btn-default' %> &nbsp;&nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<br>
+<br>
+<%= simple_form_for(@user_account, as: @user_account, url: admin_user_account_password_url, html: { method: :put }) do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="profile-login-form">
+        <div class="card">
+          <div class="card-header">
+            <H3>
+              <%= link_to 'Modifier votre mot de passe', "#change-login-collapse",:data => {:toggle => "collapse" , :parent =>"#profile-login-form"} %></H3>
+          </div>
+          <div class="collapse show" id="change-login-collapse">
+            <div class="card-body">
+              <%= f.error_notification %>
+
+              <%= f.input :reset_password_token, as: :hidden %>
+              <%= f.full_error :reset_password_token %>
+              <div class="form-group row">
+                <%= label_tag(:password, "Mot de passe actuel", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input :password,
+                              label: false,
+                              required: true,
+                              autofocus: true,
+                              hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                              input_html: { autocomplete: "new-password", class: "form-control" } %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= label_tag(:password, "Mot de passe", class: 'control-label col-sm-3 pull-left') %>
+                <div class="col-sm-6">
+                  <%= f.input :password_confirmation,
+                              label: false,
+                              required: true,
+                              input_html: { autocomplete: "new-password", class: "form-control"  } %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :button, 'Annuler', type: :reset, class: 'btn btn-default' %> &nbsp;&nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
