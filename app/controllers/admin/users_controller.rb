@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
       if @user.save
         create_user_account(@user)
 
-        format.html { redirect_to root_path, notice: "l' utilisateur est créé avec succès." }
+        format.html { redirect_to admin_users_path, notice: "l' utilisateur est créé avec succès." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -34,7 +34,12 @@ class Admin::UsersController < ApplicationController
       end
     end
   end
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
 
+    redirect_to admin_users_path
+  end
   private
 
     # Only allow a list of trusted parameters through.
