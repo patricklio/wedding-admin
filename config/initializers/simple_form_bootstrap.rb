@@ -155,9 +155,10 @@ SimpleForm.setup do |config|
       ba.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
     end
   end
+
   # custom default_wrapper
   config.wrappers :custom_form_horizontal, tag: 'div',class: 'form-group inline', error_class: 'form-group-invalid',
-  valid_class: 'form-group-valid' do |b|
+                  valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength

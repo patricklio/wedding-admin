@@ -8,14 +8,22 @@ Rails.application.routes.draw do
     resources :users
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
 
-    devise_for :user_accounts, skip: [:registrations],
-                controllers: { sessions: 'admin/user_accounts/sessions',
-                              passwords: 'admin/user_accounts/passwords' },
-                path_names: { sign_in: 'login',
-                              sign_out: 'logout',
-                              password: 'secret',
-                              confirmation: 'verification',
-                              unlock: 'unblock' }
+    devise_for :user_accounts,
+               skip: [:registrations],
+               controllers: {
+                   sessions: 'admin/user_accounts/sessions',
+                   passwords: 'admin/user_accounts/passwords'
+               },
+              path_names: {
+                  sign_in: 'login',
+                  sign_out: 'logout',
+                  password: 'secret',
+                  confirmation: 'verification',
+                  unlock: 'unblock'
+              }
+
+    resources :users, only: [:edit, :update]
+    patch "update_password", to: "users#update_password", as: "update_user_password"
   end
 end
 

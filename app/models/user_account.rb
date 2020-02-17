@@ -4,4 +4,14 @@ class UserAccount < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :user
+
+  validates :password,
+            presence: {
+                message: "Le mot de passe est obligatoire"
+            },
+            length: {
+                minimum: 8,
+                message: "le mot de passe est trop court"
+            },
+            confirmation: true
 end
