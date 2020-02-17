@@ -6,9 +6,9 @@
         <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
           <%= link_to root_path do %>
               <%= image_tag("thumb@2x.png", class: "img-circle", alt: "") %>
-              <% if current_admin_user_account %>
-                Bonjour <%= current_admin_user_account.user.firstname %>
-              <% end %>
+              <%# if current_admin_user_account %>
+<!--                Bonjour <%#= current_admin_user_account.user.firstname %>-->
+              <%# end %>
           <% end %>
         </li>
       </ul>
@@ -23,19 +23,19 @@
             </a>
             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
               <li>
-                <%= link_to edit_admin_user_path(current_admin_user_account.user)  do %>
-                  Mon profile
-                <% end %>
+                <%#= link_to edit_admin_user_path(current_admin_user_account.user)  do %>
+<!--                  Mon profile-->
+                <%# end %>
               </li>
               <li>
                 <a href="#">Calendrier</a>
               </li>
               <li class="divider"></li>
               <li>
-                <%= link_to destroy_admin_user_account_session_path, class: "header__menu__button"  do %>
-                  <i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Se déconnecter
-                <% end %>
-              </li>
+                <%#= link_to destroy_admin_user_account_session_path, class: "header__menu__button"  do %>
+<!--                  <i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Se déconnecter-->
+                <%# end %>
+<!--              </li>-->
             </ul>
           </li>
         </ul>
