@@ -20,13 +20,18 @@
 
   </head>
 
-  <body class="page-body bg-white">
-    <div class="page-container">
+  <% if current_admin_user_account %>
+    <body class="page-body">
+      <div class='page-container'>
+        <%= yield %>
+      </div>
+      
+       <%= render  "shared/delete_modal" %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </body>
+  <% else %>
+    <body class="page-body login-page">
       <%= yield %>
-    </div>
-
-    <%= render  "shared/delete_modal" %>
-
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </body>
+    </body>
+  <% end %>
 </html>
