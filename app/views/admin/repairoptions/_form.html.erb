@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, repairoption], method: :method, authenticity_token: true, wrapper: :custom_form_horizontal,
+<%= simple_form_for [:admin, repairoption], method: methode, authenticity_token: true, wrapper: :custom_form_horizontal,
                     class: "form-horizontal form-groups-bordered" do |f| %>
   <div class="row">
     <div class="col-md-12">
@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">
-              <% if method == :patch %>
+              <% if methode == 'patch' %>
                 <%= link_to "#{ repairoption.name} ( ID: #{repairoption.id } - Dernière mise à jour le #{repairoption.updated_at} )", "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
               <% else %>
               Ajouter
@@ -15,10 +15,8 @@
           </div>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
-              <% if method == :post %>
-                <%= f.input :repairoption_category_id, label: "Catégorie", collection: RepairoptionCategory.all,
+              <%= f.input :repairoption_category_id, label: "Catégorie", collection: RepairoptionCategory.all,
                             input_html: { "data-init-plugin": "select2" }%>
-              <% end %>
               <%= f.input :name, label: "Nom", input_html: {style: "text-transform: uppercase;" }%>
 
               <%= f.input :description, label: "Description" %>
@@ -39,4 +37,8 @@
       </div>
     </div>
   </div>
+<% end %>
+
+<% if  methode == 'patch' %>
+  <%= render 'admin/joboperations/new', joboperation: joboperation, repairoption: repairoption %>
 <% end %>

@@ -25,12 +25,15 @@
   </div>
 
   <br>
+  <%= render 'shared/flashes' %>
 
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", repairoption: @repairoption, method: :patch %>
+      <%= render  "admin/repairoptions/form", repairoption: @repairoption, methode: 'patch', joboperation: @joboperation %>
     </div>
   </div>
+  <br>
+  <%= render  'admin/repairoptions/joboperations' %>
 
 
   <!-- footer -->
