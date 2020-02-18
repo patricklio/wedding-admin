@@ -18,7 +18,7 @@ class Admin::JobpartsController < ApplicationController
       part.save
     end
 
-    jobpart = Jobpart.new(jobpart_params)
+    jobpart = Jobpart.new(part_id: part.id, part_qty: jobpart_params[:part_qty], joboperation_id: jobpart_params[:joboperation_id])
 
     if jobpart.save
       if params[:commit] == "Enregistrer"
