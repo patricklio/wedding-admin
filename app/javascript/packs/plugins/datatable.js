@@ -131,6 +131,7 @@ const initComponentDataTable = () => {
 
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
+    var joboperationElement = $('#joboperation_id');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -155,7 +156,17 @@ const initComponentDataTable = () => {
         "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
       },
     });
+
+    joboperationElement.dataTable({
+      "sDom": defaultDom,
+      "aaSorting": [[0, 'asc']],
+      "oLanguage": {
+        "sLengthMenu": "_MENU_ ",
+        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+      },
+    });
     $('#repairoption_categories_id_wrapper .dataTables_filter input').addClass("input-medium ");
+    $('#joboperation_id .dataTables_filter input').addClass("input-medium ");
 
   });
 }
