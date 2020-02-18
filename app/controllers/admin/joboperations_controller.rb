@@ -44,11 +44,11 @@ class Admin::JoboperationsController < ApplicationController
   private
 
   def set_new_joboperation
-    @joboperation = Repairoption.new
+    @joboperation = Joboperation.new
   end
 
   def set_joboperation
-    @joboperation = Repairoption.find(params[:id])
+    @joboperation = Joboperation.find(params[:id])
     @joboperation = Joboperation.new
   end
 
