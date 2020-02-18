@@ -1,2 +1,87 @@
-<h1>Admin::Partners#index</h1>
-<p>Find me in app/views/admin/partners/index.html.erb</p>
+<%= render 'shared/sidebar'%>
+
+<div class="main-content" style="min-height: 1812px;">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Catégories de repairoption", admin_repairoption_categories_path %>
+    </li>
+  </ol>
+
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Partenaires <%= "(#{@partners.length})" unless @partners.empty? %>
+    </h2>
+
+    <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
+      <%= link_to new_admin_partner_path do %>
+        <button type="button" class="btn btn-green btn-icon icon-left pull-right">
+          Ajouter<i class="material-icons">add</i>
+        </button>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+
+  <%= render 'shared/flashes' %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered datatable" id="partners_id">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Addresse</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>Prix horraire</th>
+          <th>Monaie</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @partners.each_with_index do |partner,id|
+          edit_link = edit_admin_partner_path(partner)
+          show_link = admin_partner_path(partner)
+%>
+          <tr>
+            <td><%= id+1 %></td>
+            <td><%= partner.name %></td>
+            <td><%= partner.address %></td>
+            <td><%= partner.phone_number %></td>
+            <td><%= partner.email %></td>
+            <td><%= partner.labor_hour_price %></td>
+            <td><%= partner.labor_currency %></td>
+            <td>
+              <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
+                Modifier<i class="material-icons">edit</i>
+              </a>&nbsp;&nbsp;&nbsp;
+              <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
+                 modal-element="<%= partner.name %>" modal-url="<%= show_link %>">
+                Supprimer<i class="material-icons">cancel</i>
+              </a>&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
+</div>
+
