@@ -20,6 +20,7 @@ class Admin::RepairoptionsController < ApplicationController
         redirect_to edit_admin_repairoption_path(@repairoption), flash: { success: "Les données ont bien été enregistrées." }
       end
     else
+      flash[:error] = @repairoption.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -32,6 +33,7 @@ class Admin::RepairoptionsController < ApplicationController
         redirect_to edit_admin_repairoption_path(@repairoption), flash: { success: "Les données ont bien été mises à jour." }
       end
     else
+      flash[:error] = @repairoption.errors.full_messages.to_sentence
       render :edit
     end
   end

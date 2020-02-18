@@ -1,6 +1,16 @@
 <br>
 <div class="row" style="padding: 10px;">
-  <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">Composition (0 tâche)</h3>
+  <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+    <% if @joboperations.empty? %>
+        Composition (0 tâche)
+      <%else %>
+      <% if @joboperations.count == 1 %>
+        Composition (1 tâche)
+      <% else %>
+        Composition (<%=  @joboperations.count %> tâches)
+      <%end %>
+      <% end %>
+  </h3>
   <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
 </div>
 <br>
@@ -17,7 +27,7 @@
           </div>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
-              <%= f.input :operation_id, label: "Selectionez / ajoutez", collection: Operation.all%>
+              <%= f.input :operation_id, label: "Selectionez / ajoutez", collection: Operation.all, selected: joboperation.operation_id %>
               <%= f.hidden_field :repairoption_id, value: repairoption.id %>
               <hr>
               <div class="form-group row">

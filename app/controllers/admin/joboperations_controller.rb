@@ -1,5 +1,5 @@
 class Admin::JoboperationsController < ApplicationController
-  before_action :set_joboperation, only: [:edit, :update]
+  before_action :set_joboperation, only: [:edit, :update, :destroy]
   before_action :set_new_joboperation, only: [:new]
 
   def index
@@ -33,12 +33,16 @@ class Admin::JoboperationsController < ApplicationController
   end
 
   def edit
+    redirect_to edit_admin_repairoption_path(@joboperation.repairoption)
   end
 
   def update
   end
 
-  def delete
+  def destroy
+    @joboperation.destroy
+
+    redirect_to edit_admin_repairoption_path(@joboperation.repairoption), flash: { success: "Les données ont bien été supprimées." }
   end
 
   private
@@ -49,7 +53,6 @@ class Admin::JoboperationsController < ApplicationController
 
   def set_joboperation
     @joboperation = Joboperation.find(params[:id])
-    @joboperation = Joboperation.new
   end
 
   def set_new_operation

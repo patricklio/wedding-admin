@@ -10,15 +10,15 @@
       </thead>
       <tbody>
       <% @joboperations.each_with_index do |job_op,id|
-        edit_link = edit_admin_joboperation_path(job_op)
+        edit_link = edit_admin_repairoption_path(job_op.repairoption)
         show_link = admin_joboperation_path(job_op)
 %>
         <tr>
           <td>
-            <a href="<%= edit_link %>" class="table-link"><%= id+1 %></a>
+            <%= id+1 %>
           </td>
           <td>
-            <a href="<%= edit_link %>" class="table-link"><%= job_op.operation.name %></a>
+            <%= job_op.operation.name %>
           </td>
           <td>
             <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">

@@ -7,7 +7,7 @@
           <div class="card-header">
             <h4 class="card-title">
               <% if methode == 'patch' %>
-                <%= link_to "#{ repairoption.name} ( ID: #{repairoption.id } - Dernière mise à jour le #{repairoption.updated_at} )", "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+                <span><%= link_to "#{ repairoption.name }   ( ID: #{repairoption.id } - Dernière mise à jour le #{repairoption.updated_at} )", "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %></span>
               <% else %>
               Ajouter
                 <% end %>
@@ -21,7 +21,7 @@
 
               <%= f.input :description, label: "Description" %>
 
-              <%= f.check_box :optional, label: "Proposé en option" %>
+              <%= f.input :optional, label: "Proposé en option", wrapper: :custom_checkbox, wrapper_html: { class: "check-success" } %>
 
               <hr>
               <div class="form-group row">
