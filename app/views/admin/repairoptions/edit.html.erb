@@ -11,7 +11,7 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Repairoptions", admin_repairoptions_path %>
+      <%= link_to "Services", admin_repairoptions_path %>
     </li>
     <li>
       <strong>Modifier</strong>
@@ -20,7 +20,7 @@
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      <%= @repairoption.name %> ( ID: <%= @repairoption.id %> - Dernière mise à jour le <%= @repairoption.updated_at %>   )
+      Services
     </h2>
   </div>
 
@@ -28,7 +28,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", repairoption: @repairoption, methode: 'patch' %>
+      <%= render  "form", repairoption: @repairoption, method: :patch %>
     </div>
   </div>
 
