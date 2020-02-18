@@ -1,0 +1,2 @@
+class Repairoption < ApplicationRecord
+end

@@ -1,5 +1,6 @@
 class Admin::RepairoptionsController < ApplicationController
   def new
+    @repairoption = Repairoption.new
   end
 
   def create
@@ -9,6 +10,7 @@ class Admin::RepairoptionsController < ApplicationController
   end
 
   def edit
+    @repairoption = Repairoption.new
   end
 
   def destroy
