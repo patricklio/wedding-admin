@@ -34,7 +34,6 @@ class Admin::RepairoptionsController < ApplicationController
   end
 
   def edit
-    @joboperations = @repairoption.joboperations
   end
 
   def update
@@ -59,6 +58,7 @@ class Admin::RepairoptionsController < ApplicationController
 
   def set_repairoption
     @repairoption = Repairoption.find(params[:id])
+    @joboperations = @repairoption.joboperations
     @joboperation = Joboperation.new
   end
 

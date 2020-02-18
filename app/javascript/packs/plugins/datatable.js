@@ -134,6 +134,7 @@ const initComponentDataTable = () => {
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
     var repairoptionsElement = $('#repairoptions_id');
     var joboperationElement = $('#joboperation_id');
+    var jobpartElement = $('#jobparts_list');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -174,10 +175,19 @@ const initComponentDataTable = () => {
       initRepairoptionFilters(roTable);
     }
 
-    if (repairoptionsElement) {
+    if (joboperationElement) {
       joboperationElement.dataTable({
         "sDom": defaultDom,
         "aaSorting": [[0, 'asc']],
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        },
+      });
+    }
+    if (jobpartElement) {
+      jobpartElement.dataTable({
+        "sDom": defaultDom,
         "oLanguage": {
           "sLengthMenu": "_MENU_ ",
           "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"

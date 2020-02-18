@@ -33,10 +33,19 @@ class Admin::JoboperationsController < ApplicationController
   end
 
   def edit
-    redirect_to edit_admin_repairoption_path(@joboperation.repairoption)
+
   end
 
   def update
+    if @joboperation.update(jo_params)
+      if params[:commit] == "Enregistrer"
+        redirect_to admin_joboperations_path, flash: { success: "Les données ont bien été enregistrées." }
+      else
+        redirect_to edit_admin_joboperation_path(@joboperation), flash: { success: "Les données ont bien été enregistrées." }
+      end
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -53,6 +62,8 @@ class Admin::JoboperationsController < ApplicationController
 
   def set_joboperation
     @joboperation = Joboperation.find(params[:id])
+    @jobparts = @joboperation.jobparts
+    @jobpart = Jobpart.new
   end
 
   def set_new_operation

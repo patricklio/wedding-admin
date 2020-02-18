@@ -6,11 +6,14 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">
-              <% if methode == 'patch' %>
-                <span><%= link_to "#{ repairoption.name }   ( ID: #{repairoption.id } - Dernière mise à jour le #{repairoption.updated_at} )", "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %></span>
-              <% else %>
-              Ajouter
+              <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+                <% if methode == 'patch' %>
+                  <%= repairoption.name %>
+                  <span>( ID: <%= repairoption.id %> - Dernière mise à jour le <%= repairoption.updated_at %>)</span>
+                <% else %>
+                  Ajouter
                 <% end %>
+              <% end %>
             </h4>
           </div>
           <div class="collapse show" id="collapse-fr">
@@ -40,5 +43,15 @@
 <% end %>
 
 <% if  methode == 'patch' %>
-  <%= render 'admin/joboperations/new', joboperation: joboperation, repairoption: repairoption %>
+  <br>
+  <div class="row" style="padding: 10px;">
+    <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Tâches (<%=  @joboperations.count %> operation<%= s if @joboperations.count >1 %>)
+    </h3>
+    <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
+  </div>
+
+  <br>
+
+  <%= render 'admin/joboperations/form', joboperation: joboperation, repairoption: repairoption, methode: :post %>
 <% end %>
