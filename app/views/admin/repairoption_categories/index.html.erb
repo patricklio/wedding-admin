@@ -46,18 +46,19 @@
         </thead>
         <tbody>
           <% @categories.each_with_index do |category,id|
-            show_link = edit_admin_repairoption_category_path(category)
+            edit_link = edit_admin_repairoption_category_path(category)
+            show_link = admin_repairoption_category_path(category)
           %>
             <tr>
               <td>
-                <a href="<%= show_link %>" class="table-link"><%= id+1 %></a>
+                <a href="<%= edit_link %>" class="table-link"><%= id+1 %></a>
               </td>
               <td>
-                <a href="<%= show_link %>" class="table-link"><%= category.name %></a>
+                <a href="<%= edit_link %>" class="table-link"><%= category.name %></a>
               </td>
               <td><%= category.description %></td>
               <td>
-                <a href="<%= show_link %>" class="btn btn-success btn-icon icon-left">
+                <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
                   Modifier<i class="material-icons">edit</i>
                 </a>&nbsp;&nbsp;&nbsp;
                 <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"

@@ -15,19 +15,13 @@
 
               <%= f.input :description, label: "Description" %>
 
-            </div>
               <hr>
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
-                  <%if methode === 'patch' %>
-                      <%= f.button :submit, "Modifier #{ category.name }", class: 'btn btn-success' %> &nbsp;&nbsp;
-                      <%= f.button :submit, 'Modifier et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
-                    <% else %>
-                      <%= f.button :submit, "Ajouter", class: 'btn btn-success' %> &nbsp;&nbsp;
-                      <%= f.button :submit, 'Ajouter et continuer', class: 'btn btn-success set-lang', lang: 'fr' %>
-                    <% end %>
-                      <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
-                 </div>
+                  <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
+                  <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
+                </div>
               </div>
             </div>
           </div>
