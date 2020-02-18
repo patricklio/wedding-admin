@@ -52,11 +52,13 @@
           %>
             <tr>
               <td>
-                <a href="<%= edit_link %>" class="table-link"><%= id+1 %></a>
+                <%= id+1 %>
               </td>
               <td>
-                <a href="<%= edit_link %>" class="table-link"><%= repairoption.name %></a>
-                
+                <%= repairoption.name %>&nbsp;&nbsp;&nbsp;
+                <% if repairoption.optional? %>
+                  <span class="badge badge-primary">Optionel</span>
+                <% end %>
               </td>
               <td><%= repairoption.description %></td>
               <td><%= repairoption.repairoption_category.name %></td>
