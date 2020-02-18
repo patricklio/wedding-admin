@@ -1,9 +1,9 @@
 <div class="login-container">
   <div class="login-header login-caret">
     <div class="login-content">
-            <%= link_to '' do %>
-                <%= image_tag 'logo.png', width: '120', alt: '' %>
-            <% end %>
+      <%= link_to '' do %>
+          <%= image_tag 'logo.png', width: '120', alt: '' %>
+      <% end %>
       <p class="description">Veuillez vous identifier pour accéder à l'interface d'administration</p>
     </div>
 
@@ -14,18 +14,16 @@
     <div class="login-content">
 
       <div class="form-login-error">
-        <% if notice %>
-          <p class="alert alert-success"><%= notice %></p>
-        <% end %>
         <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
+          <p><%= alert %></p>
         <% end %>
       </div>
+
       <%= simple_form_for(resource, as: resource_name, url: admin_user_account_session_path) do |f| %>
         <div class='form-group'>
           <div class='input-group'>
             <div class='input-group-addon'>
-              <i class="material-icons">person</i>
+              <i class="material-icons md-24">person</i>
             </div>
             <%= f.input_field :email, required: true, label: false, class: 'form-control' %>
           </div>
@@ -33,7 +31,7 @@
         <div class="form-group">
           <div class='input-group'>
             <div class='input-group-addon'>
-              <i class="material-icons">lock_open</i>
+              <i class="material-icons md-24">lock_open</i>
             </div>
             <%= f.input_field :password, required: true, label: false, class: 'form-control' %>
           </div>
@@ -41,7 +39,7 @@
 
         <div class="form-group">
           <%= button_tag(type: 'submit', class: "btn btn-primary btn-block btn-login") do %>
-            <i class="material-icons">input</i> Se connecter
+            <i class="material-icons md-18">input</i> Se connecter
           <% end %>
         </div>
         <% end %>
