@@ -25,7 +25,9 @@ import 'bootstrap'
 import './plugins/bootstrap_custom.js'
 import './main.js'
 import { initComponentDataTable } from "./plugins/datatable.js";
+import { initSelect2 } from "./plugins/init_select2.js";
 import '../components/utils.js';
 
 // Plugins
 initComponentDataTable();
+initSelect2();
