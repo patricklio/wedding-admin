@@ -1,5 +1,5 @@
 class Joboperation < ApplicationRecord
-  has_many :jobparts
+  has_many :jobparts, dependent: :destroy
   belongs_to :operation
   belongs_to :repairoption
 
