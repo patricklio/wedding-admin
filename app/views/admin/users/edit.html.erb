@@ -1,15 +1,34 @@
-  <%= render 'component/sidebar'%>
-  <div class="main-content" style="min-height: 1812px;">
-    <%= render 'shared/navbar' %>
-    <hr>
-    <ol class="breadcrumb bc-3">
-      <li>
-        <%= link_to root_path do %>
-          <i class="material-icons md-18">home</i>Mon profil
-        <% end %>
-      </li>
-    </ol>
-    <hr>
-    <br>
-    <%= render 'admin/users/form', my_url:  edit_admin_user_account_password_path %>
+<%= render 'shared/sidebar'%>
+
+<div class="main-content">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <strong>Mon profil</strong>
+    </li>
+  </ol>
+
+  <br>
+
+  <%= render 'shared/flashes' %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'form', my_url:  edit_admin_user_account_password_path %>
+    </div>
   </div>
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
+</div>

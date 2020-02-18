@@ -1,20 +1,20 @@
-<%= simple_form_for(@user_profile, url: my_url, method: :patch, rapper: :custom_form_horizontal,
-                    class: "form-horizontal form-groups-bordered") do |f| %>
+<%= simple_form_for [:admin,@user], method: :patch, wrapper: :custom_form_horizontal,
+    class: "form-horizontal form-groups-bordered" do |f| %>
   <div class="row">
     <div class="col-md-12">
       <div class="card-group joined" id="accordion-test">
         <div class="card">
           <div class="card-header">
-            <H3>
+            <h4 class="card-title">
               <%= link_to 'Informations Générales', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
-            </H3>
+            </h4>
           </div>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
               <%= f.input :firstname, label: "Prénom"%>
               <%= f.input :lastname, label: "Nom"%>
               <%= f.input :email, label: "Email"%>
-              <%= f.input :phone_number, label: "Téléphone"%>
+              <%= f.input :phone_number, label: "N° de téléphone"%>
               <hr>
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
@@ -30,31 +30,36 @@
     </div>
   </div>
 <% end %>
+
+
 <br>
 <br>
-<%= simple_form_for(@user_account, as: @user_account, url: admin_update_user_password_url, ethod: :patch, rapper: :custom_form_horizontal,
-                    class: "form-horizontal form-groups-bordered") do |f| %>
+
+<%= simple_form_for(@user_account, as: @user_account, url: admin_update_user_password_url, method: :patch,
+    wrapper: :custom_form_horizontal, class: "form-horizontal form-groups-bordered") do |f| %>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-group joined" id="profile-login-form">
+      <div class="card-group joined" id="accordion-test">
         <div class="card">
           <div class="card-header">
-            <H3>
-              <%= link_to 'Modifier votre mot de passe', "#change-login-collapse",:data => {:toggle => "collapse" , :parent =>"#profile-login-form"} %></H3>
+            <h4 class="card-title">
+              <%= link_to 'Modifier votre mot de passe', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+            </h4>
           </div>
-          <div class="collapse show" id="change-login-collapse">
+          <div class="collapse show" id="collapse-fr">
             <div class="card-body">
-              <%= f.error_notification %>
               <%= f.input :reset_password_token, as: :hidden %>
-              <%= f.full_error :reset_password_token %>
+              <%= f.error :reset_password_token %>
               <%= f.input :password, label: "Mot de passe", required: true, autofocus: false,  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)%>
               <%= f.input :password_confirmation, label: "Confirmez le mot de passe", required: true %>
+
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
                   <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
                   <%= f.button :button, 'Annuler', type: :reset, class: 'btn btn-default' %> &nbsp;&nbsp;
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -62,3 +67,4 @@
     </div>
   </div>
 <% end %>
+
