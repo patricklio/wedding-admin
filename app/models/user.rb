@@ -34,7 +34,7 @@ class User < ApplicationRecord
             uniqueness: {
                 message: ->(object, data) do
                   "Le numéro   #{data[:value]} existe déja!"
-                end
+                end, on: :create
             }
 
   def name
