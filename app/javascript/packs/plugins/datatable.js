@@ -133,6 +133,7 @@ const initComponentDataTable = () => {
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
     var repairoptionsElement = $('#repairoptions_id');
+    var joboperationElement = $('#joboperation_id');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -171,6 +172,17 @@ const initComponentDataTable = () => {
       });
 
       initRepairoptionFilters(roTable);
+    }
+
+    if (repairoptionsElement) {
+      joboperationElement.dataTable({
+        "sDom": defaultDom,
+        "aaSorting": [[0, 'asc']],
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        },
+      });
     }
 
   });

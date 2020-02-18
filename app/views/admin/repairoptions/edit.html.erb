@@ -11,28 +11,29 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Catégories de service", admin_repairoption_categories_path %>
+      <%= link_to "Services", admin_repairoptions_path %>
     </li>
     <li>
-      <strong> <%=  @category.name  %> </strong>
+      <strong>Modifier</strong>
     </li>
   </ol>
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Catégories de service
+      Services
     </h2>
   </div>
 
   <br>
 
   <%= render 'shared/flashes' %>
-
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", category: @category, methode: 'patch' %>
+      <%= render  "admin/repairoptions/form", repairoption: @repairoption, methode: 'patch', joboperation: @joboperation %>
     </div>
   </div>
+  <br>
+  <%= render  'admin/repairoptions/joboperations' %>
 
 
   <!-- footer -->

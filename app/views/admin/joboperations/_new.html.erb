@@ -1,0 +1,45 @@
+<br>
+<div class="row" style="padding: 10px;">
+  <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+    <% if @joboperations.empty? %>
+        Composition (0 tâche)
+      <%else %>
+      <% if @joboperations.count == 1 %>
+        Composition (1 tâche)
+      <% else %>
+        Composition (<%=  @joboperations.count %> tâches)
+      <%end %>
+      <% end %>
+  </h3>
+  <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
+</div>
+<br>
+<%= simple_form_for [:admin, joboperation], method: :post, authenticity_token: true, wrapper: :custom_form_horizontal,
+                    class: "form-horizontal form-groups-bordered" do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              Ajouter une tâche
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <%= f.input :operation_id, label: "Selectionez / ajoutez", collection: Operation.all, selected: joboperation.operation_id %>
+              <%= f.hidden_field :repairoption_id, value: repairoption.id %>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">&nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
+                  <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
