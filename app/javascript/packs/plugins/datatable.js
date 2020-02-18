@@ -133,6 +133,7 @@ const initComponentDataTable = () => {
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
     var repairoptionsElement = $('#repairoptions_id');
+    var operationsElement = $('#operations_list');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -171,6 +172,16 @@ const initComponentDataTable = () => {
       });
 
       initRepairoptionFilters(roTable);
+    }
+
+    if (operationsElement) {
+      operationsElement.dataTable({
+        "sDom": defaultDom,
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+        },
+      });
     }
 
   });

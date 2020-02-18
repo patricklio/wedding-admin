@@ -424,7 +424,7 @@ function setup_sidebar_menu() {
 
 function menu_do_expand($submenu, $this, options) {
   $submenu.addClass('visible').height('');
-  current_height = $submenu.outerHeight();
+  const current_height = $submenu.outerHeight();
 
   const props_from = {
     opacity: .2,
