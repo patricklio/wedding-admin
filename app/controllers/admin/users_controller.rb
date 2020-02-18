@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
       if @user.save
         create_user_account(@user)
 
-        format.html { redirect_to admin_users_path, notice: "l'utilisateur est créé avec succès." }
+        format.html { redirect_to admin_users_path, flash: { success: "l'utilisateur est créé avec succès."} }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -88,9 +88,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def create_user_account(user)
-    encrypted_password = BCrypt::Password.create(params[:user][:password])
+    encrypted_password = BCrypt::Password.create("password")
 
     UserAccount.create!(user_id: user.id,
+                        password: "password",
                         email: user.email,
                         encrypted_password: encrypted_password
                       )

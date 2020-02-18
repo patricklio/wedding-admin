@@ -7,11 +7,11 @@ class UserAccount < ApplicationRecord
 
   validates :password,
             presence: {
-                message: "Le mot de passe est obligatoire"
+                message: "Le mot de passe est obligatoire", on: :update
             },
             length: {
                 minimum: 8,
-                message: "le mot de passe est trop court"
+                message: "le mot de passe est trop court", on: :update
             },
             confirmation: true
 end

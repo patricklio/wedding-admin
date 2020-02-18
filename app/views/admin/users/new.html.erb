@@ -1,25 +1,45 @@
 <%= render 'shared/sidebar'%>
-<div class="main-content" style="min-height: 1812px;">
+
+<div class="main-content">
   <%= render 'shared/navbar' %>
   <hr>
-  <!-- Layout for breadcrumb-->
+  <!-- breadcrumb-->
   <ol class="breadcrumb bc-3">
     <li>
       <%= link_to root_path do %>
-        <i class="material-icons md-18">home</i>Tableau de Bord
+        <i class="material-icons md-18">home</i>Accueil
       <% end %>
     </li>
     <li>
       <%= link_to "Utilisateurs", admin_users_path %>
     </li>
+    <li>
+      <strong>Ajouter</strong>
+    </li>
   </ol>
 
-  <!-- Layout for page title with some actions-->
+  <!-- Page Title-->
   <div class="row">
-    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">Création Utilisateur</h2>
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Utilisateurs
+    </h2>
+  </div>
 
-    <div class="col-md-10 col-sm-10 col-xs-10 clearfix">
-      <%= render 'form' %>
+  <br>
+
+  <%= render 'shared/flashes' %>
+
+  <!-- Real content of the page-->
+  <div class="row">
+    <div class="col-md-12">
+      <%= render  "form", method: :post %>
     </div>
   </div>
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
 </div>

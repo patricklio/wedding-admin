@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  ROLES = %w(admin sales client).freeze
+
+  has_one :user_account, dependent: :destroy
 
   #User validation
   validates :firstname,
@@ -36,14 +39,14 @@ class User < ApplicationRecord
                   "Le numéro   #{data[:value]} existe déja!"
                 end, on: :create
             }
+  validates :role,
+            presence: {
+                message: "Le role est obligatoire"
+            }, on: :create
+
 
   def name
     "#{ firstname } #{ lastname }"
   end
-    ROLES = %w(admin sale).freeze
-
-    has_one :user_account, dependent: :destroy
-
-    validates :email, presence: true, uniqueness: true
 
 end
