@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
+    resources :repairoptions
 
     devise_for :user_accounts,
                skip: [:registrations],
