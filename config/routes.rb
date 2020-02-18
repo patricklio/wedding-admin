@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'joboperations/index'
+    get 'joboperations/new'
+    get 'joboperations/create'
+    get 'joboperations/edit'
+    get 'joboperations/update'
+    get 'joboperations/delete'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to:"admin/components#index"
 
@@ -8,6 +16,7 @@ Rails.application.routes.draw do
     resources :users
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
     resources :repairoptions
+    resources :joboperations, only: [:destroy, :new, :create, :edit, :update]
 
     devise_for :user_accounts,
                skip: [:registrations],
