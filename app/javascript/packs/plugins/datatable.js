@@ -161,16 +161,62 @@ const initComponentDataTable = () => {
     }
 
     if (repairoptionsElement){
-      repairoptionsElement.dataTable({
+
+      const roTable = repairoptionsElement.dataTable({
         "sDom": defaultDom,
         "oLanguage": {
           "sLengthMenu": "_MENU_ ",
           "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        },
+        }
       });
+
+      initRepairoptionFilters(roTable);
     }
 
   });
+}
+
+const initRepairoptionFilters = (oTable) => {
+  let select = '';
+  const filterDiv = $("#repairoptions_id_filter");
+
+  $.ajax({
+    url: "/admin/repairoptions/categories",
+    method: 'GET',
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      console.error('AJAX Error: ', status, error);
+    },
+    success: function (response) {
+      if (response.categories.length > 0){
+
+        select = '<div class="col-sm-4">';
+        select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
+        select += '<option value="0" selected="selected">Toutes les catégories</option>';
+
+        $.each(response.categories, function (index, category) {
+          select += '<option value="' + category + '">' + category+ '</option>';
+        });
+
+        select += '</select></div>'
+
+        document.getElementById("repairoptions_id_filter").insertAdjacentHTML("afterbegin", select);
+
+        filterChangeListener(oTable);
+      }
+    }
+  });
+}
+
+const filterChangeListener = (oTable) => {
+  $("#filters").on("change", function () {
+    if ($(this).val() == 0){
+      oTable.api().draw();
+    }else{
+      oTable.api().column(3).search($(this).val()).draw();;
+    }
+  });
+
 }
 
 export { initComponentDataTable }
