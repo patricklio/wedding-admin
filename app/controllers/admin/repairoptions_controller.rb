@@ -25,9 +25,19 @@ class Admin::RepairoptionsController < ApplicationController
   end
 
   def update
+    if @repairoption.update(ro_params)
+      if params[:commit] == "Enregistrer"
+        redirect_to admin_repairoptions_path, flash: { success: "Les données ont bien été mises à jour." }
+      else
+        redirect_to edit_admin_repairoption_path(@repairoption), flash: { success: "Les données ont bien été mises à jour." }
+      end
+    else
+      render :edit
+    end
   end
 
   def edit
+    @joboperations = @repairoption.joboperations
   end
 
   def destroy
@@ -38,6 +48,7 @@ class Admin::RepairoptionsController < ApplicationController
   def show
   end
 
+
   private
   def set_new_repairoption
     @repairoption = Repairoption.new
@@ -45,9 +56,11 @@ class Admin::RepairoptionsController < ApplicationController
 
   def set_repairoption
     @repairoption = Repairoption.find(params[:id])
+    @joboperation = Joboperation.new
   end
 
   def ro_params
     params.require(:repairoption).permit(:name, :description, :repairoption_category_id, :optional)
   end
+
 end
