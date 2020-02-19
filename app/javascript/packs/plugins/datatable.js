@@ -132,7 +132,6 @@ const initComponentDataTable = () => {
 
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
-    var joboperationElement = $('#joboperation_id');
     var repairoptionsElement = $('#repairoptions_id');
     var operationsElement = $('#operations_list');
 
@@ -151,29 +150,18 @@ const initComponentDataTable = () => {
       },
     });
 
-    if (joboperationElement) {
-      joboperationElement.dataTable({
-        "sDom": defaultDom,
-        "aaSorting": [[0, 'asc']],
-        "oLanguage": {
-          "sLengthMenu": "_MENU_ ",
-          "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
-        },
-      });
-    }
-
-    if (repairoptionCategoriesElement) {
+    if (repairoptionCategoriesElement.length) {
       repairoptionCategoriesElement.dataTable({
         "sDom": defaultDom,
         "aaSorting": [[0, 'asc']],
         "oLanguage": {
           "sLengthMenu": "_MENU_ ",
           "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        },
+        }
       });
     }
 
-    if (repairoptionsElement){
+    if (repairoptionsElement.length){
 
       const roTable = repairoptionsElement.dataTable({
         "sDom": defaultDom,
@@ -182,11 +170,12 @@ const initComponentDataTable = () => {
           "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
         }
       });
-
-      initRepairoptionFilters(roTable);
+      setTimeout(() => {
+        initRepairoptionFilters(roTable);
+      }, 500);
     }
 
-    if (operationsElement) {
+    if (operationsElement.length) {
       operationsElement.dataTable({
         "sDom": defaultDom,
         "oLanguage": {
@@ -234,9 +223,9 @@ const initRepairoptionFilters = (oTable) => {
 const filterChangeListener = (oTable) => {
   $("#filters").on("change", function () {
     if ($(this).val() == 0){
-      oTable.api().draw();
+      oTable.api().column(3).search('').draw();
     }else{
-      oTable.api().column(3).search($(this).val()).draw();;
+      oTable.api().column(3).search($(this).val()).draw();
     }
   });
 }

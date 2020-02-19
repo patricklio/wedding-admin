@@ -52,11 +52,11 @@ class Admin::RepairoptionsController < ApplicationController
   def destroy
   end
 
-
   private
 
   def set_repairoption
     @repairoption = Repairoption.find(params[:id])
+    @joboperations = @repairoption.joboperations
     @joboperation = Joboperation.new
   end
 
