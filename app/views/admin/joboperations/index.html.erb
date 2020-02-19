@@ -40,8 +40,16 @@
           <% @joboperations.each_with_index do |joboperation,id|
             edit_link = edit_admin_joboperation_path(joboperation)
             show_link = admin_joboperation_path(joboperation)
+
+            jobparts = Hash.new
+            joboperation.jobparts.each_with_index do |jobpart, index|
+              jobparts[index] = {
+                part_desc: jobpart.part.part_desc,
+                part_qty: jobpart.part_qty
+              }
+            end
           %>
-            <tr>
+            <tr data-parts = "<%= jobparts.to_json %>">
               <td>
                 <% if joboperation.jobparts_count > 0 %>
                   <i class="fa fa-plus-circle"></i>

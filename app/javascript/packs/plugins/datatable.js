@@ -193,6 +193,22 @@ const initComponentDataTable = () => {
       setTimeout(() => {
         initRepairoptionFilters(oTable);
       }, 500);
+
+      /* Add event listener for opening and closing details
+         * Note that the indicator for showing which row is open is not controlled by DataTables,
+         * rather it is done here
+         */
+      $(document).on('click', '#joboperations_list tbody td i', function () {
+        const tr = $(this).closest("tr");
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          oTable.fnOpen(nTr, fnFormatDetails(tr), 'details');
+        }
+      });
     }
 
     if (jobpartsElement.length) {
@@ -287,6 +303,19 @@ const filterChangeListener = (oTable, filterColumnId) => {
       oTable.api().column(filterColumnId).search($(this).val()).draw();
     }
   });
+}
+
+/* Formating function for row details */
+const fnFormatDetails = (tr) => {
+  let jobparts = tr.data("parts");
+  let sOut = ""
+
+  sOut = "<div>"
+  $.each(jobparts, function (key, value) {
+    sOut += "<div class = 'row' style = 'padding-left: 50px;'>" + value.part_qty + " x " + value.part_desc + "</div>"
+  });
+  sOut += "</div>"
+  return sOut;
 }
 
 export { initComponentDataTable }
