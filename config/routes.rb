@@ -20,14 +20,12 @@ Rails.application.routes.draw do
 
     get "components", to: "components#index" # TO DELETE AFTER
 
+
     resources :users
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
-    resources :repairoptions, only: [:index, :new, :edit, :destroy]
+    resources :repairoptions, only: [:index, :destroy, :new, :create, :edit, :update]
     get "repairoptions/categories", to: "repairoptions#categories"
+    resources :joboperations, only: [:destroy, :new, :create, :edit, :update]
     resources :operations
   end
-
-
-
 end
-

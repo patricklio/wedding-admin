@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered datatable" id="joboperation_id">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tâche</th>
+        <th>Service</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @joboperations.each_with_index do |job_op,id|
+        edit_link = edit_admin_joboperation_path(job_op)
+        show_link = admin_joboperation_path(job_op)
+%>
+        <tr>
+          <td>
+            <a href="<%= edit_link %>" class="table-link"><%= id+1 %></a>
+          </td>
+          <td>
+            <a href="<%= edit_link %>" class="table-link"><%= job_op.operation.name %></a>
+          </td>
+          <td><%= job_op.repairoption.name %></td>
+          <td>
+            <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
+              Modifier<i class="material-icons">edit</i>
+            </a>&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
+               modal-element="<%= job_op.operation.name %>" modal-url="<%= show_link %>">
+              Supprimer<i class="material-icons">cancel</i>
+            </a>&nbsp;&nbsp;&nbsp;
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

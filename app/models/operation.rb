@@ -1,6 +1,5 @@
 class Operation < ApplicationRecord
-
-  validates :name, presence: {message: "Le nom est obligatoire"}
+  validates :name, presence: {message: "Le nom est obligatoire"}, uniqueness: {case_sensitive: false}
   validates :description, presence: {message: "La description est obligatoire"}
 
   def self.include_joboperations_counts

@@ -40,9 +40,11 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  # GET /admin/users/:id/edit
   def edit
   end
 
+  # PATCH  /admin/users/:id(.:format) 
   def update
     @minimum_password_length = 8
 
@@ -57,6 +59,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  # PATCH  /admin/update_password
   def update_password
     if @user_account.update(user_account_params)
       # Sign in the user by passing validation in case their password changed

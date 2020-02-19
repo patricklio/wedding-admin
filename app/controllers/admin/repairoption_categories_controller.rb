@@ -34,7 +34,6 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   end
 
   def update
-
     if @category.update(repairoption_category_params)
       if params[:commit] == "Enregistrer"
         redirect_to admin_repairoption_categories_path, flash: { success: "Les données ont bien été enregistrées." }
