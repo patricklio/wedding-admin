@@ -1,13 +1,22 @@
 class Admin::RepairoptionsController < ApplicationController
   before_action :set_repairoption, only: [:edit, :update]
-  before_action :set_new_repairoption, only: [:new]
 
   def index
-    @repairoptions = Repairoption.all.order('updated_at DESC')
+    @repairoptions = Repairoption.includes(:repairoption_category).order('updated_at DESC')
   end
 
+  def categories
+    @categories = Repairoption.preload(:repairoption_category).map{|r| r.repairoption_category.name}.flatten
+
+    respond_to do |format|
+      format.json {
+        render json: {categories: @categories}
+      }
+    end
+  end
 
   def new
+    @repairoption = Repairoption.new
   end
 
   def create
@@ -20,9 +29,12 @@ class Admin::RepairoptionsController < ApplicationController
         redirect_to edit_admin_repairoption_path(@repairoption), flash: { success: "Les données ont bien été enregistrées." }
       end
     else
-      flash[:error] = @repairoption.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def edit
+    @joboperations = @repairoption.joboperations
   end
 
   def update
@@ -33,28 +45,15 @@ class Admin::RepairoptionsController < ApplicationController
         redirect_to edit_admin_repairoption_path(@repairoption), flash: { success: "Les données ont bien été mises à jour." }
       end
     else
-      flash[:error] = @repairoption.errors.full_messages.to_sentence
       render :edit
     end
-  end
-
-  def edit
-    @joboperations = @repairoption.joboperations
   end
 
   def destroy
   end
 
 
-
-  def show
-  end
-
-
   private
-  def set_new_repairoption
-    @repairoption = Repairoption.new
-  end
 
   def set_repairoption
     @repairoption = Repairoption.find(params[:id])
@@ -64,5 +63,4 @@ class Admin::RepairoptionsController < ApplicationController
   def ro_params
     params.require(:repairoption).permit(:name, :description, :repairoption_category_id, :optional)
   end
-
 end
