@@ -17,4 +17,14 @@ class Repairoption < ApplicationRecord
   def optional?
     optional
   end
+
+  def self.include_operation_name
+    joins(
+      %{
+        JOIN joboperations ON repairoptions.id = joboperations.repairoption_id
+        JOIN operations o ON o.id = joboperations.operation_id
+      }
+    ).select("joboperations.*,
+              o.name AS operation_name")
+  end
 end

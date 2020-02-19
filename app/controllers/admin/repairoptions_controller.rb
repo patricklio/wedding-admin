@@ -34,7 +34,7 @@ class Admin::RepairoptionsController < ApplicationController
   end
 
   def edit
-    @joboperations = @repairoption.joboperations
+    @joboperations = Repairoption.include_operation_name.where(id: @repairoption.id)
   end
 
   def update
