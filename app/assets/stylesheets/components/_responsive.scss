@@ -1,0 +1,13 @@
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .select2-search input,
+  .select2-search-choice-close,
+  .select2-container .select2-choice abbr,
+  .select2-container .select2-choice .select2-arrow b {
+    background-image: none;
+    background-repeat: no-repeat !important;
+    background-size: none !important;
+  }
+  .select2-search input {
+    background-position: none !important;
+  }
+}

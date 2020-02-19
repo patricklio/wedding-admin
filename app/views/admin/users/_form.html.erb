@@ -12,7 +12,8 @@
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
               <% if method == :post %>
-                <%= f.input :role, label: "Role", collection: User::ROLES%>
+                <%= f.input :role, label: "Role", collection: User::ROLES,
+                input_html: { "data-init-plugin": "select2" }%>
               <% end %>
               <%= f.input :firstname, label: "Prénom"%>
               <%= f.input :lastname, label: "Nom"%>

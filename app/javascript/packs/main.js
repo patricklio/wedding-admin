@@ -1,4 +1,5 @@
 import { Sine, TweenMax } from "gsap";
+import 'select2'
 
 let public_vars = public_vars || {};
 
@@ -263,6 +264,9 @@ let public_vars = public_vars || {};
     clearTimeout(wid);
     wid = setTimeout(trigger_resizable, 200);
   });
+
+  //Init plugins
+  initSelect2Plugin();
 
 
 })(jQuery, window);
@@ -985,4 +989,17 @@ function trigger_resizable() {
     public_vars.lastBreakpoint = get_current_breakpoint();
     resizable(public_vars.lastBreakpoint);
   }
+}
+
+// Select2 Plugin
+function initSelect2Plugin() {
+  $.fn.select2 && $('[data-init-plugin="select2"]').each(function () {
+    $(this).select2({
+      minimumResultsForSearch: ($(this).attr('data-disable-search') == 'true' ? -1 : 1)
+    }).on('select2-opening', function () {
+      $.fn.scrollbar && $('.select2-results').scrollbar({
+        ignoreMobile: false
+      })
+    });
+  });
 }
