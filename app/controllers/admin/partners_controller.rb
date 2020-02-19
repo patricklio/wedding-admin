@@ -86,7 +86,8 @@ class Admin::PartnersController < ApplicationController
   end
 
   def create_defaut_partner_user_account(partner)
-    encrypted_password = BCrypt::Password.create("password")
+    generated_password = Devise.friendly_token.first(8)
+    encrypted_password = BCrypt::Password.create(generated_password)
 
     PartnerUserAccount.create!(partner_id: partner.id,
                         password: "password",
@@ -94,6 +95,9 @@ class Admin::PartnersController < ApplicationController
                         role: "admin",
                         encrypted_password: encrypted_password
                       )
+                      puts '---partner default----'
+                      puts partner.as_json.pretty_inspect
+    PartnerMailer.send_partner_creation_email(partner, generated_password).deliver_later
   end
 
   def create_partner_user_account(partner_account)
@@ -101,12 +105,15 @@ class Admin::PartnersController < ApplicationController
     encrypted_password =  BCrypt::Password.create(generated_password)
 
     new_partner_account = PartnerUserAccount.create!(
-      partner_id: partner_account[:partner_id],
+      partner_id: partner_account.partner_id,
       password: generated_password,
-      email: partner_account[:email],
-      role: partner_account[:role],
+      email: partner_account.email,
+      role: partner_account.role,
       encrypted_password: encrypted_password)
 
-    # RegistrationMailer.welcome(new_partner_account, generated_password).deliver
+      puts '---partner----'
+      puts partner_account.as_json.pretty_inspect
+
+      PartnerMailer.send_partner_creation_email(partner_account, generated_password).deliver_later
   end
 end
