@@ -3,7 +3,7 @@ class Admin::JoboperationsController < ApplicationController
   before_action :set_new_joboperation, only: [:new]
 
   def index
-    @joboperations = Joboperation.all
+    @joboperations = Joboperation.include_operation_name_repairoption_name
   end
 
   def new
