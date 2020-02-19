@@ -4,7 +4,8 @@ const initDatatable = () => {
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'p i>>",
     "sPaginationType": "bootstrap",
     "oLanguage": {
-      "sLengthMenu": "_MENU_"
+      "sLengthMenu": "_MENU_",
+      "sUrl": "//cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
     }
   });
 }
@@ -131,6 +132,7 @@ const initComponentDataTable = () => {
 
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
+    var repairoptionsElement = $('#repairoptions_id');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -143,21 +145,78 @@ const initComponentDataTable = () => {
       "aaSorting": [],
       "oLanguage": {
         "sLengthMenu": "_MENU_ ",
-        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
       },
     });
 
-    repairoptionCategoriesElement.dataTable({
-      "sDom": defaultDom,
-      "aaSorting": [[0, 'asc']],
-      "oLanguage": {
-        "sLengthMenu": "_MENU_ ",
-        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
-      },
-    });
-    $('#repairoption_categories_id_wrapper .dataTables_filter input').addClass("input-medium ");
+    if (repairoptionCategoriesElement) {
+      repairoptionCategoriesElement.dataTable({
+        "sDom": defaultDom,
+        "aaSorting": [[0, 'asc']],
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+        },
+      });
+    }
+
+    if (repairoptionsElement){
+
+      const roTable = repairoptionsElement.dataTable({
+        "sDom": defaultDom,
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+        }
+      });
+
+      initRepairoptionFilters(roTable);
+    }
 
   });
+}
+
+const initRepairoptionFilters = (oTable) => {
+  let select = '';
+  const filterDiv = $("#repairoptions_id_filter");
+
+  $.ajax({
+    url: "/admin/repairoptions/categories",
+    method: 'GET',
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      console.error('AJAX Error: ', status, error);
+    },
+    success: function (response) {
+      if (response.categories.length > 0){
+
+        select = '<div class="col-sm-4">';
+        select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
+        select += '<option value="0" selected="selected">Toutes les catégories</option>';
+
+        $.each(response.categories, function (index, category) {
+          select += '<option value="' + category + '">' + category+ '</option>';
+        });
+
+        select += '</select></div>'
+
+        document.getElementById("repairoptions_id_filter").insertAdjacentHTML("afterbegin", select);
+
+        filterChangeListener(oTable);
+      }
+    }
+  });
+}
+
+const filterChangeListener = (oTable) => {
+  $("#filters").on("change", function () {
+    if ($(this).val() == 0){
+      oTable.api().draw();
+    }else{
+      oTable.api().column(3).search($(this).val()).draw();;
+    }
+  });
+
 }
 
 export { initComponentDataTable }

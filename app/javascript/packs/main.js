@@ -1,4 +1,4 @@
-import { Sine, TweenMax } from "gsap";
+import { Sine, TweenMax, TimelineMax } from "gsap";
 import 'select2'
 
 let public_vars = public_vars || {};
