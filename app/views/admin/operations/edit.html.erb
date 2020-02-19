@@ -1,0 +1,43 @@
+<%= render 'shared/sidebar'%>
+
+<div class="main-content">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Opérations", admin_operations_path %>
+    </li>
+    <li>
+      <strong> <%=  @operation.name  %> </strong>
+    </li>
+  </ol>
+
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Opérations
+    </h2>
+  </div>
+
+  <br>
+
+  <%= render 'shared/flashes' %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render  "form", operation: @operation, methode: 'patch' %>
+    </div>
+  </div>
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
+</div>

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
     resources :repairoptions, only: [:index, :new, :edit, :destroy]
     get "repairoptions/categories", to: "repairoptions#categories"
+    resources :operations
   end
 
 
