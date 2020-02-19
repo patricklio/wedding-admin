@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin,@user], method: :method, wrapper: :custom_form_horizontal,
+<%= simple_form_for [:admin,@user], method: method, wrapper: :custom_form_horizontal,
     class: "form-horizontal form-groups-bordered" do |f| %>
   <div class="row">
     <div class="col-md-12">
@@ -24,7 +24,7 @@
                 <div class="col-sm-offset-3 col-sm-6">
                   <%= f.button :submit, 'Enregistrer', class: 'btn btn-success' %> &nbsp;&nbsp;
                   <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
-                  <%= link_to "Retour", :back, {:class=>"btn btn-default"} %>
+                  <%= link_to "Retour", admin_users_path, {:class=>"btn btn-default"} %>
                 </div>
               </div>
             </div>

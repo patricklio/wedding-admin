@@ -11,27 +11,28 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Catégories de repairoption", admin_repairoption_categories_path %>
+      <%= link_to "Jobparts", admin_jobparts_path %>
     </li>
     <li>
-      <strong>Ajouter</strong>
+      <strong> <%=  @jobpart.joboperation.operation.name  %> x <%=  @jobpart.part.part_desc  %>  </strong>
     </li>
   </ol>
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Nouvelle Catégorie de repairoption
+      Jobparts
     </h2>
   </div>
 
   <br>
 
+  <%= render 'shared/flashes' %>
+
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", category: @repairoption_category, methode: 'post' %>
+      <%= render  "form", jobpart: @jobpart, joboperation: @jobpart.joboperation, methode: :patch %>
     </div>
   </div>
-
 
   <!-- footer -->
   <footer class="main">

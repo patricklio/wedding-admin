@@ -133,7 +133,8 @@ const initComponentDataTable = () => {
         var tableElement = $('#component_id');
         var repairoptionCategoriesElement = $('#repairoption_categories_id');
         var repairoptionsElement = $('#repairoptions_id');
-        var customersElement = $('#customers_id');
+        var operationsElement = $('#operations_list');
+        var customersElement = $('#customer_list_id');
 
         /*
          * Initialse DataTables, with no sorting on the 'details' column
@@ -150,7 +151,7 @@ const initComponentDataTable = () => {
             },
         });
 
-        if (repairoptionCategoriesElement) {
+        if (repairoptionCategoriesElement.length) {
             repairoptionCategoriesElement.dataTable({
                 "sDom": defaultDom,
                 "aaSorting": [
@@ -159,11 +160,11 @@ const initComponentDataTable = () => {
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",
                     "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-                },
+                }
             });
         }
 
-        if (repairoptionsElement) {
+        if (repairoptionsElement.length) {
 
             const roTable = repairoptionsElement.dataTable({
                 "sDom": defaultDom,
@@ -173,7 +174,19 @@ const initComponentDataTable = () => {
                 }
             });
 
-            initRepairoptionFilters(roTable);
+            setTimeout(() => {
+                initRepairoptionFilters(roTable);
+            }, 500);
+        }
+
+        if (operationsElement.length) {
+            operationsElement.dataTable({
+                "sDom": defaultDom,
+                "oLanguage": {
+                    "sLengthMenu": "_MENU_ ",
+                    "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+                },
+            });
         }
 
         if (customersElement) {
@@ -185,7 +198,6 @@ const initComponentDataTable = () => {
                 }
             });
         }
-
     });
 }
 
@@ -224,12 +236,11 @@ const initRepairoptionFilters = (oTable) => {
 const filterChangeListener = (oTable) => {
     $("#filters").on("change", function() {
         if ($(this).val() == 0) {
-            oTable.api().draw();
+            oTable.api().column(3).search('').draw();
         } else {
-            oTable.api().column(3).search($(this).val()).draw();;
+            oTable.api().column(3).search($(this).val()).draw();
         }
     });
-
 }
 
 export { initComponentDataTable }
