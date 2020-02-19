@@ -26,11 +26,17 @@
 
   <br>
 
+  <%= render 'shared/flashes' %>
+
   <div class="row">
     <div class="col-md-12">
       <%= render  "form", customer: @customer, methode: :patch %>
     </div>
   </div>
+
+  <br>
+
+  <%= render  'admin/customers/customer_accounts' %>
 
   <!-- footer -->
   <footer class="main">

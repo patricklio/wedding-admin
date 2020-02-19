@@ -6,7 +6,16 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">
-              <%= link_to 'Ajout/Modification', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+              <%= link_to "#collapse-edit",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+                <% if methode == :post %>
+                  Ajouter un client
+                <% else %>
+                  <%= customer.company_name %>
+                  <span>
+                    (ID <%= customer.id %> - Dernière mise à jour: <%= l(customer.updated_at, format: :long) %>)
+                  </span>
+                <% end %>
+              <% end %>
             </h4>
           </div>
           <div class="collapse show" id="collapse-fr">
@@ -35,6 +44,7 @@
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
                   <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;
                   <%= link_to "Retour", :back, { :class=>"btn btn-default" } %>
                 </div>
               </div>
@@ -44,4 +54,16 @@
       </div>
     </div>
   </div>
+<% end %>
+
+<% if  methode == :patch %>
+  <br>
+  <div class="row" style="padding: 10px;" id='accounts'>
+    <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Comptes (<%=  @accounts.length %>)
+    </h3>
+    <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
+  </div>
+
+  <%= render 'customer_user_account_form', customer_user_account: @customer_user_account, customer: customer %>
 <% end %>

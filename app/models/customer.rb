@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
   has_many :vehicles
-  has_one  :customer_user_account, dependent: :destroy
+  has_many  :customer_user_accounts, dependent: :destroy
   belongs_to :customer_type, foreign_key: :customer_type_id
 
   # Validations

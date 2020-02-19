@@ -24,9 +24,14 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      create_customer_account(@customer)
+      create_default_customer_account(@customer)
 
-      redirect_to admin_customers_url, flash: { success: 'Le client est créé avec succès.' }
+      if params[:commit] == "Enregistrer"
+        redirect_to admin_customers_url, flash: { success: 'Les données ont bien été enregistrées.' }
+      else
+        redirect_to edit_admin_customer_path(@customer), flash: { success: "Les données ont bien été enregistrées." }
+      end
+
     else
       render :new
     end
@@ -48,10 +53,24 @@ class Admin::CustomersController < ApplicationController
     redirect_to admin_customers_url, flash: { success: 'Le client est supprimé avec succès' }
   end
 
+  def create_customer_account
+    customer_account = get_customer_account_object(params[:customer_user_account][:email],
+                                                  params[:customer_user_account][:customer_id],'','')
+    password = customer_account.password
+    if customer_account.save
+      CustomerMailer.send_account_creation_email(customer_account.email, password).deliver_later
+      redirect_to edit_admin_customer_path(customer_account.customer), flash: { success: "Les données ont bien été enregistrées." }
+    else
+      redirect_to edit_admin_customer_path(params[:customer_user_account][:customer_id]), flash: { error: customer_account.errors.full_messages.to_sentence }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_customer
     @customer = Customer.find(params[:id])
+    @accounts = @customer.customer_user_accounts
+    @customer_user_account = CustomerUserAccount.new
   end
 
   # Only allow a list of trusted parameters through.
@@ -67,17 +86,25 @@ class Admin::CustomersController < ApplicationController
                                     )
   end
 
-  def create_customer_account(customer)
+  def create_default_customer_account(customer)
+    customer_account = get_customer_account_object(customer.email, customer.id,customer.firstname,customer.lastname)
+
+    if customer_account.save
+      CustomerMailer.send_account_creation_email(email, random_password).deliver_later
+    end
+  end
+
+  def get_customer_account_object(email, customer_id, firstname, lastname)
     random_password = SecureRandom.base36(8)
     encrypted_password = BCrypt::Password.create(random_password)
 
-    customer_account = CustomerUserAccount.new(customer_id: customer.id,
+    customer_account = CustomerUserAccount.new(customer_id: customer_id,
                         password: random_password,
-                        email: customer.email,
-                        encrypted_password: encrypted_password
+                        email: email,
+                        encrypted_password: encrypted_password,
+                        firstname: firstname,
+                        lastname: lastname
                       )
-    if customer_account.save
-      CustomerMailer.send_account_creation_email(customer, random_password).deliver_later
-    end
+    return customer_account
   end
 end
