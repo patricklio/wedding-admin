@@ -71,10 +71,13 @@ class Admin::CustomersController < ApplicationController
     random_password = SecureRandom.base36(8)
     encrypted_password = BCrypt::Password.create(random_password)
 
-    CustomerUserAccount.create!(customer_id: customer.id,
+    customer_account = CustomerUserAccount.new(customer_id: customer.id,
                         password: random_password,
                         email: customer.email,
                         encrypted_password: encrypted_password
                       )
+    if customer_account.save
+      CustomerMailer.send_account_creation_email(customer, random_password).deliver_later
+    end
   end
 end
