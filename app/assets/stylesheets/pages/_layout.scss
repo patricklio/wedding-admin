@@ -95,3 +95,8 @@ h1, h2, h3 {
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
+
+ul>li {
+  padding-left: 6px;
+  line-height: 20px;
+}

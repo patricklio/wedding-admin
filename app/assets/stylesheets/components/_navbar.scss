@@ -117,6 +117,9 @@ a {
   transition-property: transform, opacity;
 }
 
+.dropdown-toggle::after{
+  display: none;
+}
  /* line 3827, app/assets/stylesheets/config/_bootstrap-variables.scss */
 .header .dropdown-menu {
   position: absolute;
@@ -134,10 +137,6 @@ a {
   background-color: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 /* line 3855, app/assets/stylesheets/config/_bootstrap-variables.scss */
 .header .dropdown-menu .divider {
@@ -145,24 +144,6 @@ a {
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
-}
-
-/* line 3862, app/assets/stylesheets/config/_bootstrap-variables.scss */
-.header .dropdown-menu > li > a {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: 400;
-  line-height: 1.42857143;
-  color: #333;
-  white-space: nowrap;
-}
-
-/* line 3872, app/assets/stylesheets/config/_bootstrap-variables.scss */
-.header .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
-  color: #262626;
-  text-decoration: none;
-  background-color: #f5f5f5;
 }
 
 /* line 3878, app/assets/stylesheets/config/_bootstrap-variables.scss */
@@ -197,7 +178,45 @@ a {
   outline: 0;
 }
 
+.header .popover-title {
+  border-bottom: 0px;
+  padding-top: 14px;
+}
+.header .nav > li.dropdown,
+.header .nav > li.dropdown > a {
+  text-align: center;
+}
+.header .nav .show > a,
+.nav .show > a:hover,
+.nav .show > a:focus {
+  background-color: #ffffff;
+}
+.header .pull-right > li.show > .dropdown-menu,
+.header .nav > li.show > .dropdown-menu.pull-right {
+  margin-right: -6px;
+  margin-top: 7px;
+}
 
+.header .dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+.header .dropdown-menu li > a > .material-icons {
+  font-size: 16px;
+  position: relative;
+  top: -1px;
+}
+.header .nav>li>.dropdown-menu::before {
+  position: absolute;
+  top: -7px;
+  right: 50px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0,0,0,.2);
+  content: '';
+}
 
 
 
