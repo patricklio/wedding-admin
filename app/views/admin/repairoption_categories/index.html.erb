@@ -61,10 +61,12 @@
                 <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
                   Modifier<i class="material-icons">edit</i>
                 </a>&nbsp;&nbsp;&nbsp;
-                <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-                modal-element="<%= category.name %>" modal-url="<%= show_link %>">
-                  Supprimer<i class="material-icons">cancel</i>
-                </a>&nbsp;&nbsp;&nbsp;
+                <% unless category.repairoptions_count.positive? %>
+                  <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
+                  modal-element="<%= category.name %>" modal-url="<%= show_link %>">
+                    Supprimer<i class="material-icons">cancel</i>
+                  </a>&nbsp;&nbsp;&nbsp;
+                <% end %>
               </td>
             </tr>
           <% end %>
