@@ -18,11 +18,11 @@
 .card .card-header > .card-title * {
   margin: 0;
 }
-h4.card-title a {
+h4.card-title a, h4.card-title {
   font-size: 15px;
 }
 
-h4.card-title a span {
+h4.card-title a span, .card-title span {
   font-size: 12px;
   color: #949494;
 }

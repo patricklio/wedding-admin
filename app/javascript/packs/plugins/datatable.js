@@ -136,18 +136,19 @@ const initComponentDataTable = () => {
 
   /* Table initialisation */
   $(document).ready(function () {
-    var responsiveHelper = undefined;
-    var breakpointDefinition = {
+    const responsiveHelper = undefined;
+    const breakpointDefinition = {
       tablet: 1024,
       phone: 480
     };
 
-    var tableElement = $('#component_id');
-    var repairoptionCategoriesElement = $('#repairoption_categories_id');
-    var repairoptionsElement = $('#repairoptions_id');
-    var operationsElement = $('#operations_list');
-    var joboperationsElement = $('#joboperations_list');
-    var jobpartsElement = $('#jobparts_list');
+    const tableElement = $('#component_id');
+    const repairoptionCategoriesElement = $('#repairoption_categories_id');
+    const repairoptionsElement = $('#repairoptions_id');
+    const operationsElement = $('#operations_list');
+    const joboperationsElement = $('#joboperations_list');
+    const jobpartsElement = $('#jobparts_list');
+    const partsElement = $('#parts_list');
 
     tableElement.dataTable({
       "sDom": defaultDom,
@@ -160,18 +161,10 @@ const initComponentDataTable = () => {
     });
 
     if (repairoptionCategoriesElement.length) {
-      repairoptionCategoriesElement.dataTable({
-        "sDom": defaultDom,
-        "aaSorting": [[0, 'asc']],
-        "oLanguage": {
-          "sLengthMenu": "_MENU_ ",
-          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        }
-      });
+      repairoptionCategoriesElement.dataTable(defaultOptions);
     }
 
     if (repairoptionsElement.length){
-
       const roTable = repairoptionsElement.dataTable(defaultOptions);
       setTimeout(() => {
         initCategoriesFilters(roTable);
@@ -179,13 +172,7 @@ const initComponentDataTable = () => {
     }
 
     if (operationsElement.length) {
-      operationsElement.dataTable({
-        "sDom": defaultDom,
-        "oLanguage": {
-          "sLengthMenu": "_MENU_ ",
-          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        },
-      });
+      operationsElement.dataTable(defaultOptions);
     }
 
     if (joboperationsElement.length) {
@@ -200,7 +187,7 @@ const initComponentDataTable = () => {
          */
       $(document).on('click', '#joboperations_list tbody td i', function () {
         const tr = $(this).closest("tr");
-        var nTr = $(this).parents('tr')[0];
+        const nTr = $(this).parents('tr')[0];
         if (oTable.fnIsOpen(nTr)) {
           /* This row is already open - close it */
           oTable.fnClose(nTr);
@@ -216,6 +203,10 @@ const initComponentDataTable = () => {
       setTimeout(() => {
         initJoboperationFilters(oTable);
       }, 500);
+    }
+
+    if (partsElement.length) {
+      partsElement.dataTable(defaultOptions);
     }
 
   });

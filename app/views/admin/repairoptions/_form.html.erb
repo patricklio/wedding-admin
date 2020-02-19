@@ -4,9 +4,9 @@
     <div class="col-md-12">
       <div class="card-group joined" id="accordion-test">
         <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+          <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+            <div class="card-header">
+              <h4 class="card-title">
                 <% if methode == 'patch' %>
                   <%= repairoption.name %>
                   <span>
@@ -15,9 +15,9 @@
                 <% else %>
                   Ajouter
                 <% end %>
-              <% end %>
-            </h4>
-          </div>
+              </h4>
+            </div>
+          <% end %>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
               <%= f.input :repairoption_category_id, label: "Catégorie", collection: RepairoptionCategory.all,
