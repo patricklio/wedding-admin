@@ -20,7 +20,7 @@
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Partenaires
+      Partenaire
     </h2>
   </div>
 
@@ -28,9 +28,27 @@
   <%= render 'shared/flashes' %>
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", partner: @partner, methode: 'patch' %>
+      <%= render  "form", partner: @partner,  methode: 'patch' %>
     </div>
   </div>
+
+  <hr>
+  <!-- Page Title-->
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Nouveau compte utilisateur
+    </h2>
+  </div>
+
+  <br>
+
+  <!-- Real content of the page-->
+  <div class="row">
+    <div class="col-md-12">
+      <%= render  "user_account_form", partner: @partner, partner_user_account: @partner_account %>
+    </div>
+  </div>
+
 
 
   <!-- footer -->
