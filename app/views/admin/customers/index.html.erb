@@ -40,7 +40,7 @@
           <tr>
             <th>ID</th>
             <th>Nom Entreprise</th>
-            <th>Addresse</th>
+            <th>Adresse</th>
             <th>Téléphone</th>
             <th>Ninea</th>
             <th>Nom</th>
@@ -52,9 +52,9 @@
         <tbody>
           <% if @customers.length.zero? %>
           <% else %>
-            <% @customers.each do |customer| %>
+            <% @customers.each_with_index do |customer, id| %>
               <tr>
-                <td><% customer.id%></td>
+                <td><%= id + 1 %></td>
                 <td><%= customer.company_name %></td>
                 <td><%= customer.address %></td>
                 <td><%= customer.phone_number %></td>
@@ -67,7 +67,7 @@
                     Modifier<i class="material-icons">edit</i>
                   </a>&nbsp;&nbsp;&nbsp;
                   <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-                  modal-element="<%= customer.firstname %>" modal-url="<%= admin_customer_path(customer) %>">
+                  modal-element="<%= customer.lastname %> <%= customer.firstname %>" modal-url="<%= admin_customer_path(customer) %>">
                     Supprimer<i class="material-icons">cancel</i>
                   </a>&nbsp;&nbsp;&nbsp;
                 </td>

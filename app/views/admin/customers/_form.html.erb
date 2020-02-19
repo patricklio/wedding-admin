@@ -1,19 +1,47 @@
+<%= simple_form_for [:admin, customer], method: methode, authenticity_token: true, wrapper: :custom_form_horizontal,
+    class: "form-horizontal form-groups-bordered" do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= link_to 'Ajout/Modification', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <%= f.input :company_name, label: "Nom Entreprise", input_html: { style: "text-transform: uppercase;" } %>
 
-<%= simple_form_for(@admin_customer) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+              <%= f.input :customer_type_id,
+                          label: "Type de Client",
+                          collection: CustomerType.all,
+                          label_method: :name,
+                          value_method: :id %>
 
-  <div class="form-inputs">
-    <%= f.input :company_name %>
-    <%= f.input :address %>
-    <%= f.input :phone_number %>
-    <%= f.input :ninea %>
-    <%= f.input :firstname %>
-    <%= f.input :lastname %>
-    <%= f.input :email %>
-  </div>
+              <%= f.input :address, label: "Adresse" %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+              <%= f.input :firstname, label: "Prénom", input_html: { style: "text-transform: uppercase;" } %>
+              <%= f.input :lastname, label: "Nom", input_html: { style: "text-transform: uppercase;" } %>
+
+
+              <%= f.input :ninea, label: "NINEA", input_html: { style: "text-transform: uppercase;" }%>
+
+              <%= f.input :phone_number, label: "Téléphone" %>
+
+              <%= f.input :email, label: "Email" %>
+
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= link_to "Retour", :back, { :class=>"btn btn-default" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

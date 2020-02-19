@@ -1,14 +1,12 @@
 class Admin::CustomersController < ApplicationController
-  before_action :set_admin_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/customers
-  # GET /admin/customers.json
   def index
     @customers = Customer.all
   end
 
   # GET /admin/customers/1
-  # GET /admin/customers/1.json
   def show
   end
 
@@ -22,53 +20,48 @@ class Admin::CustomersController < ApplicationController
   end
 
   # POST /admin/customers
-  # POST /admin/customers.json
   def create
-    @customer = Customer.new(admin_customer_params)
+    @customer = Customer.new(customer_params)
 
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    if @customer.save
+      redirect_to admin_customers_url, flash: { success: 'Le client est créé avec succès.' }
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /admin/customers/1
-  # PATCH/PUT /admin/customers/1.json
   def update
-    respond_to do |format|
-      if @customer.update(admin_customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    if @customer.update(customer_params)
+      redirect_to admin_customers_url, flash: { success: 'Le client est modifié avec succès' }
+    else
+      render :edit
     end
   end
 
   # DELETE /admin/customers/1
-  # DELETE /admin/customers/1.json
   def destroy
     @customer.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_customers_url, notice: 'Customer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+    redirect_to admin_customers_url, flash: { success: 'Le client est supprimé avec succès' }
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_customer
+    def set_customer
       @customer = Customer.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def admin_customer_params
-      params.require(:admin_customer).permit(:company_name, :address, :phone_number, :ninea, :firstname, :lastname, :email)
+    def customer_params
+      params.require(:customer).permit(:company_name,
+                                       :address,
+                                       :phone_number,
+                                       :ninea,
+                                       :firstname,
+                                       :lastname,
+                                       :email,
+                                       :customer_type_id
+                                      )
     end
 end
