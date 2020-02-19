@@ -11,7 +11,9 @@
                   Ajouter une tâche
                 <% else %>
                   <%= repairoption.name %> x <%= joboperation.operation.name %>
-                  <span>(ID <%= joboperation.id %>)</span>
+                  <span>
+                    (ID <%= joboperation.id %> - Dernière mise à jour: <%= l(joboperation.updated_at, format: :long) %>)
+                  </span>
                 <% end %>
               <% end %>
             </h4>

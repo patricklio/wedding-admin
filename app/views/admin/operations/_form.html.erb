@@ -10,7 +10,10 @@
                 <% if methode == 'post' %>
                   Ajouter
                 <% else %>
-                  <%= operation.name %> <span>(ID <%= operation.id %>)</span>
+                  <%= operation.name %>
+                  <span>
+                  (ID <%= operation.id %> - Dernière mise à jour: <%= l(operation.updated_at, format: :long) %>)
+                  </span>
                 <% end %>
               <% end %>
             </h4>

@@ -21,6 +21,7 @@ window.$ = window.jquery = jquery;
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap'
+import 'gsap'
 
 import './plugins/bootstrap_custom.js'
 import './main.js'

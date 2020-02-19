@@ -12,7 +12,8 @@ const initSelect2 = () => {
 
   select_joboperation_operation.select2({
     placeholder: "selectionner une tâche",
-    tags: true
+    tags: true,
+    casesensitive: false
   });
 
   select_jobpart_part.select2({
