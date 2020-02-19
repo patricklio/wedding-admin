@@ -34,6 +34,7 @@ class Admin::RepairoptionsController < ApplicationController
   end
 
   def edit
+    @joboperations = @repairoption.joboperations
   end
 
   def update
@@ -51,9 +52,6 @@ class Admin::RepairoptionsController < ApplicationController
   def destroy
   end
 
-  def show
-  end
-
   private
 
   def set_repairoption
@@ -65,5 +63,4 @@ class Admin::RepairoptionsController < ApplicationController
   def ro_params
     params.require(:repairoption).permit(:name, :description, :repairoption_category_id, :optional)
   end
-
 end

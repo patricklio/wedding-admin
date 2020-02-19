@@ -132,7 +132,9 @@ const initComponentDataTable = () => {
 
     var tableElement = $('#component_id');
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
+    var joboperationElement = $('#joboperation_id');
     var repairoptionsElement = $('#repairoptions_id');
+    var operationsElement = $('#operations_list');
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
@@ -148,6 +150,17 @@ const initComponentDataTable = () => {
         "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
       },
     });
+
+    if (joboperationElement) {
+      joboperationElement.dataTable({
+        "sDom": defaultDom,
+        "aaSorting": [[0, 'asc']],
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        },
+      });
+    }
 
     if (repairoptionCategoriesElement) {
       repairoptionCategoriesElement.dataTable({
@@ -171,6 +184,16 @@ const initComponentDataTable = () => {
       });
 
       initRepairoptionFilters(roTable);
+    }
+
+    if (operationsElement) {
+      operationsElement.dataTable({
+        "sDom": defaultDom,
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ ",
+          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+        },
+      });
     }
 
   });
@@ -216,7 +239,6 @@ const filterChangeListener = (oTable) => {
       oTable.api().column(3).search($(this).val()).draw();;
     }
   });
-
 }
 
 export { initComponentDataTable }

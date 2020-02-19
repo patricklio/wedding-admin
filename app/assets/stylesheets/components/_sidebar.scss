@@ -236,10 +236,9 @@
 
 .page-container .sidebar-menu #main-menu li.has-sub>a:before {
     position: relative;
-    content: '\e877';
-    content: '\e879';
+    content: 'keyboard_arrow_down';
     display: inline-block;
-    font-family: 'Entypo';
+    font-family: 'Material Icons';
     color: #454a54;
     color: #FFF;
     float: right;
