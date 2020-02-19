@@ -3,6 +3,13 @@ class Admin::RepairoptionsController < ApplicationController
 
   def index
     @repairoptions = Repairoption.includes(:repairoption_category).order('updated_at DESC')
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {repairoptions: @repairoptions}
+      }
+    end
   end
 
   def categories

@@ -122,6 +122,18 @@ const initDatatableMethods = () => {
 const initComponentDataTable = () => {
   initDatatableMethods();
 
+  /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+  const defaultDom = "ft<'row'<'col-md-12'p i>>";
+  const defaultOptions = {
+    "sDom": defaultDom,
+    "oLanguage": {
+      "sLengthMenu": "_MENU_ ",
+      "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+    }
+  }
+
   /* Table initialisation */
   $(document).ready(function () {
     var responsiveHelper = undefined;
@@ -134,11 +146,8 @@ const initComponentDataTable = () => {
     var repairoptionCategoriesElement = $('#repairoption_categories_id');
     var repairoptionsElement = $('#repairoptions_id');
     var operationsElement = $('#operations_list');
-
-    /*
-     * Initialse DataTables, with no sorting on the 'details' column
-     */
-    const defaultDom = "ft<'row'<'col-md-12'p i>>";
+    var joboperationsElement = $('#joboperations_list');
+    var jobpartsElement = $('#jobparts_list');
 
     tableElement.dataTable({
       "sDom": defaultDom,
@@ -163,15 +172,9 @@ const initComponentDataTable = () => {
 
     if (repairoptionsElement.length){
 
-      const roTable = repairoptionsElement.dataTable({
-        "sDom": defaultDom,
-        "oLanguage": {
-          "sLengthMenu": "_MENU_ ",
-          "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        }
-      });
+      const roTable = repairoptionsElement.dataTable(defaultOptions);
       setTimeout(() => {
-        initRepairoptionFilters(roTable);
+        initCategoriesFilters(roTable);
       }, 500);
     }
 
@@ -185,13 +188,24 @@ const initComponentDataTable = () => {
       });
     }
 
+    if (joboperationsElement.length) {
+      const oTable = joboperationsElement.dataTable(defaultOptions);
+      setTimeout(() => {
+        initRepairoptionFilters(oTable);
+      }, 500);
+    }
+
+    if (jobpartsElement.length) {
+      const oTable = jobpartsElement.dataTable(defaultOptions);
+      setTimeout(() => {
+        initJoboperationFilters(oTable);
+      }, 500);
+    }
+
   });
 }
 
-const initRepairoptionFilters = (oTable) => {
-  let select = '';
-  const filterDiv = $("#repairoptions_id_filter");
-
+const initCategoriesFilters = (oTable) => {
   $.ajax({
     url: "/admin/repairoptions/categories",
     method: 'GET',
@@ -200,32 +214,77 @@ const initRepairoptionFilters = (oTable) => {
       console.error('AJAX Error: ', status, error);
     },
     success: function (response) {
-      if (response.categories.length > 0){
-
-        select = '<div class="col-sm-4">';
-        select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
-        select += '<option value="0" selected="selected">Toutes les catégories</option>';
-
-        $.each(response.categories, function (index, category) {
-          select += '<option value="' + category + '">' + category+ '</option>';
-        });
-
-        select += '</select></div>'
-
-        document.getElementById("repairoptions_id_filter").insertAdjacentHTML("afterbegin", select);
-
-        filterChangeListener(oTable);
+      if (response.categories.length > 0) {
+        initFilters(oTable, response.categories, "repairoptions_id_filter","Toutes les catégories",3)
       }
     }
   });
 }
 
-const filterChangeListener = (oTable) => {
+const initRepairoptionFilters = (oTable) => {
+  $.ajax({
+    url: "/admin/repairoptions",
+    method: 'GET',
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      console.error('AJAX Error: ', status, error);
+    },
+    success: function (response) {
+
+      if (response.repairoptions.length > 0) {
+        const names = $.map(response.repairoptions, function (n, i) {
+          return [n.name];
+        });
+        initFilters(oTable, names, "joboperations_list_filter", "Touts les services", 2)
+      }
+    }
+  });
+}
+
+const initJoboperationFilters = (oTable) => {
+  $.ajax({
+    url: "/admin/joboperations",
+    method: 'GET',
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      console.error('AJAX Error: ', status, error);
+    },
+    success: function (response) {
+
+      if (response.joboperations.length > 0) {
+        const names = $.map(response.joboperations, function (n, i) {
+          return [n.operation_name];
+        });
+        initFilters(oTable, names, "jobparts_list_filter", "Toutes les tâches", 1)
+      }
+    }
+  });
+}
+
+const initFilters = (oTable, data, filterIdSelector, selectAllText, filterColumnId) => {
+  let select = '';
+
+  select = '<div class="col-sm-4">';
+  select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
+  select += '<option value="0" selected="selected">' + selectAllText+ '</option>';
+
+  $.each(data, function (index, item) {
+    select += '<option value="' + item + '">' + item + '</option>';
+  });
+
+  select += '</select></div>'
+
+  document.getElementById(filterIdSelector).insertAdjacentHTML("afterbegin", select);
+
+  filterChangeListener(oTable,filterColumnId);
+}
+
+const filterChangeListener = (oTable, filterColumnId) => {
   $("#filters").on("change", function () {
     if ($(this).val() == 0){
-      oTable.api().column(3).search('').draw();
+      oTable.api().column(filterColumnId).search('').draw();
     }else{
-      oTable.api().column(3).search($(this).val()).draw();
+      oTable.api().column(filterColumnId).search($(this).val()).draw();
     }
   });
 }

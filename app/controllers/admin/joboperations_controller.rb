@@ -4,6 +4,13 @@ class Admin::JoboperationsController < ApplicationController
 
   def index
     @joboperations = Joboperation.include_operation_name_repairoption_name
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {joboperations: @joboperations}
+      }
+    end
   end
 
   def new
