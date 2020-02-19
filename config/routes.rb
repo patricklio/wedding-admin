@@ -3,12 +3,6 @@ Rails.application.routes.draw do
   root to:"admin/components#index"
 
   namespace :admin do
-    get "components", to: "components#index" # TO DELETE AFTER
-
-    resources :users
-    resources :partners
-    resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
-
     devise_for :user_accounts,
                skip: [:registrations],
                controllers: {
@@ -22,9 +16,18 @@ Rails.application.routes.draw do
                   confirmation: 'verification',
                   unlock: 'unblock'
               }
-
-    resources :users, only: [:edit, :update]
     patch "update_password", to: "users#update_password", as: "update_user_password"
+
+    get "components", to: "components#index" # TO DELETE AFTER
+
+
+    resources :users
+    resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
+    resources :repairoptions, only: [:index, :destroy, :new, :create, :edit, :update]
+    get "repairoptions/categories", to: "repairoptions#categories"
+    resources :operations
+    resources :joboperations, only: [:destroy, :new, :create, :edit, :update]
+    resources :jobparts, only: [:destroy, :new, :create, :edit, :update]
+    resources :partners
   end
 end
-

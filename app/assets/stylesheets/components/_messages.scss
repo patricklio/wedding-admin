@@ -331,7 +331,7 @@
 }
 .label-primary,
 .badge-primary {
-  background-color: #0090d9;
+  background-color: $light-blue;
   color: #ffffff;
 }
 .label-success,
@@ -341,7 +341,7 @@
 }
 .label-warning,
 .badge-warning {
-  background-color: #fdd01c;
+  background-color: $warning;
   color: #ffffff;
 }
 .label-important,
