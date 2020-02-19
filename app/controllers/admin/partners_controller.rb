@@ -1,5 +1,5 @@
 class Admin::PartnersController < ApplicationController
-  before_action :set_edit_partner, only: [:destroy, :edit, :update]
+  before_action :set_edit_partner, only: [:destroy, :edit, :update, :show]
 
   def index
     @partners = Partner.all
@@ -17,6 +17,10 @@ class Admin::PartnersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+
   end
 
   def edit

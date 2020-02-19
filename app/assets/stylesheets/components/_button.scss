@@ -291,6 +291,65 @@
     border-radius: 3px 0 0 3px !important;
 }
 
+btn-warning {
+  color: #ffffff;
+  background-color: #f6da14;
+  border-color: #c5a914;
+}
+
+.btn-warning :active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+  background-image: none;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+  color: #ffffff;
+  background-color: #f6da14;
+  border-color: #c5a914;
+}
+
+.btn-warning.btn-icon {
+  position: relative;
+  padding-right: 39px;
+  border: none;
+}
+
+.btn-warning.btn-icon.icon-left {
+  padding-right: 12px;
+  padding-left: 39px;
+}
+
+.btn-warning.btn-icon i {
+  background-color: #f6da14;
+  padding: 6px 6px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  border-radius: 3px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.btn-warning.btn-icon.icon-left i {
+  float: left;
+  right: auto;
+  left: 0;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 3px 0 0 3px !important;
+  -moz-border-radius: 3px 0 0 3px !important;
+  border-radius: 3px 0 0 3px !important;
+}
+
 .btn-block {
     display: block;
     width: 100%;
