@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
-  has_many :user_accounts
-  belongs_to :customer_type, foreign_key: :customer_type_id
   has_many :vehicles
+  has_one  :customer_user_account, dependent: :destroy
+  belongs_to :customer_type, foreign_key: :customer_type_id
 
   # Validations
   validates :address, presence: { message: 'Veuillez fournir une adresse' }
@@ -30,7 +30,7 @@ class Customer < ApplicationRecord
             uniqueness: {
                 case_sensitive: false,
                 message: ->(object, data) do
-                  "L'adresse email  #{data[:value]} existe déja!"
+                  "L'adresse email #{data[:value]} existe déja!"
                 end
             }
   validates :phone_number,
@@ -39,7 +39,7 @@ class Customer < ApplicationRecord
             },
             uniqueness: {
                 message: ->(object, data) do
-                  "Le numéro   #{data[:value]} existe déja!"
+                  "Le numéro #{data[:value]} existe déja!"
                 end
             }
 

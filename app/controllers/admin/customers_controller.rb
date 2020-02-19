@@ -24,6 +24,8 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     if @customer.save
+      create_customer_account(@customer)
+
       redirect_to admin_customers_url, flash: { success: 'Le client est créé avec succès.' }
     else
       render :new
@@ -47,21 +49,32 @@ class Admin::CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def customer_params
-      params.require(:customer).permit(:company_name,
-                                       :address,
-                                       :phone_number,
-                                       :ninea,
-                                       :firstname,
-                                       :lastname,
-                                       :email,
-                                       :customer_type_id
-                                      )
-    end
+  # Only allow a list of trusted parameters through.
+  def customer_params
+    params.require(:customer).permit(:company_name,
+                                      :address,
+                                      :phone_number,
+                                      :ninea,
+                                      :firstname,
+                                      :lastname,
+                                      :email,
+                                      :customer_type_id
+                                    )
+  end
+
+  def create_customer_account(customer)
+    random_password = SecureRandom.base36(8)
+    encrypted_password = BCrypt::Password.create(random_password)
+
+    CustomerUserAccount.create!(customer_id: customer.id,
+                        password: random_password,
+                        email: customer.email,
+                        encrypted_password: encrypted_password
+                      )
+  end
 end
