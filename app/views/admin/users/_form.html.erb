@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin,@user], method: method, wrapper: :custom_form_horizontal,
+<%= simple_form_for [:admin,@user], method: methode, wrapper: :custom_form_horizontal,
     class: "form-horizontal form-groups-bordered" do |f| %>
   <div class="row">
     <div class="col-md-12">
@@ -11,7 +11,7 @@
           <% end %>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
-              <% if method == :post %>
+              <% if methode == :post %>
                 <%= f.input :role, label: "Role", collection: User::ROLES,
                 input_html: { "data-init-plugin": "select2" }%>
               <% end %>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered" id="partners_user_account_id">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @partner_user_accounts.each_with_index do |user_account,id|%>
+        <tr>
+          <td><%= id+1 %></td>
+          <td><%= user_account.firstname %></td>
+          <td><%= user_account.lastname %></td>
+          <td><%= user_account.email %></td>
+          <td><%= user_account.role %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
