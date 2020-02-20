@@ -13,7 +13,7 @@ class Admin::PartnersController < ApplicationController
     @partner = Partner.new(partner_params)
 
     if @partner.save
-      create_defaut_partner_user_account(@partner)
+      create_default_partner_user_account(@partner)
 
       if params[:commit] == "Enregistrer"
         redirect_to admin_partners_path, flash: { success: "Les données ont bien été enregistrées." }
@@ -32,6 +32,7 @@ class Admin::PartnersController < ApplicationController
 
   def edit
     @partner_user_account = PartnerUserAccount.new
+    @partner_user_accounts = @partner.partner_user_accounts
   end
 
   def update
@@ -53,12 +54,12 @@ class Admin::PartnersController < ApplicationController
   end
 
   def add_partner_user_account
-    partner_account = get_partner_account_object(params[:partner_user_account][:email], 
+    partner_account = get_partner_account_object(params[:partner_user_account][:email],
                                                   params[:partner_user_account][:partner_id],
                                                   "",
                                                   "",
                                                   params[:partner_user_account][:role])
-    password = partner_account.password 
+    password = partner_account.password
     if partner_account.save
       PartnerMailer.send_partner_creation_email(partner_account.email, password).deliver_later if partner_account
       if params[:commit] == "Enregistrer"
@@ -90,22 +91,22 @@ class Admin::PartnersController < ApplicationController
   end
 
 
-  def create_defaut_partner_user_account(partner)
+  def create_default_partner_user_account(partner)
     generated_password = Devise.friendly_token.first(8)
     encrypted_password =  BCrypt::Password.create(generated_password)
 
-    new_partner_account = get_partner_account_object(partner.email, partner.id, partner.name, partner.name, defaul_user_account_role)
+    new_partner_account = get_partner_account_object(partner.email, partner.id, partner.name, partner.name, default_user_account_role)
 
-    
-
-    PartnerMailer.send_partner_creation_email(new_partner_account.email, generated_password).deliver_later if new_partner_account.save
+    if new_partner_account.save
+      PartnerMailer.send_partner_creation_email(new_partner_account.email, generated_password).deliver_later
+    end
   end
 
   def get_partner_account_object(email, partner_id, firstname, lastname, role)
     generated_password = Devise.friendly_token.first(8)
     encrypted_password =  BCrypt::Password.create(generated_password)
 
-    new_partner_account = PartnerUserAccount.New(
+    new_partner_account = PartnerUserAccount.new(
       partner_id: partner_id,
       password: generated_password,
       email: email,
@@ -116,7 +117,7 @@ class Admin::PartnersController < ApplicationController
     new_partner_account
   end
 
-  def defaul_user_account_role
+  def default_user_account_role
     "admin"
   end
 end
