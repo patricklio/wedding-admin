@@ -3,7 +3,14 @@ class Admin::JoboperationsController < ApplicationController
   before_action :set_new_joboperation, only: [:new]
 
   def index
-    @joboperations = Joboperation.all
+    @joboperations = Joboperation.include_operation_name_repairoption_name
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {joboperations: @joboperations}
+      }
+    end
   end
 
   def new

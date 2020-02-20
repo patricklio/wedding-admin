@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-bordered datatable" id="jobparts_list">
+    <table class="table table-bordered" id="jobparts_id">
       <thead>
         <tr>
           <th>ID</th>
@@ -29,7 +29,9 @@
               Modifier<i class="material-icons">edit</i>
             </a>&nbsp;&nbsp;&nbsp;
             <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-               modal-element="<%= jobpart.part.part_desc %>" modal-url="<%= show_link %>">
+              modal-element-title="la pièce"
+              modal-element="<%= jobpart.part.part_desc %>"
+              modal-url="<%= show_link %>">
               Supprimer<i class="material-icons">cancel</i>
             </a>&nbsp;&nbsp;&nbsp;
           </td>

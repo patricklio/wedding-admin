@@ -1,0 +1,73 @@
+<%= simple_form_for [:admin, customer], method: methode, authenticity_token: true, wrapper: :custom_form_horizontal,
+    class: "form-horizontal form-groups-bordered" do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+                <% if methode == :post %>
+                  Ajouter un client
+                <% else %>
+                  <%= customer.company_name %>
+                  <span>
+                    (ID <%= customer.id %> - Dernière mise à jour: <%= l(customer.updated_at, format: :long) %>)
+                  </span>
+                <% end %>
+              <% end %>
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <%= f.input :company_name, label: "Nom Entreprise", input_html: { style: "text-transform: uppercase;" } %>
+
+              <%= f.input :customer_type_id,
+                          label: "Type de Client",
+                          collection: CustomerType.all,
+                          label_method: :name,
+                          value_method: :id %>
+
+              <%= f.input :address, label: "Adresse" %>
+
+              <%= f.input :firstname, label: "Prénom", input_html: { style: "text-transform: uppercase;" } %>
+              <%= f.input :lastname, label: "Nom", input_html: { style: "text-transform: uppercase;" } %>
+
+
+              <%= f.input :ninea, label: "NINEA", input_html: { style: "text-transform: uppercase;" }%>
+
+              <%= f.input :phone_number, label: "Téléphone" %>
+
+              <%= f.input :email, label: "Email" %>
+
+              <% unless request_id.nil? %>
+                 <%= f.hidden_field :request_id, value: request_id %>
+              <% end %>
+
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;
+                  <%= link_to "Retour", admin_customers_path, { :class=>"btn btn-default" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if  methode == :patch %>
+  <br>
+  <div class="row" style="padding: 10px;" id='accounts'>
+    <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Comptes (<%=  @accounts.length %>)
+    </h3>
+    <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
+  </div>
+
+  <%= render 'customer_user_account_form', customer_user_account: @customer_user_account, customer: customer %>
+<% end %>

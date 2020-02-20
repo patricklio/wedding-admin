@@ -357,5 +357,16 @@ a.table-link {
   padding: 14px 8px;
   margin: -8px;
 }
+.page-body .datatable.table i{
+  color: #949494;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
+.page-body .datatable.table tbody td.details{
+  color: $black;
+  font-size: 10px;
+}
 
 

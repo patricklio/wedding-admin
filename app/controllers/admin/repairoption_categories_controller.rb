@@ -2,7 +2,7 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   before_action :set_repairoption_category, only: [:destroy, :edit, :update]
 
   def index
-    @categories = RepairoptionCategory.all
+    @categories = RepairoptionCategory.include_repairoptions_counts
   end
 
   def destroy
