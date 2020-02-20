@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     resources :operations
     resources :joboperations, only: [:destroy, :new, :create, :edit, :update]
     resources :jobparts, only: [:destroy, :new, :create, :edit, :update]
+    resources :info_requests, only: [:index]
   end
 end

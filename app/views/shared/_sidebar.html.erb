@@ -25,6 +25,20 @@
       <% end %>
     </li>
     <li class="root-level">
+      <%= link_to "" do%>
+        <i class="material-icons">label</i><span>Clients</span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to admin_info_requests_path do%>
+            <i class="material-icons">list_alt</i>
+            <span>Demandes de compte</span>
+            <span class=" badge badge-danger pull-right "><%= opened_info_request_number %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="root-level">
       <%= link_to admin_repairoption_categories_path do%>
         <i class="material-icons">label</i><span>Catégories de repairoptions</span>
       <% end %>

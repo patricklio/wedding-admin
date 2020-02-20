@@ -170,7 +170,7 @@ let public_vars = public_vars || {};
         $this.css({ maxHeight: '' }).slimScroll({
           height: height,
           position: attrDefault($this, 'scroll-position', 'right'),
-          color: attrDefault($this, 'rail-color', '#000'),
+          color: attrDefault($this, 'rail-color', '#007DEB'),
           size: attrDefault($this, 'rail-width', 6),
           borderRadius: attrDefault($this, 'rail-radius', 3),
           opacity: attrDefault($this, 'rail-opacity', .3),
@@ -267,6 +267,9 @@ let public_vars = public_vars || {};
 
   //Init plugins
   initSelect2Plugin();
+
+  // Iint Portlet / Panel Tools
+  initPortletTools();
 
 
 })(jQuery, window);
@@ -1002,4 +1005,92 @@ function initSelect2Plugin() {
       })
     });
   });
+}
+
+// Portlet / Panel / Card Tools
+function initPortletTools() {
+  var $this = this;
+
+  $('.card .tools a.reload').on('click', function () {
+    var el = jQuery(this).parents(".card");
+    $this.blockUI(el);
+    window.setTimeout(function () {
+      $this.unblockUI(el);
+    }, 1000);
+  });
+
+  $('.grid .tools .collapse, .grid .tools .expand').on('click', function () {
+    var el = jQuery(this).parents(".grid").children(".grid-body");
+    if (jQuery(this).hasClass("collapse")) {
+      jQuery(this).removeClass("collapse").addClass("expand");
+      el.slideUp(200);
+    } else {
+      jQuery(this).removeClass("expand").addClass("collapse");
+      el.slideDown(200);
+    }
+  });
+  $('.widget-item > .controller .reload').click(function () {
+    var el = $(this).parent().parent();
+    $this.blockUI(el);
+    window.setTimeout(function () {
+      $this.unblockUI(el);
+    }, 1000);
+  });
+  $('.widget-item > .controller .remove').click(function () {
+    $(this).parent().parent().parent().addClass('animated fadeOut');
+    $(this).parent().parent().parent().attr('id', 'id_remove_temp_id');
+    setTimeout(function () {
+      $('#id_remove_temp_id').remove();
+    }, 400);
+  });
+
+  $('.tiles .controller .reload').click(function () {
+    var el = $(this).parent().parent().parent();
+    blockUI(el);
+    window.setTimeout(function () {
+      unblockUI(el);
+    }, 1000);
+  });
+  $('.tiles .controller .remove').click(function () {
+    $(this).parent().parent().parent().parent().addClass('animated fadeOut');
+    $(this).parent().parent().parent().parent().attr('id', 'id_remove_temp_id');
+    setTimeout(function () {
+      $('#id_remove_temp_id').remove();
+    }, 400);
+  });
+  if (!jQuery().sortable) {
+    return;
+  }
+  $(".sortable").sortable({
+    connectWith: '.sortable',
+    iframeFix: false,
+    items: 'div.grid',
+    opacity: 0.8,
+    helper: 'original',
+    revert: true,
+    forceHelperSize: true,
+    placeholder: 'sortable-box-placeholder round-all',
+    forcePlaceholderSize: true,
+    tolerance: 'pointer'
+  });
+}
+
+// Block UI
+function blockUI(el) {
+  $(el).block({
+    message: '<div class="loading-animator"></div>',
+    css: {
+      border: 'none',
+      padding: '2px',
+      backgroundColor: 'none'
+    },
+    overlayCSS: {
+      backgroundColor: '#fff',
+      opacity: 0.3,
+      cursor: 'wait'
+    }
+  });
+}
+function unblockUI(el) {
+  $(el).unblock();
 }
