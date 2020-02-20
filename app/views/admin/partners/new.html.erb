@@ -11,28 +11,24 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Utilisateurs", admin_users_path %>
+      <%= link_to "Partenaires", admin_partners_path %>
     </li>
     <li>
       <strong>Ajouter</strong>
     </li>
   </ol>
 
-  <!-- Page Title-->
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Utilisateurs
+      Partenaires
     </h2>
   </div>
 
   <br>
-
   <%= render 'shared/flashes' %>
-
-  <!-- Real content of the page-->
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", methode: :post %>
+      <%= render  "form", partner: @partner, methode: 'post' %>
     </div>
   </div>
 
@@ -43,3 +39,4 @@
   </footer>
 
 </div>
+

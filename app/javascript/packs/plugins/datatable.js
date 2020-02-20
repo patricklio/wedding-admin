@@ -149,7 +149,8 @@ const initComponentDataTable = () => {
         const joboperationsElement = $('#joboperations_list');
         const jobpartsElement = $('#jobparts_list');
         const partsElement = $('#parts_list');
-        var customersElement = $('#customer_list_id');
+        const customersElement = $('#customer_list_id');
+        const partnersElement = $('#partners_id');
 
         tableElement.dataTable({
             "sDom": defaultDom,
@@ -165,31 +166,16 @@ const initComponentDataTable = () => {
             repairoptionCategoriesElement.dataTable(defaultOptions);
         }
 
-        if (repairoptionsElement.length) {
-            const roTable = repairoptionsElement.dataTable(defaultOptions);
-            setTimeout(() => {
-                initCategoriesFilters(roTable);
-            }, 500);
-
-            /* Add event listener for opening and closing details
-             * Note that the indicator for showing which row is open is not controlled by DataTables,
-             * rather it is done here
-             */
-            $(document).on('click', '#repairoptions_id tbody td i', function() {
-                const tr = $(this).closest("tr");
-                const nTr = $(this).parents('tr')[0];
-                if (roTable.fnIsOpen(nTr)) {
-                    /* This row is already open - close it */
-                    roTable.fnClose(nTr);
-                } else {
-                    /* Open this row */
-                    roTable.fnOpen(nTr, fnFormatRepairOptionDetails(tr), 'details');
-                }
-            });
-        }
-
         if (operationsElement.length) {
             operationsElement.dataTable(defaultOptions);
+        }
+
+        if (partnersElement.length) {
+            partnersElement.dataTable(defaultOptions);
+        }
+
+        if (customersElement.length) {
+            customersElement.dataTable(defaultOptions);
         }
 
         if (joboperationsElement.length) {
@@ -215,6 +201,29 @@ const initComponentDataTable = () => {
             });
         }
 
+        if (repairoptionsElement.length) {
+            const roTable = repairoptionsElement.dataTable(defaultOptions);
+            setTimeout(() => {
+                initCategoriesFilters(roTable);
+            }, 500);
+
+            /* Add event listener for opening and closing details
+             * Note that the indicator for showing which row is open is not controlled by DataTables,
+             * rather it is done here
+             */
+            $(document).on('click', '#repairoptions_id tbody td i', function() {
+                const tr = $(this).closest("tr");
+                const nTr = $(this).parents('tr')[0];
+                if (roTable.fnIsOpen(nTr)) {
+                    /* This row is already open - close it */
+                    roTable.fnClose(nTr);
+                } else {
+                    /* Open this row */
+                    roTable.fnOpen(nTr, fnFormatRepairOptionDetails(tr), 'details');
+                }
+            });
+        }
+
         if (jobpartsElement.length) {
             const oTable = jobpartsElement.dataTable(defaultOptions);
             setTimeout(() => {
@@ -224,10 +233,6 @@ const initComponentDataTable = () => {
 
         if (partsElement.length) {
             partsElement.dataTable(defaultOptions);
-        }
-
-        if (customersElement.length) {
-            customersElement.dataTable(defaultOptions);
         }
     });
 }

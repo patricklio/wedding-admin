@@ -71,7 +71,9 @@
               <td>
                 <% unless user.role == 'admin' %>
                   <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-                  modal-element="<%= user.firstname %>" modal-url="<%= admin_user_path(user) %>">
+                    modal-element-title="l'utilisateur"
+                    modal-element="<%= user.firstname %>"
+                    modal-url="<%= admin_user_path(user) %>">
                     Supprimer<i class="material-icons">cancel</i>
                   </a>
                 <% end %>
