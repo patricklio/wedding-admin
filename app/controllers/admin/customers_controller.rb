@@ -130,8 +130,10 @@ class Admin::CustomersController < ApplicationController
                         firstname: firstname,
                         lastname: lastname
                       )
-    if params[:customer]&[:request_id]
-      customer_account.info_request_id = params[:customer][:request_id].to_i
+    if params[:customer]
+      if params[:customer][:request_id]
+        customer_account.info_request_id = params[:customer][:request_id].to_i
+      end
     end
 
     customer_account
