@@ -18,14 +18,7 @@
               <%= f.input :firstname, label: "Prénom"%>
               <%= f.input :lastname, label: "Nom"%>
               <%= f.input :email, label: "Email"%>
-              <%= f.input :phone_number, label: "Téléphone"  do %>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">+221</span>
-                  </div>
-                  <%= f.input_field :phone_number, class: "form-control" %>
-                </div>
-              <% end %>
+              <%= f.input :phone_number, label: "Téléphone" %>
               <hr>
               <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">

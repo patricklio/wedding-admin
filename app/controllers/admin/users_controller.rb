@@ -64,7 +64,7 @@ class Admin::UsersController < ApplicationController
     @user_account = current_admin_user_account
     if @user_account.update_with_password(user_account_params)
       sign_in(@user_account, :bypass => true)
-      redirect_to root_path, notice: "Password modifié avec  success!"
+      redirect_to edit_admin_user_path(current_admin_user_account), flash: { success: "Password modifié avec  success!"}
     else
       render "edit"
     end

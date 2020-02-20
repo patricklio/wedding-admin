@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   ROLES = %w(admin sales client).freeze
-  PHONE_NUMBER_REGEX = /((70|76|77|78|30|33)\-)([0-9]{3}\-)([0-9]{2}\-)([0-9]{2})/
+  PHONE_NUMBER_REGEX = /((70|76|77|78|30|33))([0-9]{3})([0-9]{2})([0-9]{2})/
 
   has_one :user_account, dependent: :destroy
 
@@ -42,7 +42,11 @@ class User < ApplicationRecord
             }, 
             format: {
                 with: PHONE_NUMBER_REGEX,
-                message: "le format du numéro de téléphone est invalide!, Veuillez utilisez celui-ci: XX-XXX-XX-XX"
+                message: "le format du numéro de téléphone est invalide!, Veuillez utilisez celui-ci: (70,76,77,78,30,33)XXXXXXX"
+            },
+            length: {
+                maximum: 9,
+                message: "le numéro de téléphone est trop long"
             }
   validates :role,
             presence: {
