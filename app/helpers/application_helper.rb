@@ -10,4 +10,8 @@ module ApplicationHelper
 
     div_class
   end
+
+  def opened_info_request_number
+    InfoRequest.opened.count
+  end
 end

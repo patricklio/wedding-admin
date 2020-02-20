@@ -21,13 +21,16 @@ Rails.application.routes.draw do
     get "components", to: "components#index" # TO DELETE AFTER
     get 'dashboard', to: 'dashboard#index'
 
-
+    # path to create customer user_account
+    post 'customer_user_accounts', to: 'customers#create_customer_account'
     resources :users
+    resources :customers
     resources :repairoption_categories, only: [:index, :destroy, :new, :create, :edit, :update]
     resources :repairoptions, only: [:index, :destroy, :new, :create, :edit, :update]
     get "repairoptions/categories", to: "repairoptions#categories"
     resources :operations
     resources :joboperations, only: [:destroy, :new, :create, :edit, :update]
     resources :jobparts, only: [:destroy, :new, :create, :edit, :update]
+    resources :info_requests, only: [:index]
   end
 end
