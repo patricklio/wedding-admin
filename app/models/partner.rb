@@ -7,7 +7,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class Partner < ApplicationRecord
-  has_many :partner_user_accounts
+  has_many :partner_user_accounts, dependent: :destroy
   validates :name,
             presence: {
                 message: "Le nom du partenaire est obligatoire"

@@ -16,6 +16,16 @@ class PartnerUserAccount < ApplicationRecord
 
   #Partner user account  validation
 
+  validates :password,
+            presence: {
+              message: 'Le mot de passe est obligatoire', on: :update
+            },
+            length: {
+              minimum: 8,
+              message: 'le mot de passe est trop court', on: :update
+            },
+            confirmation: true
+
   validates :email,
             presence: {
                 message: "L'email est obligatoire"

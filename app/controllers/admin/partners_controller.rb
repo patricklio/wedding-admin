@@ -97,7 +97,7 @@ class Admin::PartnersController < ApplicationController
                       )
                       puts '---partner default----'
                       puts partner.as_json.pretty_inspect
-    PartnerMailer.send_partner_creation_email(partner, generated_password).deliver_later
+    PartnerMailer.send_partner_creation_email(partner.email, generated_password).deliver_later
   end
 
   def create_partner_user_account(partner_account)
@@ -111,9 +111,6 @@ class Admin::PartnersController < ApplicationController
       role: partner_account.role,
       encrypted_password: encrypted_password)
 
-      puts '---partner----'
-      puts partner_account.as_json.pretty_inspect
-
-      PartnerMailer.send_partner_creation_email(partner_account, generated_password).deliver_later
+      PartnerMailer.send_partner_creation_email(partner_account.email, generated_password).deliver_later
   end
 end
