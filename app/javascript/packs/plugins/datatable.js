@@ -340,7 +340,7 @@ const fnFormatRepairOptionDetails = (tr) => {
 
     sOut = "<div>"
     $.each(jobops, function(key, value) {
-        sOut += "<div class = 'row' style = 'padding-left: 70px;'>" + value + "</div>"
+        sOut += "<div class = 'row' style = 'padding-left: 50px;'>" + value + "</div>"
     });
     sOut += "</div>"
     return sOut;
