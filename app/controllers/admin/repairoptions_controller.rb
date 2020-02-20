@@ -2,7 +2,7 @@ class Admin::RepairoptionsController < ApplicationController
   before_action :set_repairoption, only: [:edit, :update]
 
   def index
-    @repairoptions = Repairoption.includes(:repairoption_category).order('updated_at DESC')
+    @repairoptions = Repairoption.includes(:repairoption_category, joboperations: [:operation]).order('updated_at DESC')
 
     respond_to do |format|
       format.html

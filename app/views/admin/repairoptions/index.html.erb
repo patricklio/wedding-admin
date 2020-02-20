@@ -38,7 +38,7 @@
       <table class="table table-bordered datatable" id="repairoptions_id">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Nom</th>
             <th>Description</th>
             <th>Catégorie</th>
@@ -49,10 +49,15 @@
           <% @repairoptions.each_with_index do |repairoption,id|
             edit_link = edit_admin_repairoption_path(repairoption)
             show_link = admin_repairoption_path(repairoption)
+            repair_jobops = repairoption.joboperations.map do |jobop|
+              jobop.operation.name
+            end
           %>
-            <tr>
+            <tr data-jobops = "<%= repair_jobops.to_json %>">
               <td>
-                <%= id+1 %>
+                <% if @repairoptions.length > 0 %>
+                  <i class="fa fa-plus-circle"></i>
+                <% end %>
               </td>
               <td>
                 <%= repairoption.name %>&nbsp;&nbsp;&nbsp;
