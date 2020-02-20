@@ -169,10 +169,12 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'form-group row' do |ba|
       ba.use :label, class: 'col-form-label col-sm-3 pull-left'
       ba.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-6' do |bb|
+        bb.optional :prepend
         bb.use :input, class: 'form-control', error_class: 'is-invalid'
         bb.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
         # bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
         bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+        bb.optional :append
       end
     end
   end
