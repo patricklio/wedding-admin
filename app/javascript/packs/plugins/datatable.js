@@ -120,26 +120,26 @@ const initDatatableMethods = () => {
 }
 
 const initComponentDataTable = () => {
-  initDatatableMethods();
+    initDatatableMethods();
 
-  /*
+    /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-  const defaultDom = "ft<'row'<'col-md-12'p i>>";
-  const defaultOptions = {
-    "sDom": defaultDom,
-    "oLanguage": {
-      "sLengthMenu": "_MENU_ ",
-      "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+    const defaultDom = "ft<'row'<'col-md-12'p i>>";
+    const defaultOptions = {
+        "sDom": defaultDom,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ ",
+            "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+        }
     }
-  }
 
-  /* Table initialisation */
-  $(document).ready(function () {
+    /* Table initialisation */
+    $(document).ready(function() {
         const responsiveHelper = undefined;
         const breakpointDefinition = {
-        tablet: 1024,
-        phone: 480
+            tablet: 1024,
+            phone: 480
         };
 
         const tableElement = $('#component_id');
@@ -153,169 +153,197 @@ const initComponentDataTable = () => {
         const partnersElement = $('#partners_id');
 
         tableElement.dataTable({
-        "sDom": defaultDom,
-        // "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
-        "aaSorting": [],
-        "oLanguage": {
-            "sLengthMenu": "_MENU_ ",
-            "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-        },
+            "sDom": defaultDom,
+            // "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
+            "aaSorting": [],
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ ",
+                "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
+            },
         });
 
         if (repairoptionCategoriesElement.length) {
-        repairoptionCategoriesElement.dataTable(defaultOptions);
-        }
-
-        if (repairoptionsElement.length){
-        const roTable = repairoptionsElement.dataTable(defaultOptions);
-        setTimeout(() => {
-            initCategoriesFilters(roTable);
-        }, 500);
+            repairoptionCategoriesElement.dataTable(defaultOptions);
         }
 
         if (operationsElement.length) {
-        operationsElement.dataTable(defaultOptions);
+            operationsElement.dataTable(defaultOptions);
         }
 
-        if (partnersElement.length){
+        if (partnersElement.length) {
             partnersElement.dataTable(defaultOptions);
         }
 
         if (customersElement.length) {
             customersElement.dataTable(defaultOptions);
         }
-    
-        if (joboperationsElement.length) {
-        const oTable = joboperationsElement.dataTable(defaultOptions);
-        setTimeout(() => {
-            initRepairoptionFilters(oTable);
-        }, 500);
 
-        /* Add event listener for opening and closing details
-            * Note that the indicator for showing which row is open is not controlled by DataTables,
-            * rather it is done here
-            */
-        $(document).on('click', '#joboperations_list tbody td i', function () {
-            const tr = $(this).closest("tr");
-            const nTr = $(this).parents('tr')[0];
-            if (oTable.fnIsOpen(nTr)) {
-            /* This row is already open - close it */
-            oTable.fnClose(nTr);
-            } else {
-            /* Open this row */
-            oTable.fnOpen(nTr, fnFormatDetails(tr), 'details');
-            }
-        });
+        if (joboperationsElement.length) {
+            const oTable = joboperationsElement.dataTable(defaultOptions);
+            setTimeout(() => {
+                initRepairoptionFilters(oTable);
+            }, 500);
+
+            /* Add event listener for opening and closing details
+             * Note that the indicator for showing which row is open is not controlled by DataTables,
+             * rather it is done here
+             */
+            $(document).on('click', '#joboperations_list tbody td i', function() {
+                const tr = $(this).closest("tr");
+                const nTr = $(this).parents('tr')[0];
+                if (oTable.fnIsOpen(nTr)) {
+                    /* This row is already open - close it */
+                    oTable.fnClose(nTr);
+                } else {
+                    /* Open this row */
+                    oTable.fnOpen(nTr, fnFormatDetails(tr), 'details');
+                }
+            });
+        }
+
+        if (repairoptionsElement.length) {
+            const roTable = repairoptionsElement.dataTable(defaultOptions);
+            setTimeout(() => {
+                initCategoriesFilters(roTable);
+            }, 500);
+
+            /* Add event listener for opening and closing details
+             * Note that the indicator for showing which row is open is not controlled by DataTables,
+             * rather it is done here
+             */
+            $(document).on('click', '#repairoptions_id tbody td i', function() {
+                const tr = $(this).closest("tr");
+                const nTr = $(this).parents('tr')[0];
+                if (roTable.fnIsOpen(nTr)) {
+                    /* This row is already open - close it */
+                    roTable.fnClose(nTr);
+                } else {
+                    /* Open this row */
+                    roTable.fnOpen(nTr, fnFormatRepairOptionDetails(tr), 'details');
+                }
+            });
         }
 
         if (jobpartsElement.length) {
-        const oTable = jobpartsElement.dataTable(defaultOptions);
-        setTimeout(() => {
-            initJoboperationFilters(oTable);
-        }, 500);
+            const oTable = jobpartsElement.dataTable(defaultOptions);
+            setTimeout(() => {
+                initJoboperationFilters(oTable);
+            }, 500);
         }
 
         if (partsElement.length) {
-        partsElement.dataTable(defaultOptions);
+            partsElement.dataTable(defaultOptions);
         }
     });
 }
 
 const initCategoriesFilters = (oTable) => {
-  $.ajax({
-    url: "/admin/repairoptions/categories",
-    method: 'GET',
-    dataType: 'json',
-    error: function (xhr, status, error) {
-      console.error('AJAX Error: ', status, error);
-    },
-    success: function (response) {
-      if (response.categories.length > 0) {
-        initFilters(oTable, response.categories, "repairoptions_id_filter","Toutes les catégories",3)
-      }
-    }
-  });
+    $.ajax({
+        url: "/admin/repairoptions/categories",
+        method: 'GET',
+        dataType: 'json',
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        },
+        success: function(response) {
+            if (response.categories.length > 0) {
+                initFilters(oTable, response.categories, "repairoptions_id_filter", "Toutes les catégories", 3)
+            }
+        }
+    });
 }
 
 const initRepairoptionFilters = (oTable) => {
-  $.ajax({
-    url: "/admin/repairoptions",
-    method: 'GET',
-    dataType: 'json',
-    error: function (xhr, status, error) {
-      console.error('AJAX Error: ', status, error);
-    },
-    success: function (response) {
+    $.ajax({
+        url: "/admin/repairoptions",
+        method: 'GET',
+        dataType: 'json',
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        },
+        success: function(response) {
 
-      if (response.repairoptions.length > 0) {
-        const names = $.map(response.repairoptions, function (n, i) {
-          return [n.name];
-        });
-        initFilters(oTable, names, "joboperations_list_filter", "Touts les services", 2)
-      }
-    }
-  });
+            if (response.repairoptions.length > 0) {
+                const names = $.map(response.repairoptions, function(n, i) {
+                    return [n.name];
+                });
+                initFilters(oTable, names, "joboperations_list_filter", "Touts les services", 2)
+            }
+        }
+    });
 }
 
 const initJoboperationFilters = (oTable) => {
-  $.ajax({
-    url: "/admin/joboperations",
-    method: 'GET',
-    dataType: 'json',
-    error: function (xhr, status, error) {
-      console.error('AJAX Error: ', status, error);
-    },
-    success: function (response) {
+    $.ajax({
+        url: "/admin/joboperations",
+        method: 'GET',
+        dataType: 'json',
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ', status, error);
+        },
+        success: function(response) {
 
-      if (response.joboperations.length > 0) {
-        const names = $.map(response.joboperations, function (n, i) {
-          return [n.operation_name];
-        });
-        initFilters(oTable, names, "jobparts_list_filter", "Toutes les tâches", 1)
-      }
-    }
-  });
+            if (response.joboperations.length > 0) {
+                const names = $.map(response.joboperations, function(n, i) {
+                    return [n.operation_name];
+                });
+                initFilters(oTable, names, "jobparts_list_filter", "Toutes les tâches", 1)
+            }
+        }
+    });
 }
 
 const initFilters = (oTable, data, filterIdSelector, selectAllText, filterColumnId) => {
-  let select = '';
+    let select = '';
 
-  select = '<div class="col-sm-4">';
-  select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
-  select += '<option value="0" selected="selected">' + selectAllText+ '</option>';
+    select = '<div class="col-sm-4">';
+    select += '<select class="form-control" id="filters" data-init-plugin="select2" >'
+    select += '<option value="0" selected="selected">' + selectAllText + '</option>';
 
-  $.each(data, function (index, item) {
-    select += '<option value="' + item + '">' + item + '</option>';
-  });
+    $.each(data, function(index, item) {
+        select += '<option value="' + item + '">' + item + '</option>';
+    });
 
-  select += '</select></div>'
+    select += '</select></div>'
 
-  document.getElementById(filterIdSelector).insertAdjacentHTML("afterbegin", select);
+    document.getElementById(filterIdSelector).insertAdjacentHTML("afterbegin", select);
 
-  filterChangeListener(oTable,filterColumnId);
+    filterChangeListener(oTable, filterColumnId);
 }
 
 const filterChangeListener = (oTable, filterColumnId) => {
-  $("#filters").on("change", function () {
-    if ($(this).val() == 0){
-      oTable.api().column(filterColumnId).search('').draw();
-    }else{
-      oTable.api().column(filterColumnId).search($(this).val()).draw();
-    }
-  });
+    $("#filters").on("change", function() {
+        if ($(this).val() == 0) {
+            oTable.api().column(filterColumnId).search('').draw();
+        } else {
+            oTable.api().column(filterColumnId).search($(this).val()).draw();
+        }
+    });
 }
 
 /* Formating function for row details */
 const fnFormatDetails = (tr) => {
-  let jobparts = tr.data("parts");
-  let sOut = ""
+    let jobparts = tr.data("parts");
+    let sOut = ""
 
-  sOut = "<div>"
-  $.each(jobparts, function (key, value) {
-    sOut += "<div class = 'row' style = 'padding-left: 50px;'>" + value.part_qty + " x " + value.part_desc + "</div>"
-  });
-  sOut += "</div>"
-  return sOut;
+    sOut = "<div>"
+    $.each(jobparts, function(key, value) {
+        sOut += "<div class = 'row' style = 'padding-left: 50px;'>" + value.part_qty + " x " + value.part_desc + "</div>"
+    });
+    sOut += "</div>"
+    return sOut;
+}
+
+const fnFormatRepairOptionDetails = (tr) => {
+    let jobops = tr.data("jobops");
+    let sOut = ""
+
+    sOut = "<div>"
+    $.each(jobops, function(key, value) {
+        sOut += "<div class = 'row' style = 'padding-left: 70px;'>" + value + "</div>"
+    });
+    sOut += "</div>"
+    return sOut;
 }
 
 export { initComponentDataTable }
