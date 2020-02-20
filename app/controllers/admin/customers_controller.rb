@@ -60,7 +60,11 @@ class Admin::CustomersController < ApplicationController
   # PATCH/PUT /admin/customers/1
   def update
     if @customer.update(customer_params)
-      redirect_to admin_customers_url, flash: { success: 'Le client est modifié avec succès' }
+      if params[:commit] == "Enregistrer"
+        redirect_to admin_customers_url, flash: { success: 'Les données ont bien été enregistrées.' }
+      else
+        redirect_to edit_admin_customer_path(@customer), flash: { success: "Les données ont bien été enregistrées." }
+      end
     else
       render :edit
     end
