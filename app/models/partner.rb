@@ -44,14 +44,6 @@ class Partner < ApplicationRecord
                   "Le numéro   #{data[:value]} existe déja!"
                 end, on: :create
             }
-  validates :labor_hour_price,
-            presence: {
-                message: "Le coût de la main d'oeure horraire est obligatoire"
-            },
-            length: {
-              minimum: 1,
-              message: "Le coût de la main d'oeure horraire est invalide"
-          }
 
 
   geocoded_by :address
