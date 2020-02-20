@@ -53,17 +53,21 @@ class Admin::PartnersController < ApplicationController
   end
 
   def add_partner_user_account
-    @partner_account = PartnerUserAccount.new(partner_user_account_params)
-
-    if create_partner_user_account(@partner_account)
-
+    partner_account = get_partner_account_object(params[:partner_user_account][:email], 
+                                                  params[:partner_user_account][:partner_id],
+                                                  "",
+                                                  "",
+                                                  params[:partner_user_account][:role])
+    password = partner_account.password 
+    if partner_account.save
+      PartnerMailer.send_partner_creation_email(partner_account.email, password).deliver_later if partner_account
       if params[:commit] == "Enregistrer"
         redirect_to admin_partners_path, flash: { success: "Les données ont bien été modifiées."}
       else
-        redirect_to edit_admin_partner_path(@partner_account.partner), flash: { success: "Les données ont bien été modifiées."}
+        redirect_to edit_admin_partner_path(partner_account.partner), flash: { success: "Les données ont bien été modifiées."}
       end
     else
-      redirect_to edit_admin_partner_path(@partner_account.partner), flash: { error: @partner_account.errors.full_messages.to_sentence }
+      redirect_to edit_admin_partner_path(partner_account.partner), flash: { error: partner_account.errors.full_messages.to_sentence }
     end
   end
 
@@ -85,32 +89,32 @@ class Admin::PartnersController < ApplicationController
     params.require(:partner_user_account).permit(:email, :role, :partner_id)
   end
 
+
   def create_defaut_partner_user_account(partner)
     generated_password = Devise.friendly_token.first(8)
-    encrypted_password = BCrypt::Password.create(generated_password)
+    encrypted_password =  BCrypt::Password.create(generated_password)
 
-    PartnerUserAccount.create!(partner_id: partner.id,
-                        password: "password",
-                        email: partner.email,
-                        role: "admin",
-                        encrypted_password: encrypted_password
-                      )
-                      puts '---partner default----'
-                      puts partner.as_json.pretty_inspect
-    PartnerMailer.send_partner_creation_email(partner.email, generated_password).deliver_later
+    new_partner_account = get_partner_account_object(partner.email, partner.id, partner.name, partner.name, defaul_user_account_role)
+
+    PartnerMailer.send_partner_creation_email(new_partner_account.email, generated_password).deliver_later if new_partner_account
   end
 
-  def create_partner_user_account(partner_account)
+  def get_partner_account_object(email, partner_id, firstname, lastname, role)
     generated_password = Devise.friendly_token.first(8)
     encrypted_password =  BCrypt::Password.create(generated_password)
 
     new_partner_account = PartnerUserAccount.create!(
-      partner_id: partner_account.partner_id,
+      partner_id: partner_id,
       password: generated_password,
-      email: partner_account.email,
-      role: partner_account.role,
-      encrypted_password: encrypted_password)
+      email: email,
+      role: role,
+      encrypted_password: encrypted_password
+    )
 
-      PartnerMailer.send_partner_creation_email(partner_account.email, generated_password).deliver_later
+    new_partner_account
+  end
+
+  def defaul_user_account_role
+    "admin"
   end
 end

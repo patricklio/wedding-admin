@@ -47,11 +47,11 @@ class Partner < ApplicationRecord
   validates :labor_hour_price,
             presence: {
                 message: "Le coût de la main d'oeure horraire est obligatoire"
-            }
-  validates :labor_currency,
-            presence: {
-                message: "La devise est obligatoire"
-            }
+            },
+            length: {
+              minimum: 1,
+              message: "Le coût de la main d'oeure horraire est invalide"
+          }
 
 
   geocoded_by :address
