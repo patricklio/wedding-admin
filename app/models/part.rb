@@ -1,5 +1,5 @@
 class Part < ApplicationRecord
-  validates :part_desc, presence: true, uniqueness: { case_sensitive: false }, length: {minimum: 1}
+  validates :part_desc, presence: true, uniqueness: { case_sensitive: false }, length: {minimum: 5}
 
   def self.include_jobparts_counts
     joins(
