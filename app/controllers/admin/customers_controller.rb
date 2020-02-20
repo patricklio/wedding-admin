@@ -88,9 +88,9 @@ class Admin::CustomersController < ApplicationController
 
   def create_default_customer_account(customer)
     customer_account = get_customer_account_object(customer.email, customer.id,customer.firstname,customer.lastname)
-
+    random_password = customer_account.password
     if customer_account.save
-      CustomerMailer.send_account_creation_email(email, random_password).deliver_later
+      CustomerMailer.send_account_creation_email(customer_account.email, random_password).deliver_later
     end
   end
 
