@@ -23,30 +23,36 @@
 
   <div class='row'>
     <div class='col-sm-4 col-xs-6'>
-      <%= render 'registration_card',
-        registration_count: @customers.length,
-        ressource_type: 'Clients',
-        card_color: 'tile-blue',
-        message: 'nous font confiance'
-      %>
+      <%= link_to  admin_customers_path do %>
+        <%= render 'registration_card',
+          registration_count: @customers.length,
+          ressource_type: 'Clients',
+          card_color: 'tile-blue',
+          message: 'nous font confiance'
+        %>
+      <% end %>
     </div>
 
     <div class='col-sm-4 col-xs-6'>
-      <%= render 'registration_card',
-        registration_count: @partners.length,
-        ressource_type: 'Partenaires',
-        card_color: 'tile-green',
-        message: 'collaborent avec nous'
-      %>
+      <%= link_to  "" do %>
+        <%= render 'registration_card',
+          registration_count: @partners.length,
+          ressource_type: 'Partenaires',
+          card_color: 'tile-green',
+          message: 'collaborent avec nous'
+        %>
+      <% end %>
     </div>
 
     <div class='col-sm-4 col-xs-6'>
-      <%= render 'registration_card',
-        registration_count: @requests.length,
-        ressource_type: 'Demandes de clients',
-        card_color: 'tile-aqua',
-        message: 'qui souhaitent profiter de nos services'
-      %>
+      <%= link_to  admin_info_requests_path do %>
+        <%= render 'registration_card',
+          registration_count: @requests.length,
+          ressource_type: 'Demandes de clients',
+          card_color: 'tile-aqua',
+          message: 'qui souhaitent profiter de nos services'
+        %>
+      <% end %>
     </div>
   </div>
 
