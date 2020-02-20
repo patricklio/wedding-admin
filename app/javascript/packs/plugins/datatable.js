@@ -149,8 +149,8 @@ const initComponentDataTable = () => {
         const joboperationsElement = $('#joboperations_list');
         const jobpartsElement = $('#jobparts_list');
         const partsElement = $('#parts_list');
-        var customersElement = $('#customer_list_id');
-        var partnersElement = $('#partners_id');
+        const customersElement = $('#customer_list_id');
+        const partnersElement = $('#partners_id');
 
         tableElement.dataTable({
         "sDom": defaultDom,
@@ -178,24 +178,11 @@ const initComponentDataTable = () => {
         }
 
         if (partnersElement.length){
-            partnersElement.dataTable({
-                "sDom": defaultDom,
-                "aaSorting": [[0, 'asc']],
-                "oLanguage": {
-                "sLengthMenu": "_MENU_ ",
-                "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-                },
-            });
+            partnersElement.dataTable(defaultOptions);
         }
 
-        if (customersElement) {
-            customersElement.dataTable({
-                "sDom": defaultDom,
-                "oLanguage": {
-                    "sLengthMenu": "_MENU_ ",
-                    "sInfo": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
-                },
-            });
+        if (customersElement.length) {
+            customersElement.dataTable(defaultOptions);
         }
     
         if (joboperationsElement.length) {
@@ -230,10 +217,6 @@ const initComponentDataTable = () => {
 
         if (partsElement.length) {
         partsElement.dataTable(defaultOptions);
-        }
-
-        if (customersElement.length) {
-        customersElement.dataTable(defaultOptions);
         }
     });
 }
