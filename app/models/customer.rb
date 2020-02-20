@@ -4,6 +4,8 @@ class Customer < ApplicationRecord
   belongs_to :customer_type, foreign_key: :customer_type_id
 
   # Validations
+  PHONE_NUMBER_REGEX = /((70|76|77|78|30|33))([0-9]{3})([0-9]{2})([0-9]{2})/
+
   validates :address, presence: { message: 'Veuillez fournir une adresse' }
   validates :company_name, presence: { message: "Le nom de l'entreprise est obligatoire" }
   validates :customer_type_id, presence: { message: "Le choix d'un type de client est obligatoire" }
@@ -41,6 +43,14 @@ class Customer < ApplicationRecord
                 message: ->(object, data) do
                   "Le numéro #{data[:value]} existe déja!"
                 end
+            },
+            format: {
+              with: PHONE_NUMBER_REGEX,
+              message: "le format du numéro de téléphone est invalide!, Veuillez utilisez celui-ci: (70,76,77,78,30,33)XXXXXXX"
+            },
+            length: {
+                maximum: 9,
+                message: "le numéro de téléphone est trop long"
             }
 
   def name
