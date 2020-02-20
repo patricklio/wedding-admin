@@ -13,6 +13,19 @@ class Admin::CustomersController < ApplicationController
   # GET /admin/customers/new
   def new
     @customer = Customer.new
+    if params[:request_id]
+      request = InfoRequest.find(params[:request_id])
+      if request
+        @customer.company_name = request.company_name
+        @customer.customer_type_id = CustomerType.business.first.id
+        @customer.address = request.company_address
+        @customer.phone_number = request.phone_number
+        @customer.ninea = request.ninea
+        @customer.firstname = request.firstname
+        @customer.lastname = request.lastname
+        @customer.email = request.working_email
+      end
+    end
   end
 
   # GET /admin/customers/1/edit
@@ -25,6 +38,13 @@ class Admin::CustomersController < ApplicationController
 
     if @customer.save
       create_default_customer_account(@customer)
+
+      if params[:customer][:request_id]
+        request = InfoRequest.find(params[:customer][:request_id])
+        if request
+          request.close(current_admin_user_account)
+        end
+      end
 
       if params[:commit] == "Enregistrer"
         redirect_to admin_customers_url, flash: { success: 'Les données ont bien été enregistrées.' }
@@ -106,5 +126,10 @@ class Admin::CustomersController < ApplicationController
                         firstname: firstname,
                         lastname: lastname
                       )
+    if params[:customer][:request_id]
+      customer_account.info_request_id = params[:customer][:request_id].to_i
+    end
+
+    customer_account
   end
 end

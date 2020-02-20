@@ -28,7 +28,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", customer: @customer, methode: :post %>
+      <%= render  "form", customer: @customer, methode: :post, request_id: params[:request_id] %>
     </div>
   </div>
 

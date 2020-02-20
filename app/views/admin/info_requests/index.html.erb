@@ -50,9 +50,9 @@
               </p>
 
               <div class="actions">
-                <a href="" class="btn btn-success btn-icon icon-left">
+                <%= link_to({controller: "customers", action: "new", request_id: request.id}, {class: "btn btn-success btn-icon icon-left"}) do %>
                   Traiter la demande<i class="material-icons">edit</i>
-                </a>&nbsp;&nbsp;&nbsp;
+                <% end %>&nbsp;&nbsp;&nbsp;
               </div>
             </div>
 

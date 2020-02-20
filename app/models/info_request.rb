@@ -14,4 +14,10 @@ class InfoRequest < ApplicationRecord
      }
     ).select("info_requests.*, a.firstname AS user_firstname, a.lastname AS user_lastname")
   end
+
+  def close(current_user_account)
+    self.status = "closed"
+    self.user_account_id = current_user_account.id
+    self.save!
+  end
 end
