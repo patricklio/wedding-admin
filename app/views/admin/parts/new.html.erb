@@ -11,26 +11,24 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "Catégories de repairoption", admin_repairoption_categories_path %>
+      <%= link_to "Pièces", admin_parts_path %>
     </li>
     <li>
-      <strong> <%=  @category.name  %> </strong>
+      <strong>Ajouter</strong>
     </li>
   </ol>
 
   <div class="row">
     <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Catégories de repairoption
+      Pièces
     </h2>
   </div>
 
   <br>
 
-  <%= render 'shared/flashes' %>
-
   <div class="row">
     <div class="col-md-12">
-      <%= render  "form", category: @category, methode: :patch %>
+      <%= render "form", part: @part, methode: :post %>
     </div>
   </div>
 

@@ -3,7 +3,7 @@ class Admin::JobpartsController < ApplicationController
   before_action :set_new_jobpart, only: [:new]
 
   def index
-    @jobparts = Jobpart.all
+    @jobparts = Jobpart.include_part_desc_joboperation_name
   end
 
   def new

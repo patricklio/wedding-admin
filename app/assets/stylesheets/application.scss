@@ -17,11 +17,13 @@
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
+@import "config/bootstrap-variables";
 @import "config/icons";
 
 // External libraries
 @import "config/bootstrap_custom"; // never forget the semicolon at the end
 @import "select2/dist/css/select2";
+@import "font-awesome";
 
 // Your CSS partials
 @import "config/select2";

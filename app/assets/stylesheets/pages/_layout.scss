@@ -125,6 +125,11 @@ p {
   filter: alpha(opacity=20);
 }
 
+ul>li {
+  padding-left: 6px;
+  line-height: 20px;
+}
+
 .loading-animator {
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;

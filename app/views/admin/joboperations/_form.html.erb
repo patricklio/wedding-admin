@@ -4,20 +4,20 @@
     <div class="col-md-12">
       <div class="card-group joined" id="accordion-test">
         <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              <%= link_to "#collapse-edit",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
-                <% if methode == :post %>
-                  Ajouter une tâche
-                <% else %>
-                  <%= repairoption.name %> x <%= joboperation.operation.name %>
-                  <span>
-                    (ID <%= joboperation.id %> - Dernière mise à jour: <%= l(joboperation.updated_at, format: :long) %>)
-                  </span>
-                <% end %>
-              <% end %>
-            </h4>
-          </div>
+          <%= link_to "#collapse-edit",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+            <div class="card-header">
+              <h4 class="card-title">
+                  <% if methode == :post %>
+                    Ajouter une tâche
+                  <% else %>
+                    <%= repairoption.name %> x <%= joboperation.operation.name %>
+                    <span>
+                      (ID <%= joboperation.id %> - Dernière mise à jour: <%= l(joboperation.updated_at, format: :long) %>)
+                    </span>
+                  <% end %>
+              </h4>
+            </div>
+          <% end %>
           <div class="collapse show" id="collapse-edit">
             <div class="card-body">
               <% if methode == :patch %>
@@ -56,7 +56,7 @@
   <br>
   <div class="row" style="padding: 10px;">
     <h3 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
-      Pièces (<%=  @jobparts.count %> pièce<%= 's' if @jobparts.count >1 %>)
+      Pièces (<%=  @jobparts.length %> pièce<%= 's' if @jobparts.length >1 %>)
     </h3>
     <div class="col-md-4 col-sm-4 col-xs-4 clearfix"></div>
   </div>
