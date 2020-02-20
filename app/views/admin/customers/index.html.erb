@@ -67,7 +67,10 @@
                     Modifier<i class="material-icons">edit</i>
                   </a>&nbsp;
                   <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-                  modal-element="<%= customer.lastname %> <%= customer.firstname %>" modal-url="<%= admin_customer_path(customer) %>">
+                    modal-element-title="le client"
+                    modal-element="<%= customer.company_name %>"
+                    modal-url="<%= admin_customer_path(customer) %>"
+                    modal-hint="Le client et tous ses comptes utilisateur seront supprimés">
                     Supprimer<i class="material-icons">cancel</i>
                   </a>&nbsp;
                   <a href="<%= edit_admin_customer_path(customer) %>#accounts" class="btn btn-info btn-icon icon-left">

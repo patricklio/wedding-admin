@@ -4,11 +4,11 @@
     <div class="col-md-12">
       <div class="card-group joined" id="accordion-test">
         <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              <%= link_to 'Informations Générales', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
-            </h4>
-          </div>
+          <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+            <div class="card-header">
+              <h4 class="card-title">Informations Générales</h4>
+            </div>
+          <% end %>
           <div class="collapse show" id="collapse-fr">
             <div class="card-body">
               <% if methode == :post %>
@@ -46,12 +46,12 @@
       <div class="col-md-12">
         <div class="card-group joined" id="accordion-test">
           <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <%= link_to 'Modifier votre mot de passe', "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} %>
-              </h4>
-            </div>
-            <div class="collapse show" id="collapse-fr">
+            <%= link_to "#collapse-pwd",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+              <div class="card-header">
+                <h4 class="card-title">Modifier votre mot de passe</h4>
+              </div>
+            <% end %>
+            <div class="collapse show" id="collapse-pwd">
               <div class="card-body">
                 <%= f.input :reset_password_token, as: :hidden %>
                 <%= f.error :reset_password_token %>

@@ -1,0 +1,67 @@
+<%= render 'shared/sidebar'%>
+
+<div class="main-content">
+  <%= render 'shared/navbar' %>
+  <hr>
+  <!-- breadcrumb-->
+  <ol class="breadcrumb bc-3">
+    <li>
+      <%= link_to root_path do %>
+        <i class="material-icons md-18">home</i>Accueil
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "Jobparts", admin_jobparts_path %>
+    </li>
+  </ol>
+
+  <div class="row">
+    <h2 class="col-md-8 col-sm-8 col-xs-8 list-title clearfix">
+      Jobparts <%= "(#{@jobparts.length})" unless @jobparts.empty? %>
+    </h2>
+  </div>
+
+  <br>
+
+  <%= render 'shared/flashes' %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered datatable" id="jobparts_list">
+        <thead>
+          <tr>
+            <th>Pièce</th>
+            <th>Tâche</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @jobparts.each_with_index do |jobpart,id|
+            edit_link = edit_admin_jobpart_path(jobpart)
+            show_link = admin_jobpart_path(jobpart)
+          %>
+            <tr>
+              <td>
+                <%= jobpart.part_desc %>
+              </td>
+              <td><%= jobpart.joboperation_name %></td>
+              <td>
+                <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
+                  Modifier<i class="material-icons">edit</i>
+                </a>&nbsp;&nbsp;&nbsp;
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <!-- footer -->
+  <footer class="main">
+    © 2020 Kulucar Admin
+  </footer>
+
+</div>

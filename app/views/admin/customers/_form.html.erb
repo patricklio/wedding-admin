@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title">
-              <%= link_to "#collapse-edit",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+              <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
                 <% if methode == :post %>
                   Ajouter un client
                 <% else %>
@@ -39,6 +39,10 @@
               <%= f.input :phone_number, label: "Téléphone" %>
 
               <%= f.input :email, label: "Email" %>
+
+              <% unless request_id.nil? %>
+                 <%= f.hidden_field :request_id, value: request_id %>
+              <% end %>
 
               <hr>
               <div class="form-group row">

@@ -14,4 +14,16 @@ class Jobpart < ApplicationRecord
       greater_than: 0,
       message: "La quantité de la pièce doit être supérieure à 0"
     }
+
+  def self.include_part_desc_joboperation_name
+    joins(
+      %{
+        JOIN parts p ON p.id = jobparts.part_id
+        JOIN joboperations j ON j.id = jobparts.joboperation_id
+        JOIN operations o ON o.id = j.operation_id
+      }
+    ).select("jobparts.*,
+              p.part_desc AS part_desc,
+              o.name AS joboperation_name")
+  end
 end

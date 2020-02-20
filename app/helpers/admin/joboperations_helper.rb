@@ -1,2 +1,0 @@
-module Admin::JoboperationsHelper
-end
