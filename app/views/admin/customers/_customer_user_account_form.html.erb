@@ -1,0 +1,31 @@
+<%= simple_form_for [:admin, customer_user_account], authenticity_token: true,
+                    wrapper: :custom_form_horizontal,class: "form-horizontal form-groups-bordered" do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= link_to "#collapse-edit",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+                  Ajouter un compte client
+              <% end %>
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-edit">
+            <div class="card-body">
+              <%= f.input :email, label: "Email" %>
+              <%= f.hidden_field :customer_id, value: customer.id %>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">&nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;&nbsp;
+                  <%= link_to "Retour", admin_customers_path, {:class=>"btn btn-default"} %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
