@@ -1,0 +1,2 @@
+class InfoRequest < ApplicationRecord
+end
