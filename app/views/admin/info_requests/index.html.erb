@@ -70,7 +70,7 @@
                   <br>
                   <br> <span class="bold">Message</span>
                   <br>
-                  <br> <%= "#{request.comments}".html_safe %>
+                  <br> <%= simple_format(request.comments) %>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -123,7 +123,7 @@
                   <br>
                   <br> <span class="bold">Message</span>
                   <br>
-                  <br> <%= request.comments %>
+                  <br> <%= simple_format request.comments %>
                 </div>
                 <div class="clearfix"></div>
               </div>
