@@ -31,8 +31,6 @@ class Admin::PartnersController < ApplicationController
   end
 
   def edit
-    @partner_user_account = PartnerUserAccount.new
-    @partner_user_accounts = @partner.partner_user_accounts
   end
 
   def update
@@ -76,6 +74,7 @@ class Admin::PartnersController < ApplicationController
 
   def set_edit_partner
     @partner = Partner.find(params[:id])
+    @partner_user_accounts = @partner.partner_user_accounts
   end
 
   def set_new_partner
