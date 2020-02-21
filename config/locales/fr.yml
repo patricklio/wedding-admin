@@ -19,7 +19,7 @@ fr:
     - ven
     - sam
     abbr_month_names:
-    - 
+    -
     - jan.
     - fév.
     - mar.
@@ -45,7 +45,7 @@ fr:
       long: "%A, %d %B %Y"
       short: "%d %B %Y"
     month_names:
-    - 
+    -
     - janvier
     - février
     - mars
@@ -214,6 +214,6 @@ fr:
     am: am
     formats:
       default: "%d  %B  %Y %Hh %Mmin %Ss"
-      long: "%A, %d %B %Y"
+      long: "%d/%B/%Y, %Hh%M"
       short: "%d %B %Y"
     pm: pm
