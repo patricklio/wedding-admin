@@ -21,7 +21,7 @@
           <p class="alert alert-danger"><%= alert %></p>
         <% end %>
       </div>
-      <%= simple_form_for(resource, as: resource_name, url: admin_user_account_password_path(resource), html: { method: :put }) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: admin_user_account_password_path, html: { method: :put }) do |f| %>
         <%= f.error_notification %>
 
         <%= f.input :reset_password_token, as: :hidden %>
