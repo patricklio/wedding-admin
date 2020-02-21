@@ -83,9 +83,15 @@ body.login-page .login-header .description {
     transition: all 550ms ease-in-out;
 }
 
+.login-page .login-form .form-group .input-group {}
+
 .login-page .login-form .form-group .input-group {
-    background: #373e4a;
-    border: 1px solid #373e4a;
+    // background: #373e4a;
+    // border: 1px solid #373e4a;
+    position: relative;
+    display: table;
+    background: #ffffff;
+    border-color: #ebebec;
     padding-top: 6px;
     padding-bottom: 6px;
     -moz-transition: all 300ms ease-in-out;
@@ -131,11 +137,6 @@ body.login-page .login-header .description {
     border: 0;
 }
 
-.login-page .login-form .form-group .input-group {
-    background: #ffffff;
-    border-color: #ebebec;
-}
-
 .login-page .login-form .form-group .input-group.focused {
     border-color: #dedee0;
 }
@@ -145,13 +146,13 @@ body.login-page .login-form .form-group .input-group .input-group-addon:after {
 }
 
 .login-page .login-form .form-group .input-group .input-group-addon {
-  position: relative;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1;
-  text-align: center;
-  color: #919191;
+    position: relative;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    color: #919191;
 }
 
 .login-page .login-form .form-group .input-group .input-group-addon:after {
@@ -182,9 +183,9 @@ body.login-page .login-form .form-group .input-group .input-group-addon:after {
 }
 
 .login-page .login-form .form-group .btn-login {
-  background: #f7f7f7;
-  border-color: #ebebec;
-  color: #51555d;
+    background: #f7f7f7;
+    border-color: #ebebec;
+    color: #51555d;
 }
 
 .login-page .login-form .form-group .btn-login:hover {
@@ -282,24 +283,27 @@ body.login-page .login-form .form-group.lockscreen-input .lockscreen-thumb img {
 .login-page .form-login-error.visible {
     display: block;
 }
+
 .login-page .form-register-success,
 .login-page .form-forgotpassword-success,
 .login-page .form-login-error {
-  display: none;
-  background: #00a651;
-  color: #ffffff;
-  padding: 10px;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin-bottom: 30px;
-  overflow: hidden;
+    display: none;
+    background: #00a651;
+    color: #ffffff;
+    padding: 10px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    overflow: hidden;
 }
-.login-page .form-forgotpassword-success, .login-page .form-login-error {
-  display: block;
+
+.login-page .form-forgotpassword-success,
+.login-page .form-login-error {
+    display: block;
 }
 
 .login-page .form-register-success i,
