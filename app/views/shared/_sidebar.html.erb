@@ -50,7 +50,7 @@
         <i class="material-icons">work</i><span>Partenaires</span>
       <% end %>
     </li>
-    
+
     <li class="root-level">
       <%= link_to admin_repairoption_categories_path do%>
         <i class="material-icons">label</i><span>Catégories de repairoptions</span>
@@ -89,10 +89,12 @@
         <i class="fa fa-cogs fa-2x"></i><span>Catalogue de pièces</span>
       <% end %>
     </li>
-    <li class="root-level">
-      <%= link_to admin_users_path do%>
-        <i class="material-icons">supervisor_account</i><span>Utilisateurs</span>
-      <% end %>
-    </li>
+    <% if policy(User).index? %>
+      <li class="root-level">
+        <%= link_to admin_users_path do%>
+          <i class="material-icons">supervisor_account</i><span>Utilisateurs</span>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 </div>

@@ -4,15 +4,18 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
+    authorize User
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    authorize @user
   end
 
   # GET /admin/users/new
   def new
+    authorize User
     @user = User.new
   end
 
@@ -21,6 +24,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(admin_user_params)
 
     respond_to do |format|
+      authorize @user
       if @user.save
         create_user_account(@user)
 
@@ -35,6 +39,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
+    authorize user
     user.destroy
 
     redirect_to admin_users_path
@@ -44,13 +49,18 @@ class Admin::UsersController < ApplicationController
   def edit
   end
 
-  # PATCH  /admin/users/:id(.:format) 
+  # PATCH  /admin/users/:id(.:format)
   def update
     @minimum_password_length = 8
 
+    authorize @user
     if @user.update(admin_user_params)
       if params[:commit] == "Enregistrer"
-        redirect_to admin_users_path, flash: { success: "Les données ont bien été modifiées."}
+        if current_user.admin?
+          redirect_to admin_users_path, flash: { success: "Les données ont bien été modifiées."}
+        else
+          redirect_to root_path
+        end
       else
         redirect_to edit_admin_user_path(@user), flash: { success: "Les données ont bien été modifiées."}
       end
