@@ -10,7 +10,7 @@
                 <% if methode == 'post' %>
                   Ajouter
                 <% else %>
-                  <%= partner.name %> <span>(ID - <%= partner.id %>)</span>
+                  <%= partner.name %> <span>(ID <%= partner.id %> - Dernière mise à jour: <%= l(partner.updated_at, format: :long) %>)</span>
                 <% end %>
               <% end %>
             </h4>
