@@ -94,7 +94,7 @@ class Admin::UsersController < ApplicationController
     admin_user_account = get_admin_user_account_object(user.email, user.id)
 
     if admin_user_account.save
-      PartnerMailer.send_partner_creation_email(admin_user_account.email, admin_user_account.password).deliver_later
+      AdminUserMailer.send_admin_user_creation_email(admin_user_account.email, admin_user_account.password).deliver_later
     end
   end
 
