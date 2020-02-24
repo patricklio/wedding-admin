@@ -1,15 +1,15 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "n'est pas une addresse email valide")
-    end
-  end
-end
+# class EmailValidator < ActiveModel::EachValidator
+#   def validate_each(record, attribute, value)
+#     unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+#       record.errors[attribute] << (options[:message] || "n'est pas une addresse email valide")
+#     end
+#   end
+# end
 
 
 class User < ApplicationRecord
   ROLES = %w(admin sales client).freeze
-  PHONE_NUMBER_REGEX = /((70|76|77|78|30|33))([0-9]{3})([0-9]{2})([0-9]{2})/
+  # PHONE_NUMBER_REGEX = /((70|76|77|78|30|33))([0-9]{3})([0-9]{2})([0-9]{2})/
 
   has_one :user_account, dependent: :destroy
 
