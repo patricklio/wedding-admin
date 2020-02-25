@@ -25,8 +25,8 @@
 
   <h4>Demandes <span class="semi-bold">En attente</span></h4>
   <br>
-  <div class="row">
-    <% if @opened_requests.empty? %>
+  <% if @opened_requests.empty? %>
+    <div class="row">
       <div class="col-md-12">
         <div class="grid simple no-border">
           <div class="grid-title no-border descriptive">
@@ -36,8 +36,10 @@
           </div>
         </div>
       </div>
-    <% else %>
-      <% @opened_requests.each do |request| %>
+    </div>
+  <% else %>
+    <% @opened_requests.each do |request| %>
+      <div class="row">
         <div class="col-md-12">
           <div class="grid simple no-border">
             <div class="grid-title no-border descriptive clickable">
@@ -68,7 +70,7 @@
                   <br>
                   <br> <span class="bold">Message</span>
                   <br>
-                  <br> <%= request.comments %>
+                  <br> <%= simple_format(request.comments) %>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -76,14 +78,14 @@
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 
   <h4>Demandes <span class="semi-bold">Traitées</span></h4>
   <br>
-  <div class="row">
-    <% if @closed_requests.empty? %>
+  <% if @closed_requests.empty? %>
+    <div class="row">
       <div class="col-md-12">
         <div class="grid simple no-border">
           <div class="grid-title no-border descriptive">
@@ -93,8 +95,10 @@
           </div>
         </div>
       </div>
-    <% else %>
-      <% @closed_requests.each do |request| %>
+    </div>
+  <% else %>
+    <% @closed_requests.each do |request| %>
+      <div class="row">
         <div class="col-md-12">
           <div class="grid simple no-border">
             <div class="grid-title no-border descriptive clickable">
@@ -119,7 +123,7 @@
                   <br>
                   <br> <span class="bold">Message</span>
                   <br>
-                  <br> <%= request.comments %>
+                  <br> <%= simple_format request.comments %>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -127,9 +131,9 @@
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 
   <!-- footer -->
   <footer class="main">
