@@ -1,18 +1,7 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "n'est pas une addresse email valide")
-    end
-  end
-end
-
 class Customer < ApplicationRecord
   has_many :vehicles
   has_many  :customer_user_accounts, dependent: :destroy
   belongs_to :customer_type, foreign_key: :customer_type_id
-
-  # Validations
-  PHONE_NUMBER_REGEX = /((70|76|77|78|30|33))([0-9]{3})([0-9]{2})([0-9]{2})/
 
   validates :address, presence: { message: 'Veuillez fournir une adresse' }
   validates :company_name, presence: { message: "Le nom de l'entreprise est obligatoire" }
@@ -53,14 +42,11 @@ class Customer < ApplicationRecord
                   "Le numéro #{data[:value]} existe déja!"
                 end
             },
-            format: {
-              with: PHONE_NUMBER_REGEX,
-              message: "le format du numéro de téléphone est invalide!, Veuillez utilisez celui-ci: (70,76,77,78,30,33)XXXXXXX"
-            },
             length: {
                 maximum: 9,
                 message: "le numéro de téléphone est trop long"
-            }
+            },
+            phone: true
 
   def name
     "#{ firstname } #{ lastname}"
