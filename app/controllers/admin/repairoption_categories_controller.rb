@@ -6,6 +6,7 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @category
     @category.destroy
 
     redirect_to admin_repairoption_categories_path
@@ -18,6 +19,7 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   def create
     @repairoption_category = RepairoptionCategory.new(repairoption_category_params)
 
+    authorize @repairoption_category
     if @repairoption_category.save
 
       if params[:commit] == "Enregistrer"
@@ -34,6 +36,7 @@ class Admin::RepairoptionCategoriesController < ApplicationController
   end
 
   def update
+    authorize @category
     if @category.update(repairoption_category_params)
       if params[:commit] == "Enregistrer"
         redirect_to admin_repairoption_categories_path, flash: { success: "Les données ont bien été enregistrées." }

@@ -34,6 +34,7 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'geocoder'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'pundit', '~> 2.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

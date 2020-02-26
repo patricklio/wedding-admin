@@ -1,4 +1,3 @@
----
 fr:
   activerecord:
     errors:
@@ -19,7 +18,7 @@ fr:
     - ven
     - sam
     abbr_month_names:
-    - 
+    -
     - jan.
     - fév.
     - mar.
@@ -45,7 +44,7 @@ fr:
       long: "%A, %d %B %Y"
       short: "%d %B %Y"
     month_names:
-    - 
+    -
     - janvier
     - février
     - mars
@@ -214,6 +213,12 @@ fr:
     am: am
     formats:
       default: "%d  %B  %Y %Hh %Mmin %Ss"
-      long: "%A, %d %B %Y"
+      long: "%d/%B/%Y, %Hh%M"
       short: "%d %B %Y"
     pm: pm
+  pundit:
+    default: "Vous n'avez pas accès à cette fonctionnalité."
+    repairoption_category_policy:
+      create?: "Vous n'êtes pas autorisé à créer une catégorie de service"
+      update?: "Vous n'êtes pas autorisé à modifier cette catégorie"
+      destroy?: "Vous n'êtes pas autorisé à supprimer une catégorie"

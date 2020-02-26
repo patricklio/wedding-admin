@@ -20,13 +20,15 @@
       Catégories de repairoption <%= "(#{@categories.length})" unless @categories.empty? %>
     </h2>
 
-    <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
-      <%= link_to new_admin_repairoption_category_path do %>
-        <button type="button" class="btn btn-green btn-icon icon-left pull-right">
-          Ajouter<i class="material-icons">add</i>
-        </button>
-      <% end %>
-    </div>
+    <% if policy(RepairoptionCategory).create? %>
+      <div class="col-md-4 col-sm-4 col-xs-4 clearfix">
+        <%= link_to new_admin_repairoption_category_path do %>
+          <button type="button" class="btn btn-green btn-icon icon-left pull-right">
+            Ajouter<i class="material-icons">add</i>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <br>
@@ -58,16 +60,20 @@
               </td>
               <td><%= category.description %></td>
               <td>
-                <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
-                  Modifier<i class="material-icons">edit</i>
-                </a>&nbsp;&nbsp;&nbsp;
-                <% unless category.repairoptions_count.positive? %>
-                  <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
-                    modal-element-title="la catégorie"
-                    modal-element="<%= category.name %>"
-                    modal-url="<%= show_link %>">
-                    Supprimer<i class="material-icons">cancel</i>
+                <% if policy(category).update? %>
+                  <a href="<%= edit_link %>" class="btn btn-success btn-icon icon-left">
+                    Modifier<i class="material-icons">edit</i>
                   </a>&nbsp;&nbsp;&nbsp;
+                <% end %>
+                <% if policy(category).destroy? %>
+                  <% unless category.repairoptions_count.positive? %>
+                    <a href="javascript:;" class="btn btn-red btn-icon icon-left button-delete"
+                      modal-element-title="la catégorie"
+                      modal-element="<%= category.name %>"
+                      modal-url="<%= show_link %>">
+                      Supprimer<i class="material-icons">cancel</i>
+                    </a>&nbsp;&nbsp;&nbsp;
+                  <% end %>
                 <% end %>
               </td>
             </tr>
