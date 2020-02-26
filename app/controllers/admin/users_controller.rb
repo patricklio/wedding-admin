@@ -90,12 +90,24 @@ class Admin::UsersController < ApplicationController
   end
 
   def create_user_account(user)
-    encrypted_password = BCrypt::Password.create("password")
+    admin_user_account = get_admin_user_account_object(user.email, user.id)
 
-    UserAccount.create!(user_id: user.id,
-                        password: "password",
-                        email: user.email,
-                        encrypted_password: encrypted_password
-                      )
+    if admin_user_account.save
+      AdminUserMailer.send_admin_user_creation_email(admin_user_account.email, admin_user_account.password).deliver_later
+    end
+  end
+
+  def get_admin_user_account_object(email, user_id)
+    generated_password = Devise.friendly_token.first(8)
+    encrypted_password =  BCrypt::Password.create(generated_password)
+
+    admin_user_account = UserAccount.new(
+      user_id: user_id,
+      password: generated_password,
+      email: email,
+      encrypted_password: encrypted_password
+    )
+
+    admin_user_account
   end
 end

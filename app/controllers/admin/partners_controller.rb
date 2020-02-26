@@ -92,13 +92,11 @@ class Admin::PartnersController < ApplicationController
 
 
   def create_default_partner_user_account(partner)
-    generated_password = Devise.friendly_token.first(8)
-    encrypted_password =  BCrypt::Password.create(generated_password)
 
     new_partner_account = get_partner_account_object(partner.email, partner.id, partner.name, partner.name, default_user_account_role)
 
     if new_partner_account.save
-      PartnerMailer.send_partner_creation_email(new_partner_account.email, generated_password).deliver_later
+      PartnerMailer.send_partner_creation_email(new_partner_account.email, new_partner_account.password).deliver_later
     end
   end
 
