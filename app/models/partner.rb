@@ -1,11 +1,3 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "Cette addresse n'est pas valide")
-    end
-  end
-end
-
 class Partner < ApplicationRecord
   has_many :partner_user_accounts, dependent: :destroy
   validates :name,
@@ -43,7 +35,12 @@ class Partner < ApplicationRecord
                 message: ->(object, data) do
                   "Le numéro   #{data[:value]} existe déja!"
                 end, on: :create
-            }
+            },
+            length: {
+                maximum: 9,
+                message: "le numéro de téléphone est trop long"
+            },
+            phone: true
 
 
   geocoded_by :address

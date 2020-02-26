@@ -169,7 +169,9 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'form-group row' do |ba|
       ba.use :label, class: 'col-form-label col-sm-3 pull-left'
       ba.wrapper :grid_wrapper, tag: 'div', class: 'col-sm-6' do |bb|
+        bb.optional :prepend
         bb.use :input, class: 'form-control', error_class: 'is-invalid'
+        bb.optional :append
         bb.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
         # bb.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
         bb.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
@@ -394,7 +396,7 @@ SimpleForm.setup do |config|
 
   # Input Group - custom component
   # see example app and config at https://github.com/rafaelfranca/simple_form-bootstrap
-  # config.wrappers :input_group, tag: 'div', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+  # config.wrappers :custom_input_group, tag: 'div', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
   #   b.use :html5
   #   b.use :placeholder
   #   b.optional :maxlength

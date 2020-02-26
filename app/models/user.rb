@@ -1,12 +1,3 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "n'est pas une addresse email valide")
-    end
-  end
-end
-
-
 class User < ApplicationRecord
   ROLES = %w(admin sales client).freeze
 
@@ -42,13 +33,18 @@ class User < ApplicationRecord
             email:true
   validates :phone_number,
             presence: {
-                message: "Le prénom de la catégorie est obligatoire"
+                message: "Le numéro de téléphone est obligatoire"
             },
             uniqueness: {
                 message: ->(object, data) do
                   "Le numéro   #{data[:value]} existe déja!"
                 end, on: :create
-            }
+            },
+            length: {
+                maximum: 9,
+                message: "le numéro de téléphone est trop long"
+            },
+            phone: true
   validates :role,
             presence: {
                 message: "Le role est obligatoire"

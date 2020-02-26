@@ -61,11 +61,10 @@ class Admin::UsersController < ApplicationController
 
   # PATCH  /admin/update_password
   def update_password
-    if @user_account.update(user_account_params)
-      # Sign in the user by passing validation in case their password changed
-      # bypass_sign_in(@user_account)
-      bypass_sign_in @user_account, scope: :admin
-      redirect_to root_path
+    @user_account = current_admin_user_account
+    if @user_account.update_with_password(user_account_params)
+      sign_in(@user_account, :bypass => true)
+      redirect_to edit_admin_user_path(current_admin_user_account), flash: { success: "Password modifié avec  success!"}
     else
       render "edit"
     end
@@ -76,7 +75,7 @@ class Admin::UsersController < ApplicationController
 
 
   def user_account_params
-    params.require(:user_account).permit(:password, :password_confirmation)
+    params.require(:user_account).permit(:password, :password_confirmation, :reset_password_token, :current_password)
   end
 
   def set_user
