@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_120355) do
+ActiveRecord::Schema.define(version: 2020_02_27_191859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,14 +211,14 @@ ActiveRecord::Schema.define(version: 2020_02_25_120355) do
     t.index ["partner_user_id"], name: "index_partner_notifications_on_partner_user_id"
   end
 
-  create_table "partner_operation_labor", force: :cascade do |t|
+  create_table "partner_operation_labors", force: :cascade do |t|
     t.decimal "labor"
     t.bigint "partner_id", null: false
     t.bigint "joboperation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["joboperation_id"], name: "index_partner_operation_labor_on_joboperation_id"
-    t.index ["partner_id"], name: "index_partner_operation_labor_on_partner_id"
+    t.index ["joboperation_id"], name: "index_partner_operation_labors_on_joboperation_id"
+    t.index ["partner_id"], name: "index_partner_operation_labors_on_partner_id"
   end
 
   create_table "partner_user_accounts", force: :cascade do |t|
@@ -451,8 +451,8 @@ ActiveRecord::Schema.define(version: 2020_02_25_120355) do
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
   add_foreign_key "partner_notifications", "partner_user_accounts", column: "partner_user_id"
-  add_foreign_key "partner_operation_labor", "joboperations"
-  add_foreign_key "partner_operation_labor", "partners"
+  add_foreign_key "partner_operation_labors", "joboperations"
+  add_foreign_key "partner_operation_labors", "partners"
   add_foreign_key "partner_user_accounts", "mechanics"
   add_foreign_key "partner_user_accounts", "partners"
   add_foreign_key "payments", "invoices"
