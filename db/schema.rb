@@ -404,8 +404,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.decimal "tax_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "parts_price"
-    t.decimal "service_price"
     t.index ["repairoption_id"], name: "index_workorder_items_on_repairoption_id"
     t.index ["workorder_id"], name: "index_workorder_items_on_workorder_id"
   end
@@ -422,6 +420,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.bigint "customer_user_account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "total_part_price"
     t.decimal "total_labor_amount"
     t.decimal "total_part_amount"
     t.decimal "total_tax_amount"
@@ -453,8 +452,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
   add_foreign_key "partner_notifications", "partner_user_accounts", column: "partner_user_id"
-  add_foreign_key "partner_operation_labors", "joboperations"
-  add_foreign_key "partner_operation_labors", "partners"
   add_foreign_key "partner_user_accounts", "mechanics"
   add_foreign_key "partner_user_accounts", "partners"
   add_foreign_key "payments", "invoices"
