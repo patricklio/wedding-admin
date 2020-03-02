@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_191859) do
+ActiveRecord::Schema.define(version: 2020_02_28_131116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.bigint "workorder_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.date "start"
+    t.date "end"
+    t.boolean "allday"
     t.index ["workorder_id"], name: "index_appointments_on_workorder_id"
   end
 
@@ -66,6 +70,11 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.datetime "remember_created_at"
     t.string "firstname"
     t.string "lastname"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["customer_id"], name: "index_customer_user_accounts_on_customer_id"
     t.index ["email"], name: "index_customer_user_accounts_on_email", unique: true
     t.index ["info_request_id"], name: "index_customer_user_accounts_on_info_request_id"
@@ -237,6 +246,11 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.bigint "mechanic_id"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_partner_user_accounts_on_email", unique: true
     t.index ["mechanic_id"], name: "index_partner_user_accounts_on_mechanic_id"
     t.index ["partner_id"], name: "index_partner_user_accounts_on_partner_id"
@@ -322,6 +336,11 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_user_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_user_accounts_on_reset_password_token", unique: true
     t.index ["user_id"], name: "index_user_accounts_on_user_id"
@@ -404,6 +423,8 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.decimal "tax_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "parts_price"
+    t.decimal "service_price"
     t.index ["repairoption_id"], name: "index_workorder_items_on_repairoption_id"
     t.index ["workorder_id"], name: "index_workorder_items_on_workorder_id"
   end
@@ -420,7 +441,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
     t.bigint "customer_user_account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "total_part_price"
     t.decimal "total_labor_amount"
     t.decimal "total_part_amount"
     t.decimal "total_tax_amount"
@@ -452,6 +472,8 @@ ActiveRecord::Schema.define(version: 2020_02_27_191859) do
   add_foreign_key "part_prices", "parts"
   add_foreign_key "part_prices", "vehicle_categories"
   add_foreign_key "partner_notifications", "partner_user_accounts", column: "partner_user_id"
+  add_foreign_key "partner_operation_labors", "joboperations"
+  add_foreign_key "partner_operation_labors", "partners"
   add_foreign_key "partner_user_accounts", "mechanics"
   add_foreign_key "partner_user_accounts", "partners"
   add_foreign_key "payments", "invoices"
