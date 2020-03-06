@@ -3,19 +3,19 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: <%= ENV['MOBILITY_DATABASE_USERNAME'] %>
-  password: <%= ENV['MOBILITY_DATABASE_PASSWORD'] %>
+  username: <%= ENV['KOKOLAB_DATABASE_USERNAME'] %>
+  password: <%= ENV['KOKOLAB_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
-  database: mobility_development
+  database: kokolab_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mobility_test
+  database: kokolab_test
 
 production:
   <<: *default

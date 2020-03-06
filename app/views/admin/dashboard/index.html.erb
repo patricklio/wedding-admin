@@ -26,9 +26,9 @@
 
   <div class='row'>
     <div class='col-sm-4 col-xs-6'>
-      <%= link_to  admin_customers_path do %>
+      <%= link_to  root_path do %>
         <%= render 'registration_card',
-          registration_count: @customers.length,
+          registration_count: 0,
           ressource_type: 'Clients',
           card_color: 'tile-blue',
           message: 'nous font confiance'
@@ -37,9 +37,9 @@
     </div>
 
     <div class='col-sm-4 col-xs-6'>
-      <%= link_to  admin_partners_path do %>
+      <%= link_to  root_path do %>
         <%= render 'registration_card',
-          registration_count: @partners.length,
+          registration_count: 0,
           ressource_type: 'Partenaires',
           card_color: 'tile-green',
           message: 'collaborent avec nous'
@@ -48,9 +48,9 @@
     </div>
 
     <div class='col-sm-4 col-xs-6'>
-      <%= link_to  admin_info_requests_path do %>
+      <%= link_to  root_path do %>
         <%= render 'registration_card',
-          registration_count: @requests.length,
+          registration_count: 0,
           ressource_type: 'Demandes de clients',
           card_color: 'tile-aqua',
           message: 'qui souhaitent profiter de nos services'
@@ -60,6 +60,6 @@
   </div>
 
   <footer class="main">
-    © 2020 Kulucar Admin
+    © 2020 Kokolab Admin
   </footer>
 </div>

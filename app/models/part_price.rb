@@ -1,2 +1,0 @@
-class PartPrice < ApplicationRecord
-end

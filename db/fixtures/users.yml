@@ -1,27 +1,7 @@
-- email: elena@mobility-sn.com
-  firstname: Elena
-  lastname: Dia
+- email: patrick@kokolab.com
+  firstname: Patrick
+  lastname: DOOKO
   phone_number: 763767253
   password: password
-  role: sales
-
-- email: nina@mobility-sn.com
-  firstname: Nina
-  lastname: TCHALLA
-  phone_number: 767777777
-  password: password
   role: admin
 
-- email: abdallah@mobility-sn.com
-  firstname: Abdallah
-  lastname: Diop
-  phone_number: 768888888
-  password: password
-  role: admin
-
-- email: patrick@mobility-sn.com
-  firstname: Patrick
-  lastname: Dooko
-  phone_number: 776666666
-  password: password
-  role: admin
