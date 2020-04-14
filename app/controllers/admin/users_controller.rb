@@ -4,18 +4,15 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    authorize User
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    authorize @user
   end
 
   # GET /admin/users/new
   def new
-    authorize User
     @user = User.new
   end
 
@@ -24,7 +21,6 @@ class Admin::UsersController < ApplicationController
     @user = User.new(admin_user_params)
 
     respond_to do |format|
-      authorize @user
       if @user.save
         create_user_account(@user)
 
@@ -39,7 +35,6 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    authorize user
     user.destroy
 
     redirect_to admin_users_path
@@ -53,7 +48,6 @@ class Admin::UsersController < ApplicationController
   def update
     @minimum_password_length = 8
 
-    authorize @user
     if @user.update(admin_user_params)
       if params[:commit] == "Enregistrer"
         if current_user.admin?

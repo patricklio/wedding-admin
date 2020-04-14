@@ -51,12 +51,10 @@
       <% end %>
     </li>
 
-    <% if policy(User).index? %>
-      <li class="root-level">
-        <%= link_to admin_users_path do%>
-          <i class="material-icons">supervisor_account</i><span>Utilisateurs</span>
-        <% end %>
-      </li>
-    <% end %>
+    <li class="root-level">
+      <%= link_to admin_users_path do%>
+        <i class="material-icons">supervisor_account</i><span>Utilisateurs</span>
+      <% end %>
+    </li>
   </ul>
 </div>
