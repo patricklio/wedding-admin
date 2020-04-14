@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'pages#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to:"admin/dashboard#index"
 
   namespace :admin do
     devise_for :user_accounts,
