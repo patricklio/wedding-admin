@@ -1,0 +1,43 @@
+<%= simple_form_for [:admin, courses], method: methode, authenticity_token: true, wrapper: :custom_form_horizontal,
+    class: "form-horizontal form-groups-bordered" do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-group joined" id="accordion-test">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <%= link_to "#collapse-fr",:data => {:toggle => "collapse" , :parent =>"#accordion-test"} do %>
+                <% if methode == :post %>
+                  Ajouter un cours
+                <% else %>
+                  <%= courses.title %>
+                  <span>
+                    (ID <%= courses.id %> - Dernière mise à jour: <%= l(courses.updated_at, format: :long) %>)
+                  </span>
+                <% end %>
+              <% end %>
+            </h4>
+          </div>
+          <div class="collapse show" id="collapse-fr">
+            <div class="card-body">
+              <%= f.input :title, label: "Nom du cours", input_html: { style: "text-transform: uppercase;" } %>
+
+              <%= f.input :author, label: "Auteur" %>
+
+              <%#= f.input :photo, label: "Photo", input_html: { style: "text-transform: uppercase;" } %>
+
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-offset-3 col-sm-6">
+                  <%= f.button :submit, "Enregistrer", class: 'btn btn-success' %> &nbsp;&nbsp;
+                  <%= f.button :submit, 'Enregistrer et continuer', class: 'btn btn-success set-lang', lang: 'fr' %> &nbsp;
+                  <%= link_to "Retour", admin_courses_path, { :class=>"btn btn-default" } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

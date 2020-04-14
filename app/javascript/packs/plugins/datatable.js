@@ -149,7 +149,7 @@ const initComponentDataTable = () => {
         const joboperationsElement = $('#joboperations_list');
         const jobpartsElement = $('#jobparts_list');
         const partsElement = $('#parts_list');
-        const customersElement = $('#customer_list_id');
+        const coursesElement = $('#courses_list_id');
         const partnersElement = $('#partners_id');
 
         tableElement.dataTable({
@@ -174,8 +174,8 @@ const initComponentDataTable = () => {
             partnersElement.dataTable(defaultOptions);
         }
 
-        if (customersElement.length) {
-            customersElement.dataTable(defaultOptions);
+        if (coursesElement.length) {
+            coursesElement.dataTable(defaultOptions);
         }
 
         if (joboperationsElement.length) {
